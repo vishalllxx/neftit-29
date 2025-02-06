@@ -57,10 +57,10 @@ export function MainNav() {
           <WalletConnect />
 
           <Sheet>
-            <SheetTrigger asChild>
+            <SheetTrigger>
               <ProfileButton />
             </SheetTrigger>
-            <SheetContent className="w-[300px] bg-[#121212] border-l border-white/10">
+            <SheetContent side="right" className="w-[300px] bg-[#121212] border-l border-white/10">
               <ProfileBox />
               <NavigationItems />
             </SheetContent>

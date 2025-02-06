@@ -9,6 +9,7 @@ export function ProfileButton() {
       size="icon" 
       className="rounded-full p-0 h-10 w-10 ring-1 ring-white/20 hover:ring-white/40 transition-all"
       type="button"
+      aria-label="Open profile menu"
     >
       <Avatar>
         <AvatarImage src="/placeholder.svg" alt="Profile" />
