@@ -3,6 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Heart, Share2 } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
 
 interface NFTCardProps {
   id: string;
@@ -14,7 +16,28 @@ interface NFTCardProps {
   isLiked?: boolean;
 }
 
-export function NFTCard({ id, name, image, price, creator, likes, isLiked }: NFTCardProps) {
+export function NFTCard({ id, name, image, price, creator, likes: initialLikes, isLiked: initialIsLiked = false }: NFTCardProps) {
+  const [isLiked, setIsLiked] = useState(initialIsLiked);
+  const [likes, setLikes] = useState(initialLikes);
+
+  const handleLike = () => {
+    const newLikedState = !isLiked;
+    setIsLiked(newLikedState);
+    setLikes(prev => newLikedState ? prev + 1 : prev - 1);
+    
+    // Save to local storage
+    const savedNFTs = JSON.parse(localStorage.getItem("savedNFTs") || "[]");
+    if (newLikedState) {
+      if (!savedNFTs.includes(id)) {
+        localStorage.setItem("savedNFTs", JSON.stringify([...savedNFTs, id]));
+        toast.success("NFT saved to your collection");
+      }
+    } else {
+      localStorage.setItem("savedNFTs", JSON.stringify(savedNFTs.filter((nftId: string) => nftId !== id)));
+      toast.success("NFT removed from your collection");
+    }
+  };
+
   return (
     <Card className="glass card-hover overflow-hidden fade-in transition-all duration-300">
       <div className="aspect-square relative overflow-hidden group">
@@ -30,6 +53,7 @@ export function NFTCard({ id, name, image, price, creator, likes, isLiked }: NFT
             variant="ghost" 
             size="icon" 
             className="h-8 w-8 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-sm"
+            onClick={handleLike}
           >
             <Heart className={`h-4 w-4 transition-colors ${isLiked ? 'fill-red-500 text-red-500' : ''}`} />
           </Button>
