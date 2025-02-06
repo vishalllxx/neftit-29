@@ -1,5 +1,6 @@
+
 import { MainNav } from "@/components/layout/MainNav";
-import { StarryBackground } from "@/components/layout/StarryBackground";
+import StarryBackground from "@/components/layout/StarryBackground";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { 

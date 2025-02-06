@@ -1,5 +1,6 @@
+
 import { MainNav } from "@/components/layout/MainNav";
-import { StarryBackground } from "@/components/layout/StarryBackground";
+import StarryBackground from "@/components/layout/StarryBackground";
 import { NFTCard } from "@/components/nft/NFTCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
