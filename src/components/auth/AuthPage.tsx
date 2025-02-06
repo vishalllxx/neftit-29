@@ -12,14 +12,14 @@ export function AuthPage() {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
 
   const dynamicTexts = [
-    "your portfolio",
-    "your SaaS startup",
-    "your landing page",
-    "your web app",
-    "your crypto project",
+    "your decentralized app",
+    "your NFT marketplace",
+    "your blockchain project",
+    "your smart contract",
+    "your Web3 platform",
     "your AI-powered tool",
-    "your next innovation",
-    "your dream into reality"
+    "your future",
+    "your next big thing"
   ];
 
   useEffect(() => {
@@ -115,7 +115,7 @@ export function AuthPage() {
           <div className="space-y-6 py-4">
             {/* Dynamic Text */}
             <div className="text-center space-y-1 mb-6">
-              <h2 className="text-xl font-medium text-white/90">Your vision, we build</h2>
+              <h2 className="text-xl font-medium text-white/90">You ask, we build</h2>
               <p className="text-lg font-medium bg-gradient-to-r from-purple-400 via-pink-500 to-purple-500 bg-clip-text text-transparent animate-fade-in">
                 {dynamicTexts[currentTextIndex]}
               </p>
@@ -193,3 +193,4 @@ export function AuthPage() {
     </div>
   );
 }
+
