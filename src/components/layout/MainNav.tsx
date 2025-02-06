@@ -8,7 +8,7 @@ import {
 import { Link } from "react-router-dom";
 import { WalletConnect } from "@/components/wallet/WalletConnect";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Diamond, Trophy, Users, Award, Gift, Bookmark, LogOut, Search, Menu, Sun, Moon } from "lucide-react";
+import { Trophy, Users, Award, Gift, Bookmark, LogOut, Search, Menu, Sun, Moon } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useTheme } from "@/hooks/use-theme";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -25,22 +25,6 @@ export function MainNav() {
   };
 
   const menuItems = [
-    { 
-      name: "XP & NEFT Stats", 
-      content: (
-        <div className="flex bg-black/40 rounded-lg overflow-hidden scale-in mb-2">
-          <div className="flex items-center gap-2 px-4 py-2 border-r border-white/10">
-            <Trophy className="h-4 w-4 text-primary" />
-            <span className="text-white text-sm">380 XPs</span>
-          </div>
-          <div className="flex items-center gap-2 px-4 py-2">
-            <Diamond className="h-4 w-4 text-primary" />
-            <span className="text-white text-sm">3 NEFT</span>
-          </div>
-        </div>
-      ),
-      type: "stats"
-    },
     { 
       name: "Leaderboard", 
       icon: <Users className="h-4 w-4" />,
@@ -115,19 +99,6 @@ export function MainNav() {
               )}
             </Button>
 
-            {!isMobile && (
-              <div className="flex bg-black/40 rounded-full overflow-hidden scale-in">
-                <div className="flex items-center gap-2 px-4 py-2 border-r border-white/10">
-                  <Trophy className="h-4 w-4 text-primary" />
-                  <span className="text-white text-sm">380 XPs</span>
-                </div>
-                <div className="flex items-center gap-2 px-4 py-2">
-                  <Diamond className="h-4 w-4 text-primary" />
-                  <span className="text-white text-sm">3 NEFT</span>
-                </div>
-              </div>
-            )}
-
             <WalletConnect />
 
             <Sheet>
@@ -163,9 +134,7 @@ export function MainNav() {
                 </div>
                 <div className="space-y-2">
                   {menuItems.map((item, index) => (
-                    item.type === "stats" ? (
-                      <div key={index}>{item.content}</div>
-                    ) : item.onClick ? (
+                    item.onClick ? (
                       <button
                         key={index}
                         onClick={item.onClick}

@@ -1,4 +1,3 @@
-
 import { MainNav } from "@/components/layout/MainNav";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, Sparkles, Twitter, MessageSquare, Gift, Trophy, Users } from "lucide-react";
@@ -131,7 +130,7 @@ const Index = () => {
           name="description" 
           content="Join the future of digital collectibles with our curated marketplace. Discover unique NFTs, connect your wallet, and start collecting today." 
         />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Audrey:wght@400;700&display=swap" rel="stylesheet" />
       </Helmet>
 
       <div className="min-h-screen bg-[#121212] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-gray-900/95 to-gray-900/90 font-['Inter']">
@@ -139,20 +138,12 @@ const Index = () => {
         
         <MainNav />
         
-        {/* Hero Section with enhanced visual effects */}
         <main className="container mx-auto px-4 relative">
           <div className="pt-32 pb-16 text-center space-y-8">
             <div className="space-y-6 max-w-4xl mx-auto">
-              <div className="relative">
-                <canvas 
-                  ref={canvasRef} 
-                  className="absolute left-1/2 -translate-x-1/2 -top-24 opacity-90"
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background pointer-events-none" />
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#D1D5DB] via-white to-[#D1D5DB] animate-fade-in relative z-10">
-                  Discover & Engage with the Best Web3 Projects
-                </h1>
-              </div>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#D1D5DB] via-white to-[#D1D5DB] animate-fade-in relative z-10 font-['Audrey']">
+                Discover & Engage with the Best Web3 Projects
+              </h1>
               <p className="text-xl text-[#9CA3AF] max-w-2xl mx-auto animate-fade-in delay-100">
                 Join the future of digital engagement. Complete tasks, earn rewards, and build your Web3 portfolio.
               </p>
@@ -286,4 +277,3 @@ const Index = () => {
 };
 
 export default Index;
-
