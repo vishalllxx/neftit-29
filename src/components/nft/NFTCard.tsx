@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -15,35 +16,47 @@ interface NFTCardProps {
 
 export function NFTCard({ id, name, image, price, creator, likes, isLiked }: NFTCardProps) {
   return (
-    <Card className="glass card-hover overflow-hidden">
-      <div className="aspect-square relative overflow-hidden">
+    <Card className="glass card-hover overflow-hidden fade-in">
+      <div className="aspect-square relative overflow-hidden group">
         <img
           src={image}
           alt={name}
-          className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
+          className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110"
         />
-        <div className="absolute top-2 right-2 flex gap-2">
-          <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/50">
-            <Heart className={`h-4 w-4 ${isLiked ? 'fill-red-500 text-red-500' : ''}`} />
+        <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="h-8 w-8 rounded-full bg-black/50 hover:bg-black/70"
+          >
+            <Heart className={`h-4 w-4 transition-colors ${isLiked ? 'fill-red-500 text-red-500' : ''}`} />
           </Button>
-          <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/50">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="h-8 w-8 rounded-full bg-black/50 hover:bg-black/70"
+          >
             <Share2 className="h-4 w-4" />
           </Button>
         </div>
         {price && (
-          <Badge className="absolute bottom-2 left-2 bg-black/50 hover:bg-black/50">
+          <Badge className="absolute bottom-2 left-2 bg-black/50 hover:bg-black/70">
             {price} ETH
           </Badge>
         )}
       </div>
       <CardHeader>
-        <CardTitle className="text-lg">{name}</CardTitle>
-        <p className="text-sm text-muted-foreground">by {creator}</p>
+        <CardTitle className="text-lg line-clamp-1">{name}</CardTitle>
+        <p className="text-sm text-muted-foreground line-clamp-1">by {creator}</p>
       </CardHeader>
       <CardContent>
         <div className="flex justify-between items-center">
           <span className="text-sm text-muted-foreground">{likes} likes</span>
-          <Button variant="secondary" size="sm">
+          <Button 
+            variant="secondary" 
+            size="sm"
+            className="transition-colors hover:bg-primary hover:text-primary-foreground"
+          >
             View Details
           </Button>
         </div>
