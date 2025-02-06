@@ -56,9 +56,10 @@ const Discover = () => {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[#121212] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-gray-900/95 to-gray-900/90">
+      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
       <MainNav />
-      <main className="container mx-auto px-4 pt-24 space-y-8">
+      <main className="container mx-auto px-4 pt-24 space-y-8 relative">
         <div className="space-y-8">
           <div className="text-center space-y-4">
             <h1 className="text-4xl md:text-5xl font-bold text-gradient">
@@ -99,3 +100,4 @@ const Discover = () => {
 };
 
 export default Discover;
+
