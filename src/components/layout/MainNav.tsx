@@ -103,35 +103,29 @@ export function MainNav() {
 
             <Sheet>
               <SheetTrigger asChild>
-                {isMobile ? (
-                  <Button variant="ghost" size="icon">
-                    <Menu className="h-6 w-6" />
-                  </Button>
-                ) : (
-                  <Link to="/profile">
-                    <Button 
-                      variant="ghost" 
-                      size="icon" 
-                      className="rounded-full p-0 h-10 w-10 ring-1 ring-white/20 hover:ring-white/40 transition-all"
-                    >
-                      <Avatar>
-                        <AvatarImage src="/placeholder.svg" />
-                        <AvatarFallback>VS</AvatarFallback>
-                      </Avatar>
-                    </Button>
-                  </Link>
-                )}
-              </SheetTrigger>
-              <SheetContent className="w-[300px] bg-[#121212] border-l border-white/10">
-                <div className="flex items-center gap-3 mb-8">
-                  <Avatar className="h-10 w-10 ring-1 ring-white/20">
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="rounded-full p-0 h-10 w-10 ring-1 ring-white/20 hover:ring-white/40 transition-all"
+                >
+                  <Avatar>
                     <AvatarImage src="/placeholder.svg" />
                     <AvatarFallback>VS</AvatarFallback>
                   </Avatar>
-                  <div className="text-white">
-                    <h4 className="font-medium">vishal5120</h4>
+                </Button>
+              </SheetTrigger>
+              <SheetContent className="w-[300px] bg-[#121212] border-l border-white/10">
+                <Link to="/profile" className="block">
+                  <div className="flex items-center gap-3 mb-8 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                    <Avatar className="h-10 w-10 ring-1 ring-white/20">
+                      <AvatarImage src="/placeholder.svg" />
+                      <AvatarFallback>VS</AvatarFallback>
+                    </Avatar>
+                    <div className="text-white">
+                      <h4 className="font-medium">vishal5120</h4>
+                    </div>
                   </div>
-                </div>
+                </Link>
                 <div className="space-y-2">
                   {menuItems.map((item, index) => (
                     item.onClick ? (
