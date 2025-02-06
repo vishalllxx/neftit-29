@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,6 +7,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthPage } from "./components/auth/AuthPage";
 import { WalletProvider } from "./components/wallet/WalletProvider";
 import Index from "./pages/Index";
+import Discover from "./pages/Discover";
 import Profile from "./pages/Profile";
 import Streaks from "./pages/Streaks";
 import NotFound from "./pages/NotFound";
@@ -13,7 +15,6 @@ import { useEffect } from "react";
 
 const queryClient = new QueryClient();
 
-// Initialize auth state if it doesn't exist
 if (typeof window !== 'undefined') {
   if (!localStorage.getItem("isAuthenticated")) {
     localStorage.setItem("isAuthenticated", "false");
@@ -49,6 +50,14 @@ const App = () => {
                 element={
                   <PrivateRoute>
                     <Index />
+                  </PrivateRoute>
+                } 
+              />
+              <Route 
+                path="/discover" 
+                element={
+                  <PrivateRoute>
+                    <Discover />
                   </PrivateRoute>
                 } 
               />
