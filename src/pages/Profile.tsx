@@ -1,5 +1,5 @@
-
 import { MainNav } from "@/components/layout/MainNav";
+import { StarryBackground } from "@/components/layout/StarryBackground";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { 
@@ -31,8 +31,8 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#121212] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-gray-900/95 to-gray-900/90">
-      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
+    <div className="min-h-screen">
+      <StarryBackground />
       <MainNav />
       <div className="container mx-auto px-4 pt-24 flex gap-8 relative">
         {/* Left Sidebar */}
@@ -157,4 +157,3 @@ const Profile = () => {
 };
 
 export default Profile;
-

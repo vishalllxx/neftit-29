@@ -1,4 +1,5 @@
 import { MainNav } from "@/components/layout/MainNav";
+import { StarryBackground } from "@/components/layout/StarryBackground";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, Sparkles, Twitter, MessageSquare, Gift, Trophy, Users } from "lucide-react";
 import { Helmet } from "react-helmet";
@@ -133,9 +134,8 @@ const Index = () => {
         <link href="https://fonts.googleapis.com/css2?family=Audrey:wght@400;700&display=swap" rel="stylesheet" />
       </Helmet>
 
-      <div className="min-h-screen bg-[#121212] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-gray-900/95 to-gray-900/90 font-['Inter']">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
-        
+      <div className="min-h-screen font-['Inter']">
+        <StarryBackground />
         <MainNav />
         
         <main className="container mx-auto px-4 relative">
