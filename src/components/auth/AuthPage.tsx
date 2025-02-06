@@ -193,4 +193,3 @@ export function AuthPage() {
     </div>
   );
 }
-
