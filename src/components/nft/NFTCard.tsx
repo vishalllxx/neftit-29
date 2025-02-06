@@ -16,31 +16,33 @@ interface NFTCardProps {
 
 export function NFTCard({ id, name, image, price, creator, likes, isLiked }: NFTCardProps) {
   return (
-    <Card className="glass card-hover overflow-hidden fade-in">
+    <Card className="glass card-hover overflow-hidden fade-in transition-all duration-300">
       <div className="aspect-square relative overflow-hidden group">
         <img
           src={image}
           alt={name}
-          className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110"
+          className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+          loading="lazy"
         />
-        <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
           <Button 
             variant="ghost" 
             size="icon" 
-            className="h-8 w-8 rounded-full bg-black/50 hover:bg-black/70"
+            className="h-8 w-8 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-sm"
           >
             <Heart className={`h-4 w-4 transition-colors ${isLiked ? 'fill-red-500 text-red-500' : ''}`} />
           </Button>
           <Button 
             variant="ghost" 
             size="icon" 
-            className="h-8 w-8 rounded-full bg-black/50 hover:bg-black/70"
+            className="h-8 w-8 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-sm"
           >
             <Share2 className="h-4 w-4" />
           </Button>
         </div>
         {price && (
-          <Badge className="absolute bottom-2 left-2 bg-black/50 hover:bg-black/70">
+          <Badge className="absolute bottom-2 left-2 bg-black/50 hover:bg-black/70 backdrop-blur-sm">
             {price} ETH
           </Badge>
         )}

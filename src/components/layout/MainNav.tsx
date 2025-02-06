@@ -8,11 +8,13 @@ import {
 import { Link } from "react-router-dom";
 import { WalletConnect } from "@/components/wallet/WalletConnect";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Diamond, Trophy, Users, Award, Gift, Bookmark, LogOut, Search, Menu } from "lucide-react";
+import { Diamond, Trophy, Users, Award, Gift, Bookmark, LogOut, Search, Menu, Sun, Moon } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useTheme } from "@/hooks/use-theme";
 
 export function MainNav() {
   const isMobile = useIsMobile();
+  const { theme, toggleTheme } = useTheme();
   
   const menuItems = [
     { 
@@ -75,7 +77,19 @@ export function MainNav() {
         </div>
         
         <div className="flex items-center gap-4">
-          {/* Stats Box */}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            className="rounded-full transition-colors hover:bg-white/10"
+          >
+            {theme === 'dark' ? (
+              <Sun className="h-5 w-5" />
+            ) : (
+              <Moon className="h-5 w-5" />
+            )}
+          </Button>
+
           {!isMobile && (
             <div className="flex bg-black/40 rounded-full overflow-hidden scale-in">
               <div className="flex items-center gap-2 px-4 py-2 border-r border-white/10">
