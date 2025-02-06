@@ -1,7 +1,7 @@
 
 import { MainNav } from "@/components/layout/MainNav";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Sparkles, Twitter, Discord, Gift, Trophy, Users } from "lucide-react";
+import { ChevronRight, Sparkles, Twitter, MessageSquare, Gift, Trophy, Users } from "lucide-react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
@@ -14,7 +14,7 @@ const Index = () => {
       reward: "50 XP"
     },
     {
-      icon: <Discord className="h-6 w-6 text-primary" />,
+      icon: <MessageSquare className="h-6 w-6 text-primary" />,
       title: "Community Building",
       description: "Join and participate in Discord communities",
       reward: "75 XP"
@@ -154,9 +154,9 @@ const Index = () => {
                   © 2024 NEFTIT Labs. All rights reserved
                 </p>
                 <div className="flex gap-4">
-                  <img src="/placeholder.svg" alt="MetaMask" className="h-8 w-8" />
-                  <img src="/placeholder.svg" alt="WalletConnect" className="h-8 w-8" />
-                  <img src="/placeholder.svg" alt="Coinbase" className="h-8 w-8" />
+                  <img src="/lovable-uploads/metamask.svg" alt="MetaMask" className="h-8 w-8" />
+                  <img src="/lovable-uploads/wallet-connect.svg" alt="WalletConnect" className="h-8 w-8" />
+                  <img src="/lovable-uploads/coinbase.svg" alt="Coinbase" className="h-8 w-8" />
                 </div>
               </div>
               
