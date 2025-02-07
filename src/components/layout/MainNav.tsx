@@ -18,15 +18,8 @@ export function MainNav() {
     <nav className="fixed top-0 w-full z-50 glass px-4 py-3 fade-in">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center gap-4 lg:gap-8">
-          <Link 
-            to="/" 
-            className="flex items-center"
-          >
-            <img 
-              src="/lovable-uploads/3baec3eb-a8c6-42d0-8133-19ccf985cf36.png" 
-              alt="NEFTIT!" 
-              className="h-24 w-auto transition-all"
-            />
+          <Link to="/" className="text-3xl font-bold" style={{ background: 'linear-gradient(102.3deg, rgba(147,39,143,1) 5.9%, rgba(234,172,232,1) 64%, rgba(246,219,245,1) 89%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', padding: '0.2em 0' }}>
+            NEFTIT
           </Link>
           
           {!isMobile && (
