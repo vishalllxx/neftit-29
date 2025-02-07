@@ -14,10 +14,18 @@ export function MainNav() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <nav className="fixed top-0 w-full z-50 glass px-4 py-3 fade-in">
+    <nav className="fixed top-0 w-full z-50 backdrop-blur-xl px-4 py-3 fade-in">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center gap-4 lg:gap-8">
-          <Link to="/" className="text-3xl font-bold" style={{ background: 'linear-gradient(102.3deg, rgba(147,39,143,1) 5.9%, rgba(234,172,232,1) 64%, rgba(246,219,245,1) 89%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', padding: '0.2em 0' }}>
+          <Link 
+            to="/" 
+            className="text-3xl font-bold bg-gradient-to-r from-purple-500/90 via-pink-500/90 to-purple-500/90 bg-clip-text text-transparent" 
+            style={{ 
+              padding: '0.2em 0',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
+          >
             NEFTIT
           </Link>
           
@@ -51,7 +59,10 @@ export function MainNav() {
             <SheetTrigger>
               <ProfileButton />
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] bg-[#121212] border-l border-white/10">
+            <SheetContent 
+              side="right" 
+              className="w-[300px] bg-gradient-to-b from-background/95 to-background/90 backdrop-blur-xl border-l border-white/10"
+            >
               <ProfileBox />
               <NavigationItems />
             </SheetContent>

@@ -56,6 +56,6 @@ const Streaks = () => {
       </main>
     </div>
   );
-}
+};
 
 export default Streaks;
