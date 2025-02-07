@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import { Hero } from "@/components/home/Hero";
 import { RotatingCube } from "@/components/home/RotatingCube";
 import { FeaturedProjects } from "@/components/home/FeaturedProjects";
+import { WhatIsNeftit } from "@/components/home/WhatIsNeftit";
 import { TaskTypes } from "@/components/home/TaskTypes";
 import { Footer } from "@/components/home/Footer";
 
@@ -29,6 +30,7 @@ const Index = () => {
             <Hero />
             <RotatingCube />
             <FeaturedProjects />
+            <WhatIsNeftit />
             <TaskTypes />
           </div>
         </main>
