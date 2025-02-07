@@ -19,9 +19,11 @@ export function MainNav() {
         <div className="flex items-center gap-4 lg:gap-8">
           <Link 
             to="/" 
-            className="text-3xl font-bold text-white"
+            className="text-3xl font-bold bg-gradient-to-br from-primary/90 via-purple-500/90 to-accent/90 bg-clip-text text-transparent"
             style={{ 
               padding: '0.2em 0',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
             }}
           >
             NEFTIT
@@ -59,7 +61,7 @@ export function MainNav() {
             </SheetTrigger>
             <SheetContent 
               side="right" 
-              className="w-[300px] bg-gradient-to-b from-purple-900/95 to-background/90 backdrop-blur-xl border-l border-white/10"
+              className="w-[300px] bg-gradient-to-b from-purple-900/95 via-background/95 to-background/90 backdrop-blur-xl border-none"
             >
               <ProfileBox />
               <NavigationItems />
