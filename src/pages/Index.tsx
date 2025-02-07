@@ -8,6 +8,7 @@ import { FeaturedProjects } from "@/components/home/FeaturedProjects";
 import { WhatIsNeftit } from "@/components/home/WhatIsNeftit";
 import { TaskTypes } from "@/components/home/TaskTypes";
 import { Footer } from "@/components/home/Footer";
+import { Testimonials } from "@/components/home/Testimonials";
 
 const Index = () => {
   return (
@@ -53,6 +54,9 @@ const Index = () => {
               <div className="absolute inset-0 bg-gradient-to-b from-purple-500/10 via-transparent to-transparent blur-3xl" />
               <FeaturedProjects />
             </div>
+
+            {/* Testimonials Section */}
+            <Testimonials />
 
             {/* What is Neftit section with improved styling */}
             <div className="relative overflow-hidden">
