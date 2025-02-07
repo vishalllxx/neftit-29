@@ -82,8 +82,8 @@ const Discover = () => {
     <div className="min-h-screen bg-gradient-to-b from-background to-background/80">
       <StarryBackground />
       <MainNav />
-      <main className="container mx-auto px-4 pt-24 pb-12 space-y-8 relative">
-        <div className="space-y-8">
+      <main className="container mx-auto px-4 pt-24 pb-12 space-y-12 relative">
+        <div className="space-y-12">
           <div className="text-center space-y-4">
             <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-text">
               Discover & Earn NFTs
@@ -105,7 +105,7 @@ const Discover = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 fade-in">
             {isLoading ? (
               Array(4).fill(0).map((_, index) => (
                 <div key={index} className="aspect-square animate-pulse rounded-xl bg-primary/5" />
