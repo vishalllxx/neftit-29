@@ -1,3 +1,4 @@
+
 import { MainNav } from "@/components/layout/MainNav";
 import { VerticalNav } from "@/components/layout/VerticalNav";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
