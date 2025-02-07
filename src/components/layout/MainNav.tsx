@@ -25,7 +25,7 @@ export function MainNav() {
             <img 
               src="/lovable-uploads/3baec3eb-a8c6-42d0-8133-19ccf985cf36.png" 
               alt="NEFTIT!" 
-              className="h-10 w-auto dark:brightness-200 brightness-50 transition-all"
+              className="h-8 w-auto dark:invert dark:brightness-200 brightness-0 transition-all"
             />
           </Link>
           
