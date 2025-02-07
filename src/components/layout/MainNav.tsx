@@ -20,22 +20,13 @@ export function MainNav() {
         <div className="flex items-center gap-4 lg:gap-8">
           <Link 
             to="/" 
-            className="flex items-center text-3xl font-bold tracking-tighter"
+            className="flex items-center"
           >
-            <span className="relative">
-              <span className="bg-gradient-to-r from-[#9b87f5] via-[#D946EF] to-[#6E59A5] bg-clip-text text-transparent">
-                N
-              </span>
-              <span className="bg-gradient-to-r from-[#9b87f5] via-[#D946EF] to-[#6E59A5] bg-clip-text text-transparent">
-                E
-              </span>
-              <span className="text-[#1EAEDB] relative inline-block transform hover:scale-110 transition-transform duration-200 mx-[-2px]">
-                F
-              </span>
-              <span className="bg-gradient-to-r from-[#9b87f5] via-[#D946EF] to-[#6E59A5] bg-clip-text text-transparent">
-                TIT!
-              </span>
-            </span>
+            <img 
+              src="/lovable-uploads/2cce3529-7d8c-4a01-a221-1aba917e2e77.png" 
+              alt="NEFTIT!" 
+              className="h-8 w-auto dark:brightness-100 brightness-90 transition-all"
+            />
           </Link>
           
           {!isMobile && (
