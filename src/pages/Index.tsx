@@ -21,14 +21,16 @@ const Index = () => {
         <link href="https://fonts.googleapis.com/css2?family=Audrey:wght@400;700&display=swap" rel="stylesheet" />
       </Helmet>
 
-      <div className="min-h-screen font-['Inter']">
+      <div className="min-h-screen font-['Inter'] overflow-hidden">
         <StarryBackground />
         <MainNav />
         
         <main className="container mx-auto px-4 relative">
-          <div className="pt-32 pb-16 text-center space-y-8">
+          <div className="pt-32 pb-16 space-y-32">
             <Hero />
-            <RotatingCube />
+            <div className="animate-float">
+              <RotatingCube />
+            </div>
             <FeaturedProjects />
             <WhatIsNeftit />
             <TaskTypes />
