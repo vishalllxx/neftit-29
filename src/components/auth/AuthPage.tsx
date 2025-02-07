@@ -79,7 +79,7 @@ export function AuthPage() {
   const wallets = [
     {
       name: "Phantom",
-      icon: "https://cdn.iconscout.com/icon/free/png-256/free-phantom-3630219-3031259.png",
+      icon: "https://i.imgur.com/IFgaR1p.png",
       onClick: () => handleLogin("Phantom")
     },
     {
@@ -89,12 +89,12 @@ export function AuthPage() {
     },
     {
       name: "Keplr",
-      icon: "https://raw.githubusercontent.com/chainapsis/keplr-wallet/master/docs/images/keplr-logo.png",
+      icon: "https://i.imgur.com/sNfJwAh.png",
       onClick: () => handleLogin("Keplr")
     },
     {
       name: "Trust Wallet",
-      icon: "https://cdn.iconscout.com/icon/free/png-256/free-trust-wallet-6927635-5666077.png",
+      icon: "https://i.imgur.com/FZcJZpF.png",
       onClick: () => handleLogin("Trust Wallet")
     },
     {
