@@ -42,22 +42,22 @@ export function AuthPage() {
   const socialLogins = [
     {
       name: "Google",
-      icon: "/lovable-uploads/google.svg",
+      icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItY2hyb21lIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCI+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iNCIgc3Ryb2tlPSIjRkYwMDAwIj48L2NpcmNsZT48bGluZSB4MT0iMjEuMTciIHkxPSI4IiB4Mj0iMTIiIHkyPSI4IiBzdHJva2U9IiMwMEZGMDAiPjwvbGluZT48bGluZSB4MT0iMy45NSIgeTE9IjYuMDYiIHgyPSI4LjU0IiB5Mj0iMTQuMTQiIHN0cm9rZT0iI0ZGRkYwMCI+PC9saW5lPjxsaW5lIHgxPSIxMC44OCIgeTE9IjIxLjk0IiB4Mj0iMTUuNDYiIHkyPSIxMy44NiIgc3Ryb2tlPSIjMDAwMEZGIj48L2xpbmU+PC9zdmc+",
       onClick: () => handleLogin("Google")
     },
     {
       name: "Discord",
-      icon: "/lovable-uploads/discord.svg",
+      icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItbWVzc2FnZS1jaXJjbGUiPjxwYXRoIGQ9Ik0yMSAxMS41YTguMzggOC4zOCAwIDAgMS0uOSAzLjggOC41IDguNSAwIDAgMS03LjYgNC43IDguMzggOC4zOCAwIDAgMS0zLjgtLjlMMyAyMWwxLjktNS43YTguMzggOC4zOCAwIDAgMS0uOS0zLjggOC41IDguNSAwIDAgMSA0LjctNy42IDguMzggOC4zOCAwIDAgMSAzLjgtLjloLjVhOC40OCA4LjQ4IDAgMCAxIDggOHYuNXoiPjwvcGF0aD48L3N2Zz4=",
       onClick: () => handleLogin("Discord")
     },
     {
       name: "Twitter",
-      icon: "/lovable-uploads/twitter.svg",
+      icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItdHdpdHRlciI+PHBhdGggZD0iTTIzIDNhMTAuOSAxMC45IDAgMCAxLTMuMTQgMS41MyA0LjQ4IDQuNDggMCAwIDAtNy44NiAzdjFBMTAuNjYgMTAuNjYgMCAwIDEgMyA0cy00IDkgNSAxM2ExMS42NCAxMS42NCAwIDAgMS03IDJjOSA1IDIwIDAgMjAtMTEuNWE0LjUgNC41IDAgMCAwLS4wOC0uODNBNy43MiA3LjcyIDAgMCAwIDIzIDN6Ij48L3BhdGg+PC9zdmc+",
       onClick: () => handleLogin("Twitter")
     },
     {
       name: "Telegram",
-      icon: "/lovable-uploads/telegram.svg",
+      icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItc2VuZCI+PGxpbmUgeDE9IjIyIiB5MT0iMiIgeDI9IjExIiB5Mj0iMTMiPjwvbGluZT48cG9seWdvbiBwb2ludHM9IjIyIDIgMTUgMjIgMTEgMTMgMiA5IDIyIDIiPjwvcG9seWdvbj48L3N2Zz4=",
       onClick: () => handleLogin("Telegram")
     }
   ];
@@ -65,31 +65,31 @@ export function AuthPage() {
   const wallets = [
     {
       name: "Phantom",
-      icon: "/lovable-uploads/phantom.svg",
+      icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItZ2hvc3QiPjxwb2x5Z29uIHBvaW50cz0iOSAxOSAyIDkgOSAyIDIwIDIgMjAgMTYgMTQgMTYgOSAxOSI+PC9wb2x5Z29uPjxjaXJjbGUgY3g9IjEyIiBjeT0iOCIgcj0iMiI+PC9jaXJjbGU+PC9zdmc+",
       status: "Multi Chain",
       onClick: () => handleLogin("Phantom")
     },
     {
       name: "Metamask",
-      icon: "/lovable-uploads/metamask.svg",
+      icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItZm94Ij48cGF0aCBkPSJNMTQuNyAyLjNBMS4wMDUgMS4wMDUgMCAwIDEgMTYgMyAyIDIgMCAwIDAgMTkgOGgtLjFhNSA1IDAgMCAwLTkuOCAwSDlhMiAyIDAgMCAwIDMtNSAxLjAwNSAxLjAwNSAwIDAgMSAxLjMtLjdaIj48L3BhdGg+PHBhdGggZD0iTTE4IDE5YTYgNiAwIDAgMC02IDZjMCAzIC41IDNaIj48L3BhdGg+PHBhdGggZD0iTTYgMTlhNiA2IDAgMCAxIDYgNmMwIDMtLjUgM1oiPjwvcGF0aD48cGF0aCBkPSJNMTIgMTlhNyA3IDAgMCAwIDctN1Y0aDJsLTQtNEwxMyA0aDJ2OGE3IDcgMCAwIDAgNyA3Ij48L3BhdGg+PC9zdmc+",
       status: "Installed",
       onClick: () => handleLogin("Metamask")
     },
     {
       name: "Keplr",
-      icon: "/lovable-uploads/keplr.svg",
+      icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXIta2V5Ij48cGF0aCBkPSJNMjEgMmwtMiAybS03LjYxIDcuNjFhNS41IDUuNSAwIDEgMS03Ljc3OCAwIDUuNSA1LjUgMCAwIDEgNy43NzcgMFoiPjwvcGF0aD48cGF0aCBkPSJNMTUuNSAxNS41TDE5IDE5bC0yIDJsLTIuNS0yLjUiPjwvcGF0aD48L3N2Zz4=",
       status: "Installed",
       onClick: () => handleLogin("Keplr")
     },
     {
       name: "Trust Wallet",
-      icon: "/lovable-uploads/trust-wallet.svg",
+      icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItc2hpZWxkIj48cGF0aCBkPSJNMTIgMjJzOC04IDgtMTJWNWwtOC0zLTggM3Y1YzAgNCA4IDEyIDggMTJ6Ij48L3BhdGg+PC9zdmc+",
       status: "Multi Chain",
       onClick: () => handleLogin("Trust Wallet")
     },
     {
       name: "All Wallets",
-      icon: "/lovable-uploads/all-wallets.svg",
+      icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItd2FsbGV0Ij48cGF0aCBkPSJNMjEgNHYxNmEyIDIgMCAwIDEtMiAySDVhMiAyIDAgMCAxLTItMlY0YTIgMiAwIDAgMSAyLTJoMTRhMiAyIDAgMCAxIDIgMnoiPjwvcGF0aD48cGF0aCBkPSJNMjEgNEg1YTIgMiAwIDAgMC0yIDJ2Mmg4YTIgMiAwIDAgMSAyIDJoNmEyIDIgMCAwIDEgMiAydjIiPjwvcGF0aD48L3N2Zz4=",
       status: "9+",
       onClick: () => handleLogin("Other Wallet")
     }
@@ -128,7 +128,7 @@ export function AuthPage() {
                 className="w-full bg-[#2A2B2F]/80 hover:bg-[#2A2B2F] hover:scale-[1.02] transition-all border-0 text-white h-12 shadow-lg"
                 onClick={() => handleLogin("Google")}
               >
-                <img src="/lovable-uploads/google.svg" alt="Google" className="w-5 h-5 mr-2" />
+                <img src={socialLogins[0].icon} alt="Google" className="w-5 h-5 mr-2" />
                 Continue with Google
               </Button>
               
