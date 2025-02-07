@@ -1,10 +1,10 @@
 
 import { MainNav } from "@/components/layout/MainNav";
-import { VerticalNav } from "@/components/layout/VerticalNav";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Trophy, Star, Calendar, Clock } from "lucide-react";
+import { Trophy, Star, Calendar } from "lucide-react";
 import { DailyCheckin } from "@/components/streaks/DailyCheckin";
+import StarryBackground from "@/components/layout/StarryBackground";
 
 const Streaks = () => {
   const achievements = [
@@ -14,16 +14,16 @@ const Streaks = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background/80 to-background">
+    <div className="min-h-screen">
+      <StarryBackground />
       <MainNav />
-      <VerticalNav />
-      <main className="pl-20 pt-24 pr-4 container mx-auto">
-        <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
+      <main className="container mx-auto px-4 relative">
+        <div className="pt-32 pb-16 max-w-4xl mx-auto space-y-8 animate-fade-in">
           <div className="text-center space-y-4">
-            <h1 className="text-4xl font-bold animate-text bg-gradient-to-r from-primary via-accent to-primary">
+            <h1 className="text-4xl font-bold" style={{ background: 'linear-gradient(102.3deg, rgba(147,39,143,1) 5.9%, rgba(234,172,232,1) 64%, rgba(246,219,245,1) 89%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', padding: '0.2em 0' }}>
               Daily Streaks
             </h1>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-white/60">
               Keep up your daily activity to earn rewards and climb the leaderboard
             </p>
           </div>
