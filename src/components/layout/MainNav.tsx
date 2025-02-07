@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link } from "react-router-dom";
 import { WalletConnect } from "@/components/wallet/WalletConnect";
-import { Search, Sun, Moon } from "lucide-react";
+import { Sun, Moon } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useTheme } from "@/hooks/use-theme";
 import { ProfileButton } from "@/components/profile/ProfileButton";
@@ -23,20 +23,9 @@ export function MainNav() {
           </Link>
           
           {!isMobile && (
-            <>
-              <Link to="/discover" className="text-white/80 hover:text-white transition-colors">
-                Discover
-              </Link>
-              
-              <div className="relative hidden md:block">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/50" />
-                <input
-                  type="text"
-                  placeholder="Search Creators"
-                  className="bg-white/5 border border-white/10 rounded-full pl-10 pr-4 py-2 text-sm text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-primary/50 w-[280px]"
-                />
-              </div>
-            </>
+            <Link to="/discover" className="text-white/80 hover:text-white transition-colors">
+              Discover
+            </Link>
           )}
         </div>
         
