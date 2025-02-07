@@ -66,22 +66,30 @@ export const FeaturedProjects = () => {
 
   return (
     <div className="pt-20 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#8B5CF6]/10 via-transparent to-transparent blur-3xl" />
-      <h2 className="text-3xl font-bold mb-12 text-[#D1D5DB]">Featured Projects</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      {/* Enhanced gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#8B5CF6]/20 via-transparent to-transparent blur-3xl opacity-50" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#8B5CF6]/10 via-transparent to-transparent blur-3xl opacity-30" />
+      
+      <h2 className="text-3xl font-bold mb-12 text-[#D1D5DB] relative z-10">Featured Projects</h2>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto relative z-10">
         {featuredProjects.map((project, index) => (
           <div 
             key={project.id}
-            className="backdrop-blur-xl bg-white/5 rounded-xl overflow-hidden hover:scale-105 transition-all duration-300 animate-fade-in border border-white/10 hover:border-white/20 hover:shadow-lg hover:shadow-[#8B5CF6]/5"
-            style={{ animationDelay: `${index * 100}ms` }}
+            className="group backdrop-blur-xl bg-white/5 rounded-xl overflow-hidden hover:scale-105 transition-all duration-300 animate-fade-in border border-white/10 hover:border-white/20 hover:shadow-lg hover:shadow-[#8B5CF6]/5"
+            style={{ 
+              animationDelay: `${index * 100}ms`,
+              transform: "translateZ(0)" // Forces GPU acceleration
+            }}
           >
-            <div className="relative aspect-video">
+            <div className="relative aspect-video overflow-hidden">
               <img 
                 src={project.image} 
                 alt={project.title} 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full flex items-center gap-2">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-2 border border-white/10">
                 <TrendingUp className="h-4 w-4 text-green-400" />
                 <span className="text-green-400 text-sm font-medium">{project.growth}</span>
               </div>
@@ -89,22 +97,22 @@ export const FeaturedProjects = () => {
             
             <div className="p-6 space-y-4">
               <div className="space-y-2">
-                <h3 className="text-xl font-semibold text-[#D1D5DB]">{project.title}</h3>
-                <p className="text-[#9CA3AF]">{project.description}</p>
+                <h3 className="text-xl font-semibold text-[#D1D5DB] group-hover:text-white transition-colors duration-300">{project.title}</h3>
+                <p className="text-[#9CA3AF] group-hover:text-[#D1D5DB] transition-colors duration-300">{project.description}</p>
               </div>
 
               <div className="space-y-3">
                 <div className="flex justify-between text-sm">
                   <span className="text-[#9CA3AF]">Volume</span>
-                  <span className="text-[#D1D5DB]">{project.volume}</span>
+                  <span className="text-[#D1D5DB] font-medium">{project.volume}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-[#9CA3AF]">Progress</span>
-                  <span className="text-[#D1D5DB]">{project.progress}%</span>
+                  <span className="text-[#D1D5DB] font-medium">{project.progress}%</span>
                 </div>
-                <div className="w-full bg-[#475569]/10 rounded-full h-2.5">
+                <div className="w-full bg-[#475569]/20 rounded-full h-2.5 overflow-hidden">
                   <div 
-                    className="bg-gradient-to-r from-[#475569] to-[#8B5CF6] rounded-full h-2.5 transition-all duration-500" 
+                    className="bg-gradient-to-r from-[#8B5CF6] to-[#D946EF] h-2.5 rounded-full transition-all duration-500 ease-out"
                     style={{ width: `${project.progress}%` }}
                   />
                 </div>
@@ -112,11 +120,11 @@ export const FeaturedProjects = () => {
 
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-1 text-sm text-[#9CA3AF]">
+                  <div className="flex items-center gap-1.5 text-sm text-[#9CA3AF] group-hover:text-[#D1D5DB] transition-colors duration-300">
                     <Users className="h-4 w-4" />
                     <span>{project.participants.toLocaleString()}</span>
                   </div>
-                  <div className="flex items-center gap-1 text-sm text-[#9CA3AF]">
+                  <div className="flex items-center gap-1.5 text-sm text-[#9CA3AF] group-hover:text-[#D1D5DB] transition-colors duration-300">
                     <MessageSquare className="h-4 w-4" />
                     <span>{project.comments}</span>
                   </div>
@@ -125,26 +133,30 @@ export const FeaturedProjects = () => {
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-8 w-8 rounded-full hover:bg-white/10"
+                    className="h-8 w-8 rounded-full hover:bg-white/10 transition-colors duration-300"
                     onClick={() => handleFollow(project.id)}
                   >
                     <Heart 
-                      className={`h-4 w-4 ${followedProjects.includes(project.id) ? 'fill-red-500 text-red-500' : 'text-[#9CA3AF]'}`} 
+                      className={`h-4 w-4 transition-colors duration-300 ${
+                        followedProjects.includes(project.id) 
+                          ? 'fill-red-500 text-red-500' 
+                          : 'text-[#9CA3AF] group-hover:text-[#D1D5DB]'
+                      }`} 
                     />
                   </Button>
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-8 w-8 rounded-full hover:bg-white/10"
+                    className="h-8 w-8 rounded-full hover:bg-white/10 transition-colors duration-300"
                     onClick={() => handleShare(project.title)}
                   >
-                    <Share2 className="h-4 w-4 text-[#9CA3AF]" />
+                    <Share2 className="h-4 w-4 text-[#9CA3AF] group-hover:text-[#D1D5DB] transition-colors duration-300" />
                   </Button>
                 </div>
               </div>
 
               <Button 
-                className="w-full bg-gradient-to-r from-[#475569] to-[#475569]/80 hover:from-[#475569]/90 hover:to-[#475569]/70 text-[#D1D5DB]"
+                className="w-full bg-gradient-to-r from-[#8B5CF6] to-[#D946EF] hover:from-[#7C3AED] hover:to-[#C026D3] text-white font-medium transition-all duration-300 shadow-lg shadow-[#8B5CF6]/10 hover:shadow-[#8B5CF6]/20"
               >
                 Join Project
               </Button>
