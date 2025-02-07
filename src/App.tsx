@@ -11,6 +11,7 @@ import Discover from "./pages/Discover";
 import Profile from "./pages/Profile";
 import Streaks from "./pages/Streaks";
 import NotFound from "./pages/NotFound";
+import ProjectDetails from "./pages/ProjectDetails";
 import { useEffect } from "react";
 
 const queryClient = new QueryClient();
@@ -58,6 +59,14 @@ const App = () => {
                 element={
                   <PrivateRoute>
                     <Discover />
+                  </PrivateRoute>
+                } 
+              />
+              <Route 
+                path="/project/:id" 
+                element={
+                  <PrivateRoute>
+                    <ProjectDetails />
                   </PrivateRoute>
                 } 
               />
