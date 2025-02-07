@@ -10,25 +10,41 @@ export function AuthPage() {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const dynamicTexts = [
-    "decentralized app",
-    "NFT marketplace",
-    "blockchain project",
-    "smart contract",
-    "Web3 platform",
-    "AI-powered tool",
-    "future",
-    "next big thing"
+    "NFTs",
+    "REWARDS",
+    "FUTURE"
   ];
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTextIndex((prevIndex) => (prevIndex + 1) % dynamicTexts.length);
-    }, 2500);
+    let timeout: NodeJS.Timeout;
+    const currentWord = dynamicTexts[currentTextIndex];
+    
+    const updateText = () => {
+      if (!isDeleting) {
+        if (displayText.length < currentWord.length) {
+          setDisplayText(currentWord.slice(0, displayText.length + 1));
+          timeout = setTimeout(updateText, 150);
+        } else {
+          timeout = setTimeout(() => setIsDeleting(true), 2000);
+        }
+      } else {
+        if (displayText.length > 0) {
+          setDisplayText(currentWord.slice(0, displayText.length - 1));
+          timeout = setTimeout(updateText, 100);
+        } else {
+          setIsDeleting(false);
+          setCurrentTextIndex((prevIndex) => (prevIndex + 1) % dynamicTexts.length);
+        }
+      }
+    };
 
-    return () => clearInterval(interval);
-  }, []);
+    timeout = setTimeout(updateText, 100);
+    return () => clearTimeout(timeout);
+  }, [currentTextIndex, displayText, isDeleting]);
 
   const handleLogin = (method: string) => {
     localStorage.setItem("isAuthenticated", "true");
@@ -42,22 +58,22 @@ export function AuthPage() {
   const socialLogins = [
     {
       name: "Google",
-      icon: "/google.png",
+      icon: "https://cdn-icons-png.flaticon.com/128/300/300221.png",
       onClick: () => handleLogin("Google")
     },
     {
       name: "Discord",
-      icon: "/discord.png",
+      icon: "https://cdn-icons-png.flaticon.com/128/5968/5968756.png",
       onClick: () => handleLogin("Discord")
     },
     {
       name: "Twitter",
-      icon: "/twitter.png",
+      icon: "https://cdn-icons-png.flaticon.com/128/3670/3670151.png",
       onClick: () => handleLogin("Twitter")
     },
     {
       name: "Telegram",
-      icon: "/telegram.png",
+      icon: "https://cdn-icons-png.flaticon.com/128/2111/2111646.png",
       onClick: () => handleLogin("Telegram")
     }
   ];
@@ -65,27 +81,27 @@ export function AuthPage() {
   const wallets = [
     {
       name: "Phantom",
-      icon: "/phantom.png",
+      icon: "https://cdn.iconscout.com/icon/free/png-256/free-phantom-3630219-3031259.png",
       onClick: () => handleLogin("Phantom")
     },
     {
       name: "Metamask",
-      icon: "/metamask.png",
+      icon: "https://cdn.iconscout.com/icon/free/png-256/free-metamask-2728406-2261817.png",
       onClick: () => handleLogin("Metamask")
     },
     {
       name: "Keplr",
-      icon: "/keplr.png",
+      icon: "https://raw.githubusercontent.com/chainapsis/keplr-wallet/master/docs/images/keplr-logo.png",
       onClick: () => handleLogin("Keplr")
     },
     {
       name: "Trust Wallet",
-      icon: "/trust.png",
+      icon: "https://cdn.iconscout.com/icon/free/png-256/free-trust-wallet-6927635-5666077.png",
       onClick: () => handleLogin("Trust Wallet")
     },
     {
       name: "All Wallets",
-      icon: "/wallet.png",
+      icon: "https://cdn-icons-png.flaticon.com/128/9329/9329863.png",
       onClick: () => handleLogin("Other Wallet")
     }
   ];
@@ -110,10 +126,12 @@ export function AuthPage() {
           <div className="space-y-6 py-4">
             {/* Dynamic Text */}
             <div className="text-center space-y-2 mb-6">
-              <h2 className="text-2xl font-medium text-white/90">Build <span className="text-purple-400">your</span></h2>
-              <p className="text-2xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-purple-500 bg-clip-text text-transparent animate-fade-in">
-                {dynamicTexts[currentTextIndex]}
-              </p>
+              <h2 className="text-2xl font-medium inline-flex items-center gap-2">
+                <span className="text-white/90">collect</span>
+                <span className="text-sky-400 min-w-[120px] animate-fade-in">
+                  {displayText}
+                </span>
+              </h2>
             </div>
 
             {/* Social Logins */}
