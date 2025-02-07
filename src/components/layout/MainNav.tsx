@@ -23,9 +23,9 @@ export function MainNav() {
             className="flex items-center"
           >
             <img 
-              src="/lovable-uploads/2cce3529-7d8c-4a01-a221-1aba917e2e77.png" 
+              src="/lovable-uploads/3baec3eb-a8c6-42d0-8133-19ccf985cf36.png" 
               alt="NEFTIT!" 
-              className="h-8 w-auto dark:brightness-100 brightness-90 transition-all"
+              className="h-10 w-auto dark:brightness-200 brightness-50 transition-all"
             />
           </Link>
           
