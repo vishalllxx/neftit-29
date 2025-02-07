@@ -12,6 +12,7 @@ import Profile from "./pages/Profile";
 import Streaks from "./pages/Streaks";
 import NotFound from "./pages/NotFound";
 import ProjectDetails from "./pages/ProjectDetails";
+import SavedNFTs from "./pages/SavedNFTs";
 import { useEffect } from "react";
 
 const queryClient = new QueryClient();
@@ -84,6 +85,14 @@ const App = () => {
                 element={
                   <PrivateRoute>
                     <Streaks />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/saved"
+                element={
+                  <PrivateRoute>
+                    <SavedNFTs />
                   </PrivateRoute>
                 }
               />
