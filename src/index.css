@@ -72,7 +72,11 @@
   }
   
   .text-gradient {
-    @apply bg-gradient-to-r from-primary via-accent to-primary/70 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
+  }
+
+  .animate-text {
+    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-[size:200%] animate-[text-gradient_3s_ease-in-out_infinite];
   }
 
   .card-hover {

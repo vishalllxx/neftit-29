@@ -14,28 +14,28 @@ const Discover = () => {
   const featuredProjects: NFTProject[] = [
     {
       id: "1",
-      projectName: "CryptoArtist Collection",
-      nftName: "Cosmic Dreamer #001",
-      image: "https://images.unsplash.com/photo-1634973357973-f2ed2657db3c",
+      projectName: "Genesis Collection",
+      nftName: "Ethereal Guardian",
+      image: "https://images.unsplash.com/photo-1592492152545-9695d3f473f4?auto=format&fit=crop&q=80",
       endTime: "2024-04-01T00:00:00Z",
-      xpReward: 10,
-      neftReward: 10,
-      description: "Join the Cosmic Dreamers collection and earn your first NFT by completing community tasks.",
+      xpReward: 25,
+      neftReward: 15,
+      description: "A mystical guardian NFT that protects the digital realm. Earn this rare collectible by completing community tasks.",
       tasks: [
-        { id: "1", title: "Join Discord Server", completed: false },
+        { id: "1", title: "Join Discord Community", completed: false },
         { id: "2", title: "Follow on Twitter", completed: false },
         { id: "3", title: "Share announcement post", completed: false }
       ]
     },
     {
       id: "2",
-      projectName: "Digital Genesis",
-      nftName: "Meta Explorer",
-      image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe",
+      projectName: "Cyber Warriors",
+      nftName: "Neon Samurai",
+      image: "https://images.unsplash.com/photo-1614792221813-42eb6f781a6f?auto=format&fit=crop&q=80",
       endTime: "2024-03-28T00:00:00Z",
-      xpReward: 15,
-      neftReward: 12,
-      description: "Explore the metaverse and claim your unique Meta Explorer NFT.",
+      xpReward: 30,
+      neftReward: 20,
+      description: "A futuristic warrior wielding digital katanas. Join the Cyber Warriors and claim your unique Neon Samurai.",
       tasks: [
         { id: "1", title: "Complete tutorial", completed: false },
         { id: "2", title: "Visit 3 virtual spaces", completed: false }
@@ -43,30 +43,30 @@ const Discover = () => {
     },
     {
       id: "3",
-      projectName: "Neon Horizons",
-      nftName: "Digital Pioneer",
-      image: "https://images.unsplash.com/photo-1577720580479-7d839d829c73",
+      projectName: "Space Explorers",
+      nftName: "Astral Voyager",
+      image: "https://images.unsplash.com/photo-1636953056323-9c09fdd74fa6?auto=format&fit=crop&q=80",
       endTime: "2024-03-25T00:00:00Z",
-      xpReward: 20,
-      neftReward: 15,
-      description: "Be among the first pioneers in our digital universe.",
+      xpReward: 35,
+      neftReward: 25,
+      description: "Navigate through the cosmic web as an Astral Voyager. Perfect for space exploration enthusiasts.",
       tasks: [
-        { id: "1", title: "Create profile", completed: false },
+        { id: "1", title: "Create explorer profile", completed: false },
         { id: "2", title: "Complete first mission", completed: false }
       ]
     },
     {
       id: "4",
-      projectName: "Meta Landscapes",
-      nftName: "Virtual Architect",
-      image: "https://images.unsplash.com/photo-1618172193622-ae2d025f4032",
+      projectName: "Digital Beasts",
+      nftName: "Cyberpunk Panther",
+      image: "https://images.unsplash.com/photo-1618172193622-ae2d025f4032?auto=format&fit=crop&q=80",
       endTime: "2024-03-30T00:00:00Z",
-      xpReward: 25,
-      neftReward: 20,
-      description: "Design and build in the metaverse to earn your Architect NFT.",
+      xpReward: 40,
+      neftReward: 30,
+      description: "A fierce digital beast enhanced with cybernetic augmentations. Own this rare creature by completing challenges.",
       tasks: [
-        { id: "1", title: "Design first space", completed: false },
-        { id: "2", title: "Get 5 visitors", completed: false }
+        { id: "1", title: "Join beast hunters", completed: false },
+        { id: "2", title: "Complete hunting challenge", completed: false }
       ]
     }
   ];
@@ -85,7 +85,7 @@ const Discover = () => {
       <main className="container mx-auto px-4 pt-24 pb-12 space-y-8 relative">
         <div className="space-y-8">
           <div className="text-center space-y-4">
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-text">
               Discover & Earn NFTs
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -94,12 +94,12 @@ const Discover = () => {
           </div>
 
           <div className="max-w-2xl mx-auto">
-            <div className="glass p-2 flex gap-2 rounded-full">
+            <div className="glass p-2 flex gap-2 rounded-full border border-primary/20">
               <Input
                 placeholder="Search projects and NFTs..."
                 className="border-none bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
               />
-              <Button size="icon" className="rounded-full">
+              <Button size="icon" className="rounded-full bg-primary/20 hover:bg-primary/30">
                 <Search className="h-4 w-4" />
               </Button>
             </div>
