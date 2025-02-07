@@ -14,7 +14,7 @@ export function MainNav() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <nav className="fixed top-0 w-full z-50 backdrop-blur-xl px-4 py-3 fade-in">
+    <nav className="fixed top-0 w-full z-50 px-4 py-3 fade-in">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center gap-4 lg:gap-8">
           <Link 

@@ -20,7 +20,7 @@ const Streaks = () => {
       <main className="container mx-auto px-4 relative">
         <div className="pt-32 pb-16 max-w-4xl mx-auto space-y-8 animate-fade-in">
           <div className="text-center space-y-4">
-            <h1 className="text-4xl font-bold" style={{ background: 'linear-gradient(102.3deg, rgba(147,39,143,1) 5.9%, rgba(234,172,232,1) 64%, rgba(246,219,245,1) 89%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', padding: '0.2em 0' }}>
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-500/90 via-pink-500/90 to-purple-500/90 bg-clip-text text-transparent" style={{ padding: '0.2em 0', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
               Daily Streaks
             </h1>
             <p className="text-lg text-white/60">
