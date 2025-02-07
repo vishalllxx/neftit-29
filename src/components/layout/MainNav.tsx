@@ -1,9 +1,8 @@
 
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Link } from "react-router-dom";
-import { WalletConnect } from "@/components/wallet/WalletConnect";
-import { Sun, Moon } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Sun, Moon, Rocket } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useTheme } from "@/hooks/use-theme";
 import { ProfileButton } from "@/components/profile/ProfileButton";
@@ -13,6 +12,7 @@ import { NavigationItems } from "@/components/navigation/NavigationItems";
 export function MainNav() {
   const isMobile = useIsMobile();
   const { theme, toggleTheme } = useTheme();
+  const navigate = useNavigate();
 
   return (
     <nav className="fixed top-0 w-full z-50 glass px-4 py-3 fade-in">
@@ -43,7 +43,14 @@ export function MainNav() {
             )}
           </Button>
 
-          <WalletConnect />
+          <Button
+            variant="outline"
+            className="gap-2 hover:scale-105 transition-transform duration-300"
+            onClick={() => navigate('/streaks')}
+          >
+            <Rocket className="h-4 w-4 animate-pulse" />
+            <span className="hidden sm:inline">Streaks</span>
+          </Button>
 
           <Sheet>
             <SheetTrigger>

@@ -47,12 +47,12 @@ export function DailyCheckin() {
         lastCheckin: now.toISOString()
       }));
       toast({
-        title: "Daily Check-in Successful!",
+        title: "Daily Check-in Successful! 🎉",
         description: `You've maintained a streak of ${streak.count + 1} days!`,
       });
     } else {
       toast({
-        title: "Already Checked In",
+        title: "Already Checked In ⏰",
         description: "Please wait 24 hours before your next check-in.",
         variant: "destructive",
       });
@@ -60,10 +60,10 @@ export function DailyCheckin() {
   };
 
   return (
-    <div className="glass p-6 rounded-lg space-y-4">
+    <div className="glass p-6 rounded-lg space-y-4 animate-scale-in hover:shadow-lg transition-shadow duration-300">
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-bold flex items-center gap-2">
-          <Trophy className="h-5 w-5 text-primary" />
+          <Trophy className="h-5 w-5 text-primary animate-pulse" />
           Daily Streaks
         </h2>
         <span className="text-sm text-muted-foreground">
@@ -84,12 +84,15 @@ export function DailyCheckin() {
               <span className="text-sm font-medium">Current Streak</span>
               <span className="text-sm font-medium">{streak.count} days</span>
             </div>
-            <Progress value={(streak.count % 7) * (100/7)} />
+            <Progress 
+              value={(streak.count % 7) * (100/7)} 
+              className="h-2 bg-primary/20" 
+            />
           </div>
         </div>
         
         <Button 
-          className="w-full"
+          className="w-full bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity"
           onClick={handleCheckin}
           disabled={!!timeLeft}
         >
