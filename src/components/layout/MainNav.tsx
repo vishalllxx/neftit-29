@@ -18,8 +18,24 @@ export function MainNav() {
     <nav className="fixed top-0 w-full z-50 glass px-4 py-3 fade-in">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center gap-4 lg:gap-8">
-          <Link to="/" className="text-3xl font-bold" style={{ background: 'linear-gradient(102.3deg, rgba(147,39,143,1) 5.9%, rgba(234,172,232,1) 64%, rgba(246,219,245,1) 89%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', padding: '0.2em 0' }}>
-            NEFTIT
+          <Link 
+            to="/" 
+            className="flex items-center text-3xl font-bold tracking-tighter"
+          >
+            <span className="relative">
+              <span className="bg-gradient-to-r from-[#9b87f5] via-[#D946EF] to-[#6E59A5] bg-clip-text text-transparent">
+                N
+              </span>
+              <span className="bg-gradient-to-r from-[#9b87f5] via-[#D946EF] to-[#6E59A5] bg-clip-text text-transparent">
+                E
+              </span>
+              <span className="text-[#1EAEDB] relative inline-block transform hover:scale-110 transition-transform duration-200 mx-[-2px]">
+                F
+              </span>
+              <span className="bg-gradient-to-r from-[#9b87f5] via-[#D946EF] to-[#6E59A5] bg-clip-text text-transparent">
+                TIT!
+              </span>
+            </span>
           </Link>
           
           {!isMobile && (
