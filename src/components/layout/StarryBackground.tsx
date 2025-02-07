@@ -15,15 +15,16 @@ const StarryBackground = () => {
 
   return (
     <>
+      {/* Enhanced base background */}
       <div className="fixed inset-0 bg-[#121212] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-gray-900/95 to-gray-900/90">
-        {/* Enhanced animated gradient background */}
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-transparent to-transparent animate-pulse" />
         <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 via-transparent to-purple-500/10 animate-pulse delay-75" />
       </div>
       
-      <div className="fixed inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
+      {/* Enhanced grid pattern */}
+      <div className="fixed inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-20" />
       
-      {/* Enhanced parallax stars with more variety */}
+      {/* Enhanced parallax stars */}
       <div 
         className="fixed inset-0 overflow-hidden pointer-events-none"
         style={{
@@ -35,9 +36,9 @@ const StarryBackground = () => {
         }}
       />
 
-      {/* Enhanced animated stars with more variety */}
+      {/* Enhanced animated stars */}
       <div className="fixed inset-0">
-        {[...Array(75)].map((_, i) => (
+        {[...Array(100)].map((_, i) => (
           <div
             key={i}
             className="absolute rounded-full bg-white opacity-[0.15] animate-twinkle"
@@ -53,9 +54,9 @@ const StarryBackground = () => {
         ))}
       </div>
 
-      {/* Enhanced glowing orbs with more variety */}
+      {/* Enhanced glowing orbs */}
       <div className="fixed inset-0">
-        {[...Array(5)].map((_, i) => (
+        {[...Array(8)].map((_, i) => (
           <div
             key={i}
             className="absolute rounded-full blur-3xl opacity-20 animate-pulse"
