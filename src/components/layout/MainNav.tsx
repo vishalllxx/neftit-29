@@ -1,14 +1,14 @@
+
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link } from "react-router-dom";
 import { WalletConnect } from "@/components/wallet/WalletConnect";
-import { Sun, Moon, MessageCircle, Share2, UserPlus, PlusCircle, Trophy, Users } from "lucide-react";
+import { Sun, Moon } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useTheme } from "@/hooks/use-theme";
 import { ProfileButton } from "@/components/profile/ProfileButton";
 import { ProfileBox } from "@/components/profile/ProfileBox";
 import { NavigationItems } from "@/components/navigation/NavigationItems";
-import { toast } from "sonner";
 
 export function MainNav() {
   const isMobile = useIsMobile();
