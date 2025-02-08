@@ -1,4 +1,3 @@
-
 import { MainNav } from "@/components/layout/MainNav";
 import StarryBackground from "@/components/layout/StarryBackground";
 import { Button } from "@/components/ui/button";
@@ -21,10 +20,19 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 const Profile = () => {
   const { address, walletType, disconnect } = useWallet();
   const navigate = useNavigate();
+  const [username, setUsername] = useState(() => localStorage.getItem("username") || "Username");
+
+  useEffect(() => {
+    const savedUsername = localStorage.getItem("username");
+    if (savedUsername) {
+      setUsername(savedUsername);
+    }
+  }, []);
 
   const handleLogout = () => {
     disconnect();
@@ -33,13 +41,16 @@ const Profile = () => {
     navigate("/auth");
   };
 
+  const handleEditProfile = () => {
+    navigate("/settings");
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-background/95 to-background">
       <StarryBackground />
       <MainNav />
       
       <div className="container mx-auto px-4 pt-24 flex gap-8 relative">
-        {/* Left Sidebar */}
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -58,7 +69,7 @@ const Profile = () => {
                 </div>
               </div>
               <div className="space-y-1">
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent">Username</h2>
+                <h2 className="text-2xl font-bold bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent">{username}</h2>
                 <p className="text-white/60">Level 5</p>
               </div>
             </div>
@@ -101,7 +112,11 @@ const Profile = () => {
             </div>
 
             <div className="space-y-3">
-              <Button variant="outline" className="w-full gap-2 hover:bg-primary/10 transition-colors">
+              <Button 
+                variant="outline" 
+                className="w-full gap-2 hover:bg-primary/10 transition-colors"
+                onClick={handleEditProfile}
+              >
                 <Edit className="h-4 w-4" />
                 Edit Profile
               </Button>
@@ -117,7 +132,6 @@ const Profile = () => {
           </div>
         </motion.div>
 
-        {/* Main Content */}
         <div className="ml-96 flex-1 space-y-8">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -208,4 +222,3 @@ const Profile = () => {
 }
 
 export default Profile;
-

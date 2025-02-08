@@ -8,20 +8,24 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { User, Mail, Twitter, Send, LogOut } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState(() => localStorage.getItem("username") || "");
   const [email, setEmail] = useState("");
   const [twitter, setTwitter] = useState("");
   const [telegram, setTelegram] = useState("");
 
   const handleSave = () => {
-    // Here you would typically save to your backend
-    toast.success("Settings saved successfully!");
-    navigate("/profile");
+    if (username.trim()) {
+      localStorage.setItem("username", username);
+      toast.success("Settings saved successfully!");
+      navigate("/profile");
+    } else {
+      toast.error("Username cannot be empty");
+    }
   };
 
   const handleLogout = () => {
@@ -56,12 +60,17 @@ const Settings = () => {
               <CardContent className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="username">Username</Label>
-                  <Input 
-                    id="username" 
-                    placeholder="Your username" 
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                  />
+                  <div className="flex gap-2">
+                    <Input 
+                      id="username" 
+                      placeholder="Your username" 
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                    />
+                    <Button onClick={handleSave}>
+                      Change
+                    </Button>
+                  </div>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
