@@ -61,7 +61,7 @@ export function MainNav() {
             </SheetTrigger>
             <SheetContent 
               side="right" 
-              className="w-[300px] bg-gradient-to-b from-purple-900/95 via-background/95 to-background/90 backdrop-blur-xl border-none"
+              className="w-[300px] bg-black/5 backdrop-blur-xl border-none"
             >
               <ProfileBox />
               <NavigationItems />

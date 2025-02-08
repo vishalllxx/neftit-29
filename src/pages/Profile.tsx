@@ -41,8 +41,8 @@ const Profile = () => {
           <div className="glass rounded-lg p-8 space-y-8">
             <div className="flex flex-col items-center text-center space-y-4">
               <Avatar className="h-32 w-32 ring-2 ring-primary/20">
-                <AvatarImage src="/placeholder.svg" />
-                <AvatarFallback>US</AvatarFallback>
+                <AvatarImage src="https://i.seadn.io/gae/Ju9CkWtV-1Okvf45wo8UctR-M9He2PjILP0oOvxE89AyiPPGtrR3gysu1Zgy0hjd2xKIgjJJtWIc0ybj4Vd7wv8t3pxDGHoJBzDB?auto=format&dpr=1&w=1000" alt="Bored Ape" />
+                <AvatarFallback>BA</AvatarFallback>
               </Avatar>
               <div>
                 <h2 className="text-2xl font-bold text-white">Username</h2>
@@ -155,6 +155,6 @@ const Profile = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Profile;

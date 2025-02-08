@@ -12,8 +12,8 @@ export function ProfileButton() {
       aria-label="Open profile menu"
     >
       <Avatar>
-        <AvatarImage src="/placeholder.svg" alt="Profile" />
-        <AvatarFallback>VS</AvatarFallback>
+        <AvatarImage src="https://i.seadn.io/gae/Ju9CkWtV-1Okvf45wo8UctR-M9He2PjILP0oOvxE89AyiPPGtrR3gysu1Zgy0hjd2xKIgjJJtWIc0ybj4Vd7wv8t3pxDGHoJBzDB?auto=format&dpr=1&w=1000" alt="Bored Ape" />
+        <AvatarFallback>BA</AvatarFallback>
       </Avatar>
     </Button>
   );
