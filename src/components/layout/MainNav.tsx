@@ -2,9 +2,8 @@
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link } from "react-router-dom";
-import { Sun, Moon, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useTheme } from "@/hooks/use-theme";
 import { ProfileButton } from "@/components/profile/ProfileButton";
 import { ProfileBox } from "@/components/profile/ProfileBox";
 import { NavigationItems } from "@/components/navigation/NavigationItems";
@@ -12,7 +11,6 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 
 export function MainNav() {
   const { isMobile } = useIsMobile();
-  const { theme, toggleTheme } = useTheme();
 
   return (
     <nav className="fixed top-0 w-full z-50 px-4 py-3 backdrop-blur-lg bg-background/80 border-b border-border/5">
@@ -60,24 +58,6 @@ export function MainNav() {
         </div>
         
         <div className="flex items-center gap-4">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={toggleTheme}
-                className="rounded-full transition-all duration-300 hover:scale-110 hover:bg-white/10"
-              >
-                {theme === 'dark' ? (
-                  <Sun className="h-5 w-5 animate-fade-in" />
-                ) : (
-                  <Moon className="h-5 w-5 animate-fade-in" />
-                )}
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>Toggle theme</TooltipContent>
-          </Tooltip>
-
           {isMobile ? (
             <Sheet>
               <SheetTrigger asChild>
@@ -91,18 +71,18 @@ export function MainNav() {
               </SheetTrigger>
               <SheetContent 
                 side="right"
-                className="w-[280px] sm:w-[300px] bg-black/90 backdrop-blur-xl border-none"
+                className="w-[280px] sm:w-[300px] bg-background/95 backdrop-blur-xl border-none"
               >
                 <div className="flex flex-col space-y-4 py-4">
                   <Link 
                     to="/discover" 
-                    className="text-lg font-medium text-white/80 hover:text-white transition-colors px-4 py-2 rounded-lg hover:bg-white/10"
+                    className="text-lg font-medium text-foreground/80 hover:text-foreground transition-colors px-4 py-2 rounded-lg hover:bg-foreground/10"
                   >
                     Discover
                   </Link>
                   <Link 
                     to="/streaks" 
-                    className="text-lg font-medium text-white/80 hover:text-white transition-colors px-4 py-2 rounded-lg hover:bg-white/10"
+                    className="text-lg font-medium text-foreground/80 hover:text-foreground transition-colors px-4 py-2 rounded-lg hover:bg-foreground/10"
                   >
                     Streaks
                   </Link>
@@ -122,7 +102,7 @@ export function MainNav() {
               </SheetTrigger>
               <SheetContent 
                 side="right" 
-                className="w-[300px] bg-black/5 backdrop-blur-xl border-none"
+                className="w-[300px] bg-background/95 backdrop-blur-xl border-none"
               >
                 <ProfileBox />
                 <NavigationItems />
