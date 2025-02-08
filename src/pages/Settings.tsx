@@ -5,14 +5,33 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
 import { toast } from "sonner";
-import { Bell, Lock, User, Wallet } from "lucide-react";
+import { User, Mail, Twitter, Send, LogOut } from "lucide-react";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [twitter, setTwitter] = useState("");
+  const [telegram, setTelegram] = useState("");
+
   const handleSave = () => {
+    // Here you would typically save to your backend
     toast.success("Settings saved successfully!");
+    navigate("/profile");
+  };
+
+  const handleLogout = () => {
+    localStorage.setItem("isAuthenticated", "false");
+    toast.success("Logged out successfully");
+    navigate("/auth");
+  };
+
+  const handleConnect = (platform: string) => {
+    toast.success(`Connected to ${platform}`);
   };
 
   return (
@@ -27,7 +46,6 @@ const Settings = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            {/* Profile Settings */}
             <Card className="glass border-white/10">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -36,15 +54,24 @@ const Settings = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="grid gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="username">Username</Label>
-                    <Input id="username" placeholder="Your username" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input id="email" type="email" placeholder="Your email" />
-                  </div>
+                <div className="space-y-2">
+                  <Label htmlFor="username">Username</Label>
+                  <Input 
+                    id="username" 
+                    placeholder="Your username" 
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input 
+                    id="email" 
+                    type="email" 
+                    placeholder="Your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -55,84 +82,63 @@ const Settings = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            {/* Security Settings */}
             <Card className="glass border-white/10">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Lock className="h-5 w-5 text-primary" />
-                  Security
+                  <Mail className="h-5 w-5 text-primary" />
+                  Social Connections
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <div className="space-y-0.5">
-                    <Label>Two-Factor Authentication</Label>
-                    <p className="text-sm text-white/60">Add an extra layer of security</p>
+                  <div className="flex items-center gap-3">
+                    <Twitter className="h-5 w-5 text-[#1DA1F2]" />
+                    <div>
+                      <Label>Twitter</Label>
+                      <Input 
+                        placeholder="Twitter username"
+                        value={twitter}
+                        onChange={(e) => setTwitter(e.target.value)}
+                        className="mt-1"
+                      />
+                    </div>
                   </div>
-                  <Switch />
+                  <Button 
+                    variant="outline"
+                    onClick={() => handleConnect("Twitter")}
+                  >
+                    Connect
+                  </Button>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <Send className="h-5 w-5 text-[#0088cc]" />
+                    <div>
+                      <Label>Telegram</Label>
+                      <Input 
+                        placeholder="Telegram username"
+                        value={telegram}
+                        onChange={(e) => setTelegram(e.target.value)}
+                        className="mt-1"
+                      />
+                    </div>
+                  </div>
+                  <Button 
+                    variant="outline"
+                    onClick={() => handleConnect("Telegram")}
+                  >
+                    Connect
+                  </Button>
                 </div>
               </CardContent>
             </Card>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            {/* Notifications */}
-            <Card className="glass border-white/10">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Bell className="h-5 w-5 text-primary" />
-                  Notifications
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="space-y-0.5">
-                    <Label>Email Notifications</Label>
-                    <p className="text-sm text-white/60">Receive updates about your activity</p>
-                  </div>
-                  <Switch defaultChecked />
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="space-y-0.5">
-                    <Label>Price Alerts</Label>
-                    <p className="text-sm text-white/60">Get notified about price changes</p>
-                  </div>
-                  <Switch defaultChecked />
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            {/* Wallet Settings */}
-            <Card className="glass border-white/10">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Wallet className="h-5 w-5 text-primary" />
-                  Wallet Settings
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="space-y-0.5">
-                    <Label>Auto-connect Wallet</Label>
-                    <p className="text-sm text-white/60">Automatically connect on login</p>
-                  </div>
-                  <Switch />
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          <div className="flex justify-end">
+          <div className="flex justify-between">
+            <Button onClick={handleLogout} variant="destructive" size="lg" className="px-8">
+              <LogOut className="mr-2 h-4 w-4" />
+              Logout
+            </Button>
             <Button onClick={handleSave} size="lg" className="px-8">
               Save Changes
             </Button>

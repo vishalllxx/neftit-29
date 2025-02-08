@@ -4,7 +4,7 @@ import * as React from "react"
 const MOBILE_BREAKPOINT = 768
 
 export function useIsMobile() {
-  const [isMobile, setIsMobile] = React.useState(false)
+  const [isMobile, setIsMobile] = React.useState<boolean>(false)
 
   React.useEffect(() => {
     const checkMobile = () => {
@@ -20,6 +20,5 @@ export function useIsMobile() {
     return () => mql.removeEventListener("change", checkMobile)
   }, [])
 
-  return isMobile // Return just the boolean instead of an object
+  return { isMobile }
 }
-

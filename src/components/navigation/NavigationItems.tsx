@@ -1,5 +1,5 @@
 
-import { Users, Award, Gift, Bookmark, LogOut, Settings, Clock, UserCheck, UserPlus } from "lucide-react";
+import { Award, Gift, Bookmark, LogOut, Clock, UserCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { useState } from "react";
@@ -44,21 +44,6 @@ export function NavigationItems() {
       name: "Following", 
       icon: <UserCheck className="h-4 w-4" />,
       path: "/following"
-    },
-    {
-      name: "Followers",
-      icon: <UserPlus className="h-4 w-4" />,
-      path: "/followers"
-    },
-    { 
-      name: "Settings", 
-      icon: <Settings className="h-4 w-4" />,
-      path: "/settings"
-    },
-    { 
-      name: "Logout", 
-      icon: <LogOut className="h-4 w-4" />,
-      path: "/logout"
     }
   ];
 
