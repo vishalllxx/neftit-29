@@ -114,6 +114,22 @@ const App = () => {
                   </PrivateRoute>
                 }
               />
+              <Route
+                path="/following"
+                element={
+                  <PrivateRoute>
+                    <Activity />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/followers"
+                element={
+                  <PrivateRoute>
+                    <Activity />
+                  </PrivateRoute>
+                }
+              />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
