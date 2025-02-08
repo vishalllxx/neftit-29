@@ -11,7 +11,7 @@ import { NavigationItems } from "@/components/navigation/NavigationItems";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 export function MainNav() {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   const { theme, toggleTheme } = useTheme();
 
   return (
@@ -97,3 +97,4 @@ export function MainNav() {
     </nav>
   );
 }
+
