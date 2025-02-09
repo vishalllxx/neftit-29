@@ -2,14 +2,12 @@
 import { MainNav } from "@/components/layout/MainNav";
 import StarryBackground from "@/components/layout/StarryBackground";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { User, Mail, Twitter, Send, LogOut } from "lucide-react";
-import { motion } from "framer-motion";
+import { LogOut } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { ProfileSection } from "@/components/settings/ProfileSection";
+import { SocialSection } from "@/components/settings/SocialSection";
 
 const Settings = () => {
   const navigate = useNavigate();
@@ -91,100 +89,20 @@ const Settings = () => {
       
       <div className="container mx-auto px-4 pt-24 pb-12">
         <div className="max-w-3xl mx-auto space-y-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Card className="glass-card border-white/10">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <User className="h-5 w-5 text-primary" />
-                  Profile Settings
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="username">Username</Label>
-                  <Input 
-                    id="username" 
-                    placeholder="Enter your username" 
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input 
-                    id="email" 
-                    type="email" 
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
+          <ProfileSection 
+            username={username}
+            email={email}
+            onUsernameChange={setUsername}
+            onEmailChange={setEmail}
+          />
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <Card className="glass-card border-white/10">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Mail className="h-5 w-5 text-primary" />
-                  Social Connections
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <Twitter className="h-5 w-5 text-[#1DA1F2]" />
-                    <div>
-                      <Label>Twitter</Label>
-                      <Input 
-                        placeholder="Your Twitter username"
-                        value={twitter}
-                        onChange={(e) => setTwitter(e.target.value.replace('@', ''))}
-                        className="mt-1"
-                      />
-                    </div>
-                  </div>
-                  <Button 
-                    variant="outline"
-                    onClick={() => handleConnect("Twitter")}
-                    disabled={!twitter}
-                  >
-                    Connect
-                  </Button>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <Send className="h-5 w-5 text-[#0088cc]" />
-                    <div>
-                      <Label>Telegram</Label>
-                      <Input 
-                        placeholder="Your Telegram username"
-                        value={telegram}
-                        onChange={(e) => setTelegram(e.target.value.replace('@', ''))}
-                        className="mt-1"
-                      />
-                    </div>
-                  </div>
-                  <Button 
-                    variant="outline"
-                    onClick={() => handleConnect("Telegram")}
-                    disabled={!telegram}
-                  >
-                    Connect
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
+          <SocialSection 
+            twitter={twitter}
+            telegram={telegram}
+            onTwitterChange={setTwitter}
+            onTelegramChange={setTelegram}
+            onConnect={handleConnect}
+          />
 
           <div className="flex justify-between">
             <Button 
