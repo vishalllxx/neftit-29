@@ -33,7 +33,7 @@
   }
   
   body {
-    @apply bg-[#111111] text-foreground antialiased;
+    @apply bg-[#1A1F2C] text-foreground antialiased;
   }
 
   html {
