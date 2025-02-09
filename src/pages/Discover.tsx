@@ -16,7 +16,7 @@ const Discover = () => {
       id: "1",
       projectName: "Treasure Hunters",
       nftName: "Treasure Hunters #529",
-      image: "https://images.unsplash.com/photo-1592492152545-9695d3f473f4?auto=format&fit=crop&q=80",
+      image: "https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622021.jpg",
       endTime: "2024-04-01T00:00:00Z",
       xpReward: 25,
       neftReward: 1.9,
@@ -40,11 +40,11 @@ const Discover = () => {
       id: "2",
       projectName: "Cyber Warriors",
       nftName: "Neon Samurai",
-      image: "https://images.unsplash.com/photo-1614792221813-42eb6f781a6f?auto=format&fit=crop&q=80",
+      image: "https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622024.jpg",
       endTime: "2024-03-28T00:00:00Z",
       xpReward: 30,
-      neftReward: 20,
-      description: "A futuristic warrior wielding digital katanas. Join the Cyber Warriors and claim your unique Neon Samurai.",
+      neftReward: 2.5,
+      description: "A futuristic warrior wielding digital katanas.",
       owner: "0x9876...4321",
       totalSupply: 500,
       levelRequirement: 10,
@@ -63,11 +63,11 @@ const Discover = () => {
       id: "3",
       projectName: "Space Explorers",
       nftName: "Astral Voyager",
-      image: "https://images.unsplash.com/photo-1636953056323-9c09fdd74fa6?auto=format&fit=crop&q=80",
+      image: "https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622023.jpg",
       endTime: "2024-03-25T00:00:00Z",
       xpReward: 35,
-      neftReward: 25,
-      description: "Navigate through the cosmic web as an Astral Voyager. Perfect for space exploration enthusiasts.",
+      neftReward: 3.2,
+      description: "Navigate through the cosmic web as an Astral Voyager.",
       owner: "0x5432...8765",
       totalSupply: 750,
       levelRequirement: 8,
@@ -86,11 +86,11 @@ const Discover = () => {
       id: "4",
       projectName: "Digital Beasts",
       nftName: "Cyberpunk Panther",
-      image: "https://images.unsplash.com/photo-1618172193622-ae2d025f4032?auto=format&fit=crop&q=80",
+      image: "https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622025.jpg",
       endTime: "2024-03-30T00:00:00Z",
       xpReward: 40,
-      neftReward: 30,
-      description: "A fierce digital beast enhanced with cybernetic augmentations. Own this rare creature by completing challenges.",
+      neftReward: 4.0,
+      description: "A fierce digital beast with cybernetic augmentations.",
       owner: "0x3456...7890",
       totalSupply: 250,
       levelRequirement: 15,
@@ -103,6 +103,94 @@ const Discover = () => {
       tasks: [
         { id: "1", title: "Join beast hunters", completed: false },
         { id: "2", title: "Complete hunting challenge", completed: false }
+      ]
+    },
+    {
+      id: "5",
+      projectName: "Pixel Masters",
+      nftName: "Retro Wizard",
+      image: "https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622026.jpg",
+      endTime: "2024-04-05T00:00:00Z",
+      xpReward: 28,
+      neftReward: 2.8,
+      description: "A pixelated wizard from the digital realm.",
+      owner: "0x7890...1234",
+      totalSupply: 600,
+      levelRequirement: 7,
+      rarity: "Rare",
+      category: "Gaming",
+      subcategory: "Pixel Art",
+      taskStatus: "Not Started",
+      usdValue: 180,
+      network: "Ethereum",
+      tasks: [
+        { id: "1", title: "Cast first spell", completed: false }
+      ]
+    },
+    {
+      id: "6",
+      projectName: "Meta Racers",
+      nftName: "Quantum Speedster",
+      image: "https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622027.jpg",
+      endTime: "2024-04-10T00:00:00Z",
+      xpReward: 45,
+      neftReward: 5.0,
+      description: "High-speed racing in the metaverse.",
+      owner: "0x2468...1357",
+      totalSupply: 300,
+      levelRequirement: 12,
+      rarity: "Legendary",
+      category: "Racing",
+      subcategory: "Speed",
+      taskStatus: "Not Started",
+      usdValue: 400,
+      network: "Polygon",
+      tasks: [
+        { id: "1", title: "Complete first race", completed: false }
+      ]
+    },
+    {
+      id: "7",
+      projectName: "Mystic Realms",
+      nftName: "Ancient Dragon",
+      image: "https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622028.jpg",
+      endTime: "2024-04-15T00:00:00Z",
+      xpReward: 50,
+      neftReward: 6.5,
+      description: "A legendary dragon from the mystic realms.",
+      owner: "0x1357...2468",
+      totalSupply: 150,
+      levelRequirement: 20,
+      rarity: "Mythic",
+      category: "Fantasy",
+      subcategory: "Dragons",
+      taskStatus: "Not Started",
+      usdValue: 550,
+      network: "Ethereum",
+      tasks: [
+        { id: "1", title: "Tame the dragon", completed: false }
+      ]
+    },
+    {
+      id: "8",
+      projectName: "Crypto Punks V2",
+      nftName: "Digital Rebel",
+      image: "https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622029.jpg",
+      endTime: "2024-04-20T00:00:00Z",
+      xpReward: 35,
+      neftReward: 3.8,
+      description: "A new generation of crypto punk avatars.",
+      owner: "0x9999...8888",
+      totalSupply: 1000,
+      levelRequirement: 5,
+      rarity: "Rare",
+      category: "Avatars",
+      subcategory: "Punk",
+      taskStatus: "Not Started",
+      usdValue: 250,
+      network: "BSC",
+      tasks: [
+        { id: "1", title: "Join the rebellion", completed: false }
       ]
     }
   ];
@@ -141,9 +229,9 @@ const Discover = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4">
             {isLoading ? (
-              Array(4).fill(0).map((_, index) => (
+              Array(8).fill(0).map((_, index) => (
                 <div key={index} className="aspect-square animate-pulse rounded-xl bg-white/5" />
               ))
             ) : (
@@ -157,7 +245,7 @@ const Discover = () => {
                   creator={project.owner}
                   likes={0}
                   neftReward={project.neftReward}
-                  endTime="19m ago"
+                  endTime="1d left"
                   owner={project.owner}
                   supply={project.totalSupply}
                   xpReward={project.xpReward}
