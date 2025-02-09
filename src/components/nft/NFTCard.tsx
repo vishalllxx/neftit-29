@@ -34,8 +34,8 @@ export function NFTCard({
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <Link to={`/project/${id}`}>
-      <div className="flex flex-col gap-0 border border-white/10 rounded-lg">
+    <Link to={`/project/${id}`} className="block">
+      <div className="flex flex-col gap-0 border border-white/10 rounded-lg hover:border-white/20 transition-all duration-200">
         <Card 
           className="group relative aspect-square overflow-hidden rounded-t-lg bg-[#111111] transition-all duration-300 hover:-translate-y-1 cursor-pointer"
           onMouseEnter={() => setIsHovered(true)}

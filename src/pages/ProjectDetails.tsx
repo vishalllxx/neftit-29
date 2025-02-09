@@ -138,16 +138,18 @@ const ProjectDetails = () => {
     ];
 
     const foundProject = featuredProjects.find(p => p.id === id);
-    setProject(foundProject || null);
+    if (foundProject) {
+      setProject(foundProject);
+    }
   }, [id]);
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-background to-background/80">
+      <div className="min-h-screen bg-black">
         <StarryBackground />
         <MainNav />
         <main className="container mx-auto px-4 pt-24 pb-12">
-          <div className="text-center">Project not found</div>
+          <div className="text-center text-white/80">Project not found</div>
         </main>
       </div>
     );
