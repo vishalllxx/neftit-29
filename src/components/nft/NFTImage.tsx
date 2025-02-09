@@ -8,7 +8,7 @@ interface NFTImageProps {
 
 export const NFTImage = ({ image, name }: NFTImageProps) => {
   return (
-    <Card className="overflow-hidden rounded-xl border border-white/10 bg-[#111111]">
+    <Card className="overflow-hidden rounded-xl border border-white/10 glass-morphism">
       <div className="aspect-square">
         <img
           src={image}
@@ -19,3 +19,4 @@ export const NFTImage = ({ image, name }: NFTImageProps) => {
     </Card>
   );
 };
+
