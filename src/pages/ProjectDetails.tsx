@@ -1,23 +1,18 @@
-
 import { useParams, useNavigate } from "react-router-dom";
 import { MainNav } from "@/components/layout/MainNav";
 import StarryBackground from "@/components/layout/StarryBackground";
 import { NFTProject } from "@/types/nft";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Award, Calendar, Check, Twitter, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
-import { NFTHeader } from "@/components/nft/NFTHeader";
-import { NFTRewards } from "@/components/nft/NFTRewards";
-import { NFTTasks } from "@/components/nft/NFTTasks";
-import { NFTDetails } from "@/components/nft/NFTDetails";
 
 const ProjectDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [project, setProject] = useState<NFTProject | null>(null);
-  const [timeLeft, setTimeLeft] = useState("");
 
   useEffect(() => {
     const featuredProjects: NFTProject[] = [
@@ -120,48 +115,6 @@ const ProjectDetails = () => {
     setProject(foundProject || null);
   }, [id]);
 
-  const calculateTimeLeft = () => {
-    if (!project) return "";
-    
-    const end = new Date(project.endTime).getTime();
-    const now = new Date().getTime();
-    const distance = end - now;
-    
-    if (distance < 0) {
-      return "Ended";
-    }
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    
-    return `${days}d ${hours}h ${minutes}m`;
-  };
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 60000);
-
-    setTimeLeft(calculateTimeLeft());
-
-    return () => clearInterval(timer);
-  }, [project]);
-
-  const handleTaskComplete = (taskId: string) => {
-    if (!project) return;
-    
-    const updatedProject = {
-      ...project,
-      tasks: project.tasks.map(task =>
-        task.id === taskId ? { ...task, completed: true } : task
-      )
-    };
-    
-    setProject(updatedProject);
-    toast.success("Task completed!");
-  };
-
   if (!project) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-background to-background/80">
@@ -175,50 +128,140 @@ const ProjectDetails = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-background/95 to-background/90">
+    <div className="min-h-screen bg-black">
       <StarryBackground />
       <MainNav />
-      <main className="container mx-auto px-4 pt-24 pb-12 relative">
+      <main className="container mx-auto px-4 pt-24 pb-12">
         <Button
           variant="ghost"
-          className="absolute top-28 left-4 md:left-8 text-white/80 hover:text-white"
+          className="mb-8 text-white/80 hover:text-white"
           onClick={() => navigate(-1)}
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back
         </Button>
 
-        <div className="max-w-5xl mx-auto mt-8 space-y-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="overflow-hidden rounded-xl border-0 bg-gradient-to-br from-[#222222]/50 via-background/20 to-background/10 backdrop-blur-sm">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+          <Card className="overflow-hidden rounded-xl border-0 bg-[#111111]">
+            <div className="aspect-square">
               <img
                 src={project.image}
                 alt={project.nftName}
-                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                className="w-full h-full object-cover"
               />
-            </Card>
-
-            <div className="space-y-6">
-              <NFTHeader project={project} timeLeft={timeLeft} />
-              <NFTRewards project={project} />
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-white">Description</h3>
-                <p className="text-white/70 leading-relaxed">
-                  {project.description}
-                </p>
-              </div>
-              <Button 
-                className="w-full md:w-auto bg-gradient-to-r from-[#333333] to-[#444444] hover:opacity-90 transition-opacity"
-                onClick={() => toast.success("Tasks started! Complete them to earn your NFT.")}
-              >
-                Start Tasks
-              </Button>
             </div>
-          </div>
+          </Card>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <NFTTasks project={project} onTaskComplete={handleTaskComplete} />
-            <NFTDetails project={project} />
+          <div className="space-y-6 bg-[#111111] p-8 rounded-xl">
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <h2 className="text-xl font-medium text-white/90">{project.projectName}</h2>
+                <span className="text-blue-500">✓</span>
+              </div>
+              <h1 className="text-3xl font-bold text-white">{project.nftName}</h1>
+            </div>
+            
+            <Separator className="bg-white/[0.08]" />
+
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex items-center gap-2">
+                <Award className="h-5 w-5 text-white/80" />
+                <span className="text-xl font-bold text-white">{project.xpReward} XP</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-xl font-bold text-white">{project.neftReward} NEFT</span>
+              </div>
+            </div>
+
+            <Separator className="bg-white/[0.08]" />
+
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <Calendar className="h-4 w-4 text-white/60" />
+                <span className="text-sm text-white/60">Start Date: March 15, 2024</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Calendar className="h-4 w-4 text-white/60" />
+                <span className="text-sm text-white/60">End Date: April 15, 2024</span>
+              </div>
+            </div>
+
+            <Separator className="bg-white/[0.08]" />
+
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold text-white">Rarities</h3>
+              <div className="space-y-2">
+                <div className="flex justify-between">
+                  <span className="text-white/80">Legendary</span>
+                  <span className="text-white/60">5%</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-white/80">Rare</span>
+                  <span className="text-white/60">15%</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-white/80">Common</span>
+                  <span className="text-white/60">80%</span>
+                </div>
+              </div>
+            </div>
+
+            <Separator className="bg-white/[0.08]" />
+
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold text-white">Description</h3>
+              <p className="text-white/70 leading-relaxed">{project.description}</p>
+            </div>
+
+            <Separator className="bg-white/[0.08]" />
+
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-white">Tasks</h3>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between p-3 rounded-lg bg-white/5">
+                  <div className="flex items-center gap-2">
+                    <Twitter className="h-4 w-4 text-white/60" />
+                    <span className="text-white/80">Follow on Twitter</span>
+                  </div>
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    className="text-white/60 hover:text-white hover:bg-white/10"
+                    onClick={() => toast.success("Task verified!")}
+                  >
+                    Verify
+                  </Button>
+                </div>
+                <div className="flex items-center justify-between p-3 rounded-lg bg-white/5">
+                  <div className="flex items-center gap-2">
+                    <MessageCircle className="h-4 w-4 text-white/60" />
+                    <span className="text-white/80">Join Discord</span>
+                  </div>
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    className="text-white/60 hover:text-white hover:bg-white/10"
+                    onClick={() => toast.success("Task verified!")}
+                  >
+                    Verify
+                  </Button>
+                </div>
+                <div className="flex items-center justify-between p-3 rounded-lg bg-white/5">
+                  <div className="flex items-center gap-2">
+                    <Check className="h-4 w-4 text-white/60" />
+                    <span className="text-white/80">Complete Profile</span>
+                  </div>
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    className="text-white/60 hover:text-white hover:bg-white/10"
+                    onClick={() => toast.success("Task verified!")}
+                  >
+                    Verify
+                  </Button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </main>
