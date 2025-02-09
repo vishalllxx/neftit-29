@@ -6,8 +6,10 @@ import { toast } from "sonner";
 import { LogOut } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ProfileSection } from "@/components/settings/ProfileSection";
-import { SocialSection } from "@/components/settings/SocialSection";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { motion } from "framer-motion";
 
 const Settings = () => {
   const navigate = useNavigate();
@@ -74,19 +76,14 @@ const Settings = () => {
       toast.error(`Please enter your ${platform} username first`);
       return;
     }
-
+    
     toast.success(`Connected to ${platform} as @${username}`);
-    localStorage.setItem(platform === 'Twitter' ? 'userTwitter' : 'userTelegram', username);
   };
 
   const handleLogout = () => {
-    try {
-      localStorage.setItem("isAuthenticated", "false");
-      toast.success("Logged out successfully");
-      navigate("/auth");
-    } catch (error) {
-      toast.error("Failed to logout");
-    }
+    localStorage.setItem("isAuthenticated", "false");
+    toast.success("Logged out successfully");
+    navigate("/auth");
   };
 
   return (
@@ -96,20 +93,88 @@ const Settings = () => {
       
       <div className="container mx-auto px-4 pt-24 pb-12">
         <div className="max-w-3xl mx-auto space-y-6">
-          <ProfileSection 
-            username={username}
-            email={email}
-            onUsernameChange={setUsername}
-            onEmailChange={setEmail}
-          />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Card className="glass-card border-white/10">
+              <CardHeader>
+                <CardTitle>Profile Settings</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="username">Username</Label>
+                  <Input 
+                    id="username" 
+                    placeholder="Enter your username" 
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input 
+                    id="email" 
+                    type="email" 
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
 
-          <SocialSection 
-            twitter={twitter}
-            telegram={telegram}
-            onTwitterChange={setTwitter}
-            onTelegramChange={setTelegram}
-            onConnect={handleConnect}
-          />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <Card className="glass-card border-white/10">
+              <CardHeader>
+                <CardTitle>Social Connections</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="space-y-2">
+                  <Label htmlFor="twitter">Twitter Username</Label>
+                  <div className="flex items-center gap-4">
+                    <Input 
+                      id="twitter"
+                      placeholder="Your Twitter username"
+                      value={twitter}
+                      onChange={(e) => setTwitter(e.target.value.replace('@', ''))}
+                    />
+                    <Button 
+                      variant="outline"
+                      onClick={() => handleConnect('Twitter')}
+                      disabled={!twitter}
+                    >
+                      Connect
+                    </Button>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="telegram">Telegram Username</Label>
+                  <div className="flex items-center gap-4">
+                    <Input 
+                      id="telegram"
+                      placeholder="Your Telegram username"
+                      value={telegram}
+                      onChange={(e) => setTelegram(e.target.value.replace('@', ''))}
+                    />
+                    <Button 
+                      variant="outline"
+                      onClick={() => handleConnect('Telegram')}
+                      disabled={!telegram}
+                    >
+                      Connect
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
 
           <div className="flex justify-between">
             <Button 
