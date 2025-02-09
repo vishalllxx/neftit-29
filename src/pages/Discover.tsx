@@ -1,4 +1,3 @@
-
 import { MainNav } from "@/components/layout/MainNav";
 import StarryBackground from "@/components/layout/StarryBackground";
 import { NFTCard } from "@/components/nft/NFTCard";
@@ -161,7 +160,7 @@ const Discover = () => {
       owner: "0x1357...2468",
       totalSupply: 150,
       levelRequirement: 20,
-      rarity: "Mythic",
+      rarity: "Legendary",
       category: "Fantasy",
       subcategory: "Dragons",
       taskStatus: "Not Started",
@@ -173,24 +172,24 @@ const Discover = () => {
     },
     {
       id: "8",
-      projectName: "Crypto Punks V2",
-      nftName: "Digital Rebel",
-      image: "https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622029.jpg",
-      endTime: "2024-04-20T00:00:00Z",
-      xpReward: 35,
-      neftReward: 3.8,
-      description: "A new generation of crypto punk avatars.",
-      owner: "0x9999...8888",
-      totalSupply: 1000,
-      levelRequirement: 5,
-      rarity: "Rare",
-      category: "Avatars",
-      subcategory: "Punk",
+      projectName: "Mystic Realms",
+      nftName: "Ancient Dragon",
+      image: "https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622028.jpg",
+      endTime: "2024-04-15T00:00:00Z",
+      xpReward: 50,
+      neftReward: 6.5,
+      description: "A legendary dragon from the mystic realms.",
+      owner: "0x1357...2468",
+      totalSupply: 150,
+      levelRequirement: 20,
+      rarity: "Legendary",
+      category: "Fantasy",
+      subcategory: "Dragons",
       taskStatus: "Not Started",
-      usdValue: 250,
-      network: "BSC",
+      usdValue: 550,
+      network: "Ethereum",
       tasks: [
-        { id: "1", title: "Join the rebellion", completed: false }
+        { id: "1", title: "Tame the dragon", completed: false }
       ]
     }
   ];

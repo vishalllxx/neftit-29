@@ -11,7 +11,7 @@ export interface NFTProject {
   owner: string;
   totalSupply: number;
   levelRequirement: number;
-  rarity: 'Common' | 'Rare' | 'Epic' | 'Legendary';
+  rarity: 'Common' | 'Rare' | 'Epic' | 'Legendary' | 'Mythic';
   category: string;
   subcategory: string;
   taskStatus?: 'Not Started' | 'In Progress' | 'Completed';
