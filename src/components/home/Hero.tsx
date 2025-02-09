@@ -7,27 +7,21 @@ export const Hero = () => {
   return (
     <div className="space-y-8 max-w-4xl mx-auto pt-20">
       <div className="space-y-6 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/5 text-primary animate-fade-in">
-          <span className="text-sm font-medium">
-            Welcome to NEFTIT
-          </span>
-        </div>
-
-        <h1 className="h1 animate-fade-in [--animate-delay:200ms]">
+        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-white/90 animate-fade-in">
           Discover & Trade Premium
           <span className="text-primary"> Digital Assets</span>
         </h1>
 
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto animate-fade-in [--animate-delay:300ms]">
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto animate-fade-in [--animate-delay:200ms]">
           Join the future of digital engagement. Complete tasks, earn rewards, and build your Web3 portfolio with our innovative platform.
         </p>
       </div>
 
-      <div className="flex flex-col sm:flex-row justify-center items-center gap-4 animate-fade-in [--animate-delay:400ms]">
+      <div className="flex flex-col sm:flex-row justify-center items-center gap-4 animate-fade-in [--animate-delay:300ms]">
         <Link to="/discover">
           <Button 
             size="lg" 
-            className="rounded-full text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300"
+            className="rounded-md text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground"
           >
             Start Exploring
             <ChevronRight className="ml-2 h-5 w-5" />
@@ -44,10 +38,10 @@ export const Hero = () => {
         ].map((stat, index) => (
           <div 
             key={stat.label}
-            className="card-base p-4 animate-fade-in hover:bg-card/50 transition-colors"
-            style={{ animationDelay: `${index * 100 + 500}ms` }}
+            className="p-4 rounded-lg border border-white/10 bg-card/50 hover:bg-card transition-colors animate-fade-in"
+            style={{ animationDelay: `${index * 100 + 400}ms` }}
           >
-            <div className="text-2xl font-bold text-foreground">
+            <div className="text-2xl font-semibold text-white">
               {stat.value}
             </div>
             <div className="text-sm text-muted-foreground">{stat.label}</div>
