@@ -1,14 +1,13 @@
-
 import { useParams, useNavigate } from "react-router-dom";
 import { MainNav } from "@/components/layout/MainNav";
 import StarryBackground from "@/components/layout/StarryBackground";
 import { NFTProject } from "@/types/nft";
-import { ArrowLeft, Award, Calendar, Twitter, MessageCircle } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
-import { Card } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { toast } from "sonner";
+import { NFTImage } from "@/components/nft/NFTImage";
+import { NFTInfo } from "@/components/nft/NFTInfo";
+import { NFTTaskList } from "@/components/nft/NFTTaskList";
 
 const ProjectDetails = () => {
   const { id } = useParams();
@@ -155,14 +154,6 @@ const ProjectDetails = () => {
     );
   }
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
-
   return (
     <div className="min-h-screen bg-black">
       <StarryBackground />
@@ -178,111 +169,20 @@ const ProjectDetails = () => {
         </Button>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-          <Card className="overflow-hidden rounded-xl border border-white/10 bg-[#111111]">
-            <div className="aspect-square">
-              <img
-                src={project.image}
-                alt={project.nftName}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </Card>
-
-          <div className="space-y-6 bg-[#111111] p-8 rounded-xl border border-white/10">
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <h2 className="text-xl font-medium text-white/90">{project.projectName}</h2>
-                <span className="text-blue-500">✓</span>
-              </div>
-              <h1 className="text-3xl font-bold text-white">{project.nftName}</h1>
-            </div>
-            
-            <Separator className="bg-white/[0.08]" />
-
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex items-center gap-2">
-                <Award className="h-5 w-5 text-white/80" />
-                <span className="text-xl font-bold text-white">{project.xpReward} XP</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xl font-bold text-white">{project.neftReward} NEFT</span>
-              </div>
-            </div>
-
-            <Separator className="bg-white/[0.08]" />
-
-            <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4 text-white/60" />
-                <span className="text-sm text-white/60">
-                  Start Date: {formatDate(project.startTime || '')}
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4 text-white/60" />
-                <span className="text-sm text-white/60">
-                  End Date: {formatDate(project.endTime)}
-                </span>
-              </div>
-            </div>
-
-            <Separator className="bg-white/[0.08]" />
-
-            <div className="space-y-3">
-              <h3 className="text-lg font-semibold text-white">Rarities</h3>
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <span className="text-white/80">Legendary</span>
-                  <span className="text-white/60">{project.rarityDistribution?.legendary}%</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-white/80">Rare</span>
-                  <span className="text-white/60">{project.rarityDistribution?.rare}%</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-white/80">Common</span>
-                  <span className="text-white/60">{project.rarityDistribution?.common}%</span>
-                </div>
-              </div>
-            </div>
-
-            <Separator className="bg-white/[0.08]" />
-
-            <div className="space-y-3">
-              <h3 className="text-lg font-semibold text-white">Description</h3>
-              <p className="text-white/70 leading-relaxed">{project.description}</p>
-            </div>
-
-            <Separator className="bg-white/[0.08]" />
-
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-white">Tasks</h3>
-              <div className="space-y-3">
-                {project.tasks.map((task) => (
-                  <div 
-                    key={task.id}
-                    className="flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/10"
-                  >
-                    <div className="flex items-center gap-2">
-                      {task.type === 'twitter' ? (
-                        <Twitter className="h-4 w-4 text-white/60" />
-                      ) : (
-                        <MessageCircle className="h-4 w-4 text-white/60" />
-                      )}
-                      <span className="text-white/80">{task.title}</span>
-                    </div>
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      className="text-white/60 hover:text-white hover:bg-white/10"
-                      onClick={() => toast.success("Task verified!")}
-                    >
-                      Verify
-                    </Button>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <NFTImage image={project.image} name={project.nftName} />
+          
+          <div className="space-y-6">
+            <NFTInfo
+              projectName={project.projectName}
+              nftName={project.nftName}
+              xpReward={project.xpReward}
+              neftReward={project.neftReward}
+              startTime={project.startTime}
+              endTime={project.endTime}
+              description={project.description}
+              rarityDistribution={project.rarityDistribution}
+            />
+            <NFTTaskList tasks={project.tasks} />
           </div>
         </div>
       </main>
