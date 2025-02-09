@@ -8,34 +8,80 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { User, Mail, Twitter, Send, LogOut } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState(() => localStorage.getItem("username") || "");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [twitter, setTwitter] = useState("");
   const [telegram, setTelegram] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    // Load saved user data from localStorage
+    const savedUsername = localStorage.getItem("username");
+    const savedEmail = localStorage.getItem("userEmail");
+    const savedTwitter = localStorage.getItem("userTwitter");
+    const savedTelegram = localStorage.getItem("userTelegram");
+
+    if (savedUsername) setUsername(savedUsername);
+    if (savedEmail) setEmail(savedEmail);
+    if (savedTwitter) setTwitter(savedTwitter);
+    if (savedTelegram) setTelegram(savedTelegram);
+  }, []);
 
   const handleSave = () => {
-    if (username.trim()) {
+    setIsLoading(true);
+    
+    try {
+      if (!username.trim()) {
+        toast.error("Username cannot be empty");
+        return;
+      }
+
+      // Validate email format
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        toast.error("Please enter a valid email address");
+        return;
+      }
+
+      // Save all user data
       localStorage.setItem("username", username);
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("userTwitter", twitter);
+      localStorage.setItem("userTelegram", telegram);
+
       toast.success("Settings saved successfully!");
       navigate("/profile");
-    } else {
-      toast.error("Username cannot be empty");
+    } catch (error) {
+      toast.error("Failed to save settings");
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const handleLogout = () => {
-    localStorage.setItem("isAuthenticated", "false");
-    toast.success("Logged out successfully");
-    navigate("/auth");
+  const handleConnect = (platform: string) => {
+    const username = platform === 'Twitter' ? twitter : telegram;
+    
+    if (!username) {
+      toast.error(`Please enter your ${platform} username first`);
+      return;
+    }
+
+    toast.success(`Connected to ${platform} as @${username}`);
+    localStorage.setItem(platform === 'Twitter' ? 'userTwitter' : 'userTelegram', username);
   };
 
-  const handleConnect = (platform: string) => {
-    toast.success(`Connected to ${platform}`);
+  const handleLogout = () => {
+    try {
+      localStorage.setItem("isAuthenticated", "false");
+      toast.success("Logged out successfully");
+      navigate("/auth");
+    } catch (error) {
+      toast.error("Failed to logout");
+    }
   };
 
   return (
@@ -60,24 +106,19 @@ const Settings = () => {
               <CardContent className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="username">Username</Label>
-                  <div className="flex gap-2">
-                    <Input 
-                      id="username" 
-                      placeholder="Your username" 
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                    />
-                    <Button onClick={handleSave}>
-                      Change
-                    </Button>
-                  </div>
+                  <Input 
+                    id="username" 
+                    placeholder="Enter your username" 
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
                   <Input 
                     id="email" 
                     type="email" 
-                    placeholder="Your email"
+                    placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -105,9 +146,9 @@ const Settings = () => {
                     <div>
                       <Label>Twitter</Label>
                       <Input 
-                        placeholder="Twitter username"
+                        placeholder="Your Twitter username"
                         value={twitter}
-                        onChange={(e) => setTwitter(e.target.value)}
+                        onChange={(e) => setTwitter(e.target.value.replace('@', ''))}
                         className="mt-1"
                       />
                     </div>
@@ -115,6 +156,7 @@ const Settings = () => {
                   <Button 
                     variant="outline"
                     onClick={() => handleConnect("Twitter")}
+                    disabled={!twitter}
                   >
                     Connect
                   </Button>
@@ -125,9 +167,9 @@ const Settings = () => {
                     <div>
                       <Label>Telegram</Label>
                       <Input 
-                        placeholder="Telegram username"
+                        placeholder="Your Telegram username"
                         value={telegram}
-                        onChange={(e) => setTelegram(e.target.value)}
+                        onChange={(e) => setTelegram(e.target.value.replace('@', ''))}
                         className="mt-1"
                       />
                     </div>
@@ -135,6 +177,7 @@ const Settings = () => {
                   <Button 
                     variant="outline"
                     onClick={() => handleConnect("Telegram")}
+                    disabled={!telegram}
                   >
                     Connect
                   </Button>
@@ -144,12 +187,22 @@ const Settings = () => {
           </motion.div>
 
           <div className="flex justify-between">
-            <Button onClick={handleLogout} variant="destructive" size="lg" className="px-8">
+            <Button 
+              onClick={handleLogout} 
+              variant="destructive" 
+              size="lg" 
+              className="px-8"
+            >
               <LogOut className="mr-2 h-4 w-4" />
               Logout
             </Button>
-            <Button onClick={handleSave} size="lg" className="px-8">
-              Save Changes
+            <Button 
+              onClick={handleSave} 
+              size="lg" 
+              className="px-8"
+              disabled={isLoading}
+            >
+              {isLoading ? "Saving..." : "Save Changes"}
             </Button>
           </div>
         </div>
