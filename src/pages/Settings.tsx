@@ -18,6 +18,13 @@ const Settings = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    // Check authentication
+    const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+    if (!isAuthenticated) {
+      navigate("/auth");
+      return;
+    }
+
     // Load saved user data from localStorage
     const savedUsername = localStorage.getItem("username");
     const savedEmail = localStorage.getItem("userEmail");
@@ -28,20 +35,24 @@ const Settings = () => {
     if (savedEmail) setEmail(savedEmail);
     if (savedTwitter) setTwitter(savedTwitter);
     if (savedTelegram) setTelegram(savedTelegram);
-  }, []);
+  }, [navigate]);
 
   const handleSave = () => {
     setIsLoading(true);
     
     try {
       if (!username.trim()) {
-        toast.error("Username cannot be empty");
+        toast.error("Username cannot be empty", {
+          duration: 3000
+        });
         return;
       }
 
       // Validate email format
       if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        toast.error("Please enter a valid email address");
+        toast.error("Please enter a valid email address", {
+          duration: 3000
+        });
         return;
       }
 
@@ -51,10 +62,14 @@ const Settings = () => {
       localStorage.setItem("userTwitter", twitter);
       localStorage.setItem("userTelegram", telegram);
 
-      toast.success("Settings saved successfully!");
+      toast.success("Settings saved successfully!", {
+        duration: 3000
+      });
       navigate("/profile");
     } catch (error) {
-      toast.error("Failed to save settings");
+      toast.error("Failed to save settings", {
+        duration: 3000
+      });
     } finally {
       setIsLoading(false);
     }
@@ -64,21 +79,29 @@ const Settings = () => {
     const username = platform === 'Twitter' ? twitter : telegram;
     
     if (!username) {
-      toast.error(`Please enter your ${platform} username first`);
+      toast.error(`Please enter your ${platform} username first`, {
+        duration: 3000
+      });
       return;
     }
 
-    toast.success(`Connected to ${platform} as @${username}`);
+    toast.success(`Connected to ${platform} as @${username}`, {
+      duration: 3000
+    });
     localStorage.setItem(platform === 'Twitter' ? 'userTwitter' : 'userTelegram', username);
   };
 
   const handleLogout = () => {
     try {
       localStorage.setItem("isAuthenticated", "false");
-      toast.success("Logged out successfully");
+      toast.success("Logged out successfully", {
+        duration: 3000
+      });
       navigate("/auth");
     } catch (error) {
-      toast.error("Failed to logout");
+      toast.error("Failed to logout", {
+        duration: 3000
+      });
     }
   };
 

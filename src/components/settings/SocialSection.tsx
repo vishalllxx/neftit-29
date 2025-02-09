@@ -34,11 +34,11 @@ export const SocialSection = ({
             Social Connections
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
+        <CardContent className="space-y-6">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3 flex-1">
               <Twitter className="h-5 w-5 text-[#1DA1F2]" />
-              <div>
+              <div className="flex-1">
                 <Label>Twitter</Label>
                 <Input 
                   placeholder="Your Twitter username"
@@ -50,16 +50,18 @@ export const SocialSection = ({
             </div>
             <Button 
               variant="outline"
+              size="lg"
               onClick={() => onConnect("Twitter")}
               disabled={!twitter}
+              className="min-w-[100px]"
             >
               Connect
             </Button>
           </div>
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3 flex-1">
               <Send className="h-5 w-5 text-[#0088cc]" />
-              <div>
+              <div className="flex-1">
                 <Label>Telegram</Label>
                 <Input 
                   placeholder="Your Telegram username"
@@ -71,8 +73,10 @@ export const SocialSection = ({
             </div>
             <Button 
               variant="outline"
+              size="lg"
               onClick={() => onConnect("Telegram")}
               disabled={!telegram}
+              className="min-w-[100px]"
             >
               Connect
             </Button>
