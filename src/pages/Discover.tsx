@@ -1,7 +1,7 @@
 
 import { MainNav } from "@/components/layout/MainNav";
 import StarryBackground from "@/components/layout/StarryBackground";
-import { ProjectCard } from "@/components/nft/ProjectCard";
+import { NFTCard } from "@/components/nft/NFTCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
@@ -14,12 +14,12 @@ const Discover = () => {
   const featuredProjects: NFTProject[] = [
     {
       id: "1",
-      projectName: "Genesis Collection",
-      nftName: "Ethereal Guardian #529",
+      projectName: "Treasure Hunters",
+      nftName: "Treasure Hunters #529",
       image: "https://images.unsplash.com/photo-1592492152545-9695d3f473f4?auto=format&fit=crop&q=80",
       endTime: "2024-04-01T00:00:00Z",
       xpReward: 25,
-      neftReward: 15,
+      neftReward: 1.9,
       description: "A mystical guardian NFT that protects the digital realm.",
       owner: "0x1234...5678",
       totalSupply: 1000,
@@ -115,40 +115,55 @@ const Discover = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#111111]">
+    <div className="min-h-screen bg-black">
       <StarryBackground />
       <MainNav />
       <main className="container mx-auto px-4 pt-24 pb-12 space-y-12 relative">
         <div className="space-y-12">
           <div className="text-center space-y-4">
-            <h1 className="text-4xl md:text-5xl font-bold text-[#F5F5F5]">
+            <h1 className="text-4xl md:text-5xl font-bold text-white/90">
               Discover & Earn NFTs
             </h1>
-            <p className="text-lg text-[#B0B0B0] max-w-2xl mx-auto">
+            <p className="text-lg text-white/60 max-w-2xl mx-auto">
               Complete tasks, earn rewards, and collect unique NFTs
             </p>
           </div>
 
           <div className="max-w-2xl mx-auto">
-            <div className="glass p-2 flex gap-2 rounded-full border border-[#333333] bg-[#222222]/50 backdrop-blur-sm">
+            <div className="glass p-2 flex gap-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm">
               <Input
                 placeholder="Search projects and NFTs..."
-                className="border-none bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 text-[#F5F5F5]"
+                className="border-none bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 text-white/90"
               />
-              <Button size="icon" className="rounded-full bg-[#333333] hover:bg-[#444444]">
+              <Button size="icon" className="rounded-full bg-white/10 hover:bg-white/20">
                 <Search className="h-4 w-4" />
               </Button>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 fade-in">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {isLoading ? (
               Array(4).fill(0).map((_, index) => (
-                <div key={index} className="aspect-square animate-pulse rounded-xl bg-[#222222]" />
+                <div key={index} className="aspect-square animate-pulse rounded-xl bg-white/5" />
               ))
             ) : (
               featuredProjects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
+                <NFTCard
+                  key={project.id}
+                  id={project.id}
+                  name={project.nftName}
+                  image={project.image}
+                  projectName={project.projectName}
+                  creator={project.owner}
+                  likes={0}
+                  neftReward={project.neftReward}
+                  endTime="19m ago"
+                  owner={project.owner}
+                  supply={project.totalSupply}
+                  xpReward={project.xpReward}
+                  category={project.category}
+                  subcategory={project.subcategory}
+                />
               ))
             )}
           </div>
@@ -156,6 +171,6 @@ const Discover = () => {
       </main>
     </div>
   );
-};
+}
 
 export default Discover;

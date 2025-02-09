@@ -33,49 +33,49 @@ export function NFTCard({
 
   return (
     <Card 
-      className="group relative overflow-hidden rounded-lg bg-[#1A1F2C] border-none transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+      className="group relative aspect-square overflow-hidden rounded-lg bg-black/20 transition-all duration-300 hover:-translate-y-1 cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Image Container */}
-      <div className="relative aspect-square">
+      <div className="relative h-full w-full">
         <img
           src={image}
           alt={name}
-          className="w-full h-full object-cover"
+          className="h-full w-full object-cover"
         />
         
-        {/* Permanent Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1A1F2C]/90 via-[#1A1F2C]/30 to-transparent" />
+        {/* Gradient Overlay - Always visible */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
         
         {/* Hover Overlay */}
         <div 
-          className={`absolute inset-0 bg-[#1A1F2C]/40 transition-opacity duration-300 ${
+          className={`absolute inset-0 bg-black/20 transition-opacity duration-300 ${
             isHovered ? 'opacity-100' : 'opacity-0'
           }`}
         />
-      </div>
 
-      {/* Content Section */}
-      <div className="absolute bottom-0 left-0 right-0 p-4">
-        <div className="space-y-2">
-          <h3 className="text-base font-semibold text-white tracking-wide truncate">
-            {name}
-          </h3>
-          <p className="text-sm text-gray-400 font-medium truncate">
-            {projectName}
-          </p>
-        </div>
-
-        <div className="flex items-center justify-between mt-4">
-          <div className="flex items-center space-x-1">
-            <span className="text-white font-semibold text-base">
-              {neftReward} NEFT
-            </span>
+        {/* Content Section */}
+        <div className="absolute bottom-0 left-0 right-0 p-4">
+          <div className="mb-3">
+            <h3 className="text-base font-semibold text-white/90 tracking-wide truncate">
+              {name}
+            </h3>
+            <p className="text-sm text-white/60 font-medium truncate mt-1">
+              {projectName}
+            </p>
           </div>
-          <div className="flex items-center space-x-1.5 text-gray-400">
-            <Clock className="w-4 h-4" />
-            <span className="text-sm font-medium">{endTime}</span>
+
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <span className="text-white/90 font-medium text-sm">
+                {neftReward} NEFT
+              </span>
+            </div>
+            <div className="flex items-center space-x-1.5 text-white/60">
+              <Clock className="w-3.5 h-3.5" />
+              <span className="text-xs font-medium">{endTime}</span>
+            </div>
           </div>
         </div>
       </div>
