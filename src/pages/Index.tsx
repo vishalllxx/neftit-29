@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import { Hero } from "@/components/home/Hero";
 import { RotatingCube } from "@/components/home/RotatingCube";
 import { FeaturedProjects } from "@/components/home/FeaturedProjects";
+import { Statistics } from "@/components/home/Statistics";
 import { WhatIsNeftit } from "@/components/home/WhatIsNeftit";
 import { TaskTypes } from "@/components/home/TaskTypes";
 import { Footer } from "@/components/home/Footer";
@@ -32,6 +33,11 @@ const Index = () => {
             {/* Hero Section */}
             <div className="relative animate-fade-in">
               <Hero />
+            </div>
+
+            {/* Statistics Section */}
+            <div className="relative">
+              <Statistics />
             </div>
 
             {/* Rotating Cube */}
