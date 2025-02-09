@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -55,46 +56,13 @@
   }
 }
 
-/* Subtle fade animations */
-@keyframes fade-in {
-  from { opacity: 0; transform: translateY(2px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Hover animations */
+.hover-scale {
+  @apply transition-transform duration-300 hover:scale-[1.02];
 }
 
-.animate-fade-in {
-  animation: fade-in 0.3s ease-out forwards;
+/* Gradient overlays */
+.card-gradient {
+  @apply bg-gradient-to-t from-black/80 via-black/50 to-transparent;
 }
 
-/* Component base styles */
-.btn-base {
-  @apply inline-flex items-center justify-center rounded-md text-sm font-medium bg-[#444444] text-white hover:bg-[#555555] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
-}
-
-.input-base {
-  @apply flex h-10 w-full rounded-md border border-[#444444] bg-[#222222] px-3 py-2 text-sm text-white ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
-}
-
-.card-base {
-  @apply rounded-lg border border-[#333333] bg-[#222222] text-white shadow-sm;
-}
-
-/* Professional typography */
-.h1 {
-  @apply scroll-m-20 text-4xl font-semibold tracking-tight text-white lg:text-5xl;
-}
-
-.h2 {
-  @apply scroll-m-20 text-3xl font-semibold tracking-tight text-white;
-}
-
-.h3 {
-  @apply scroll-m-20 text-2xl font-semibold tracking-tight text-white;
-}
-
-.h4 {
-  @apply scroll-m-20 text-xl font-semibold tracking-tight text-white;
-}
-
-.subtle {
-  @apply text-sm text-[#CCCCCC];
-}
