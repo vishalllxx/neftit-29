@@ -50,87 +50,17 @@ const App = () => {
           <Sonner />
           <BrowserRouter>
             <Routes>
-              <Route 
-                path="/" 
-                element={
-                  <PrivateRoute>
-                    <Index />
-                  </PrivateRoute>
-                } 
-              />
-              <Route 
-                path="/discover" 
-                element={
-                  <PrivateRoute>
-                    <Discover />
-                  </PrivateRoute>
-                } 
-              />
-              <Route 
-                path="/staking" 
-                element={
-                  <PrivateRoute>
-                    <Staking />
-                  </PrivateRoute>
-                } 
-              />
-              <Route 
-                path="/project/:id" 
-                element={
-                  <PrivateRoute>
-                    <ProjectDetails />
-                  </PrivateRoute>
-                } 
-              />
+              <Route path="/" element={<PrivateRoute><Index /></PrivateRoute>} />
+              <Route path="/discover" element={<PrivateRoute><Discover /></PrivateRoute>} />
+              <Route path="/staking" element={<PrivateRoute><Staking /></PrivateRoute>} />
+              <Route path="/project/:id" element={<PrivateRoute><ProjectDetails /></PrivateRoute>} />
               <Route path="/auth" element={<AuthPage />} />
-              <Route
-                path="/profile"
-                element={
-                  <PrivateRoute>
-                    <Profile />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/streaks"
-                element={
-                  <PrivateRoute>
-                    <Streaks />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/saved"
-                element={
-                  <PrivateRoute>
-                    <SavedNFTs />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/activity"
-                element={
-                  <PrivateRoute>
-                    <Activity />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/settings"
-                element={
-                  <PrivateRoute>
-                    <Settings />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/following"
-                element={
-                  <PrivateRoute>
-                    <Activity />
-                  </PrivateRoute>
-                }
-              />
+              <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+              <Route path="/streaks" element={<PrivateRoute><Streaks /></PrivateRoute>} />
+              <Route path="/saved" element={<PrivateRoute><SavedNFTs /></PrivateRoute>} />
+              <Route path="/activity" element={<PrivateRoute><Activity /></PrivateRoute>} />
+              <Route path="/settings" element={<PrivateRoute><Settings /></PrivateRoute>} />
+              <Route path="/following" element={<PrivateRoute><Activity /></PrivateRoute>} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
