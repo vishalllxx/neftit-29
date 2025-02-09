@@ -1,3 +1,4 @@
+
 import { MainNav } from "@/components/layout/MainNav";
 import StarryBackground from "@/components/layout/StarryBackground";
 import { Button } from "@/components/ui/button";
@@ -11,7 +12,9 @@ import {
   Award,
   Package,
   Medal,
-  Sparkles
+  Sparkles,
+  Twitter,
+  MessageCircle
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -22,10 +25,32 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
+// Mock completed tasks data (this will later come from Supabase)
+const completedTasks = [
+  {
+    id: "1",
+    projectName: "Cosmic Dreamer",
+    title: "Follow Twitter",
+    completedAt: "2024-02-20",
+    type: "twitter" as const,
+    xpEarned: 50
+  },
+  {
+    id: "2",
+    projectName: "Space Voyager",
+    title: "Join Discord",
+    completedAt: "2024-02-19",
+    type: "discord" as const,
+    xpEarned: 30
+  }
+];
+
 const Profile = () => {
   const { address, walletType, disconnect } = useWallet();
   const navigate = useNavigate();
   const [username, setUsername] = useState(() => localStorage.getItem("username") || "Username");
+  const totalXP = completedTasks.reduce((sum, task) => sum + task.xpEarned, 0);
+  const xpToNextLevel = 499; // This will be calculated based on level later
 
   useEffect(() => {
     const savedUsername = localStorage.getItem("username");
@@ -141,9 +166,9 @@ const Profile = () => {
             <div className="glass rounded-xl p-6 space-y-4 shadow-2xl shadow-primary/5">
               <div className="flex justify-between items-center">
                 <h3 className="text-xl bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent font-bold">Progress</h3>
-                <span className="text-white/80">380 / 499 XP</span>
+                <span className="text-white/80">{totalXP} / {xpToNextLevel} XP</span>
               </div>
-              <Progress value={76} className="h-3" />
+              <Progress value={(totalXP / xpToNextLevel) * 100} className="h-3" />
             </div>
           </motion.div>
 
@@ -164,8 +189,38 @@ const Profile = () => {
                 </TabsTrigger>
               </TabsList>
               <TabsContent value="completed">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                  <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+                <div className="grid grid-cols-1 gap-4 mt-6">
+                  {completedTasks.length > 0 ? (
+                    completedTasks.map((task) => (
+                      <motion.div 
+                        key={task.id}
+                        whileHover={{ scale: 1.02 }} 
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Card className="glass hover:bg-white/5 transition-colors duration-300">
+                          <CardContent className="pt-6">
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-3">
+                                {task.type === 'twitter' ? (
+                                  <Twitter className="h-4 w-4 text-primary" />
+                                ) : (
+                                  <MessageCircle className="h-4 w-4 text-primary" />
+                                )}
+                                <div>
+                                  <p className="font-medium text-white">{task.title}</p>
+                                  <p className="text-sm text-white/60">{task.projectName}</p>
+                                </div>
+                              </div>
+                              <div className="text-right">
+                                <p className="font-medium text-primary">+{task.xpEarned} XP</p>
+                                <p className="text-sm text-white/60">{task.completedAt}</p>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </motion.div>
+                    ))
+                  ) : (
                     <Card className="glass hover:bg-white/5 transition-colors duration-300">
                       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium">No Quests Yet</CardTitle>
@@ -175,7 +230,7 @@ const Profile = () => {
                         <p className="text-sm text-white/60">Complete your first quest to earn XP and rewards!</p>
                       </CardContent>
                     </Card>
-                  </motion.div>
+                  )}
                 </div>
               </TabsContent>
               <TabsContent value="nfts">
@@ -222,3 +277,4 @@ const Profile = () => {
 }
 
 export default Profile;
+
