@@ -42,17 +42,13 @@ const Settings = () => {
     
     try {
       if (!username.trim()) {
-        toast.error("Username cannot be empty", {
-          duration: 3000
-        });
+        toast.error("Username cannot be empty");
         return;
       }
 
       // Validate email format
       if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        toast.error("Please enter a valid email address", {
-          duration: 3000
-        });
+        toast.error("Please enter a valid email address");
         return;
       }
 
@@ -62,14 +58,10 @@ const Settings = () => {
       localStorage.setItem("userTwitter", twitter);
       localStorage.setItem("userTelegram", telegram);
 
-      toast.success("Settings saved successfully!", {
-        duration: 3000
-      });
+      toast.success("Settings saved successfully!");
       navigate("/profile");
     } catch (error) {
-      toast.error("Failed to save settings", {
-        duration: 3000
-      });
+      toast.error("Failed to save settings");
     } finally {
       setIsLoading(false);
     }
@@ -79,29 +71,21 @@ const Settings = () => {
     const username = platform === 'Twitter' ? twitter : telegram;
     
     if (!username) {
-      toast.error(`Please enter your ${platform} username first`, {
-        duration: 3000
-      });
+      toast.error(`Please enter your ${platform} username first`);
       return;
     }
 
-    toast.success(`Connected to ${platform} as @${username}`, {
-      duration: 3000
-    });
+    toast.success(`Connected to ${platform} as @${username}`);
     localStorage.setItem(platform === 'Twitter' ? 'userTwitter' : 'userTelegram', username);
   };
 
   const handleLogout = () => {
     try {
       localStorage.setItem("isAuthenticated", "false");
-      toast.success("Logged out successfully", {
-        duration: 3000
-      });
+      toast.success("Logged out successfully");
       navigate("/auth");
     } catch (error) {
-      toast.error("Failed to logout", {
-        duration: 3000
-      });
+      toast.error("Failed to logout");
     }
   };
 
