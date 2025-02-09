@@ -1,3 +1,4 @@
+
 import { Award, Calendar } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
@@ -35,7 +36,7 @@ export const NFTInfo = ({
   };
 
   return (
-    <div className="space-y-6 bg-[#1A1F2C] p-8 rounded-xl border border-white/10">
+    <div className="space-y-6 glass-morphism p-8 rounded-xl">
       <div className="space-y-2">
         <div className="flex items-center gap-2">
           <h2 className="text-xl font-medium text-white/90">{projectName}</h2>
@@ -108,3 +109,4 @@ export const NFTInfo = ({
     </div>
   );
 };
+
