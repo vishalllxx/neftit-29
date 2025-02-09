@@ -5,7 +5,7 @@ export const featuredProjects: NFTProject[] = [
     id: "1",
     projectName: "Genesis Collection",
     nftName: "Ethereal Guardian",
-    image: "https://cdn.midjourney.com/8cf5f7c7-7365-4302-8696-d4366653195d/0_0.webp",
+    image: "/images/nft1.jpg",
     endTime: "2024-04-01T00:00:00Z",
     startTime: "2024-03-01T00:00:00Z",
     xpReward: 25,
@@ -26,9 +26,10 @@ export const featuredProjects: NFTProject[] = [
       common: 80
     },
     tasks: [
-      { id: "1", title: "Follow on Twitter", completed: false, type: "twitter" },
+      { id: "1", title: "Follow @EtherealNFT on Twitter", completed: false, type: "twitter" },
       { id: "2", title: "Join Discord Community", completed: false, type: "discord" },
-      { id: "3", title: "Share announcement post", completed: false, type: "twitter" }
+      { id: "3", title: "Share announcement post", completed: false, type: "twitter" },
+      { id: "4", title: "Follow @NFTWorld on Twitter", completed: false, type: "twitter" }
     ]
   },
   {
