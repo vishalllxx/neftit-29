@@ -18,7 +18,7 @@ export function MainNav() {
         <div className="flex items-center gap-8">
           <Link 
             to="/" 
-            className="text-2xl font-bold text-foreground hover:text-primary transition-colors"
+            className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-500 to-accent transition-colors"
           >
             NEFTIT
           </Link>

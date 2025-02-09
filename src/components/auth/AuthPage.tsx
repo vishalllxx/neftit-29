@@ -5,6 +5,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { DynamicText } from "./DynamicText";
 import { SocialLogins } from "./SocialLogins";
 import { WalletConnections } from "./WalletConnections";
+import StarryBackground from "@/components/layout/StarryBackground";
 
 export function AuthPage() {
   const navigate = useNavigate();
@@ -27,6 +28,8 @@ export function AuthPage() {
 
   return (
     <div className="min-h-screen w-full bg-background flex items-center justify-center relative overflow-hidden">
+      <StarryBackground />
+      
       {/* Animated background elements */}
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
       <div 
@@ -50,12 +53,12 @@ export function AuthPage() {
         </div>
 
         {/* Login Form */}
-        <div className="space-y-6 glass-card p-8 animate-scale-in">
+        <div className="glass-card p-8 animate-scale-in backdrop-blur-xl bg-white/5 border border-white/10">
           {/* Social Logins */}
           <SocialLogins onLogin={handleLogin} />
 
           {/* Divider */}
-          <div className="relative">
+          <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t border-foreground/10"></span>
             </div>
@@ -68,7 +71,7 @@ export function AuthPage() {
           <WalletConnections onConnect={handleLogin} />
 
           {/* Terms */}
-          <p className="text-center text-sm text-foreground/60">
+          <p className="text-center text-sm text-foreground/60 mt-6">
             By logging in, you agree to our{" "}
             <Button variant="link" className="text-primary hover:text-primary/80 p-0">
               Terms of Service
