@@ -32,7 +32,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
-    }, 60000); // Update every minute
+    }, 60000);
 
     setTimeLeft(calculateTimeLeft());
 
@@ -41,7 +41,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <Card 
-      className="group flex flex-col overflow-hidden rounded-xl bg-black/20 backdrop-blur-sm border border-white/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/20 cursor-pointer"
+      className="group overflow-hidden rounded-xl border border-[#333333] bg-[#222222] hover:bg-[#2a2a2a] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] cursor-pointer"
       onClick={() => navigate(`/project/${project.id}`)}
     >
       <div className="relative aspect-square">
@@ -51,8 +51,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
         <div className="absolute top-4 right-4">
-          <div className="flex items-center gap-2 text-sm text-white bg-black/50 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10">
-            <Clock className="h-4 w-4 text-primary" />
+          <div className="flex items-center gap-2 text-sm text-[#F5F5F5] bg-black/50 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10">
+            <Clock className="h-4 w-4" />
             <span className="font-medium">{timeLeft}</span>
           </div>
         </div>
@@ -60,25 +60,25 @@ export function ProjectCard({ project }: ProjectCardProps) {
       
       <div className="flex flex-col gap-4 p-6">
         <div className="space-y-1">
-          <h3 className="text-2xl font-bold text-gradient animate-text">{project.nftName}</h3>
-          <p className="text-sm text-white/70 font-medium">{project.projectName}</p>
+          <h3 className="text-2xl font-bold text-[#F5F5F5]">{project.nftName}</h3>
+          <p className="text-sm text-[#B0B0B0] font-medium">{project.projectName}</p>
         </div>
 
         <div className="space-y-3">
-          <p className="text-sm font-medium text-white/70">Complete tasks to earn:</p>
+          <p className="text-sm font-medium text-[#B0B0B0]">Complete tasks to earn:</p>
           <div className="flex gap-3">
-            <div className="flex items-center gap-2 bg-primary/10 backdrop-blur-sm px-3 py-2 rounded-lg border border-primary/20">
-              <Award className="h-5 w-5 text-primary" />
+            <div className="flex items-center gap-2 bg-[#333333] px-3 py-2 rounded-lg border border-[#444444]">
+              <Award className="h-5 w-5 text-[#F5F5F5]" />
               <div className="flex items-baseline gap-1">
-                <span className="text-lg font-bold text-primary">{project.xpReward}</span>
-                <span className="text-sm font-medium text-white/70">XP</span>
+                <span className="text-lg font-bold text-[#F5F5F5]">{project.xpReward}</span>
+                <span className="text-sm font-medium text-[#B0B0B0]">XP</span>
               </div>
             </div>
-            <div className="flex items-center gap-2 bg-accent/10 backdrop-blur-sm px-3 py-2 rounded-lg border border-accent/20">
-              <Coins className="h-5 w-5 text-accent" />
+            <div className="flex items-center gap-2 bg-[#333333] px-3 py-2 rounded-lg border border-[#444444]">
+              <Coins className="h-5 w-5 text-[#F5F5F5]" />
               <div className="flex items-baseline gap-1">
-                <span className="text-lg font-bold text-accent">{project.neftReward}</span>
-                <span className="text-sm font-medium text-white/70">NEFT</span>
+                <span className="text-lg font-bold text-[#F5F5F5]">{project.neftReward}</span>
+                <span className="text-sm font-medium text-[#B0B0B0]">NEFT</span>
               </div>
             </div>
           </div>
