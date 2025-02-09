@@ -15,9 +15,10 @@ interface NFTCardProps {
   creator: string;
   likes: number;
   isLiked?: boolean;
+  endTime?: string;
 }
 
-export function NFTCard({ id, name, image, price, creator, likes: initialLikes, isLiked: initialIsLiked = false }: NFTCardProps) {
+export function NFTCard({ id, name, image, price, creator, likes: initialLikes, isLiked: initialIsLiked = false, endTime }: NFTCardProps) {
   const [isLiked, setIsLiked] = useState(initialIsLiked);
   const [likes, setLikes] = useState(initialLikes);
   const [isLoading, setIsLoading] = useState(false);
@@ -52,7 +53,7 @@ export function NFTCard({ id, name, image, price, creator, likes: initialLikes, 
   };
 
   return (
-    <Card className="overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] group">
+    <Card className="overflow-hidden bg-[#1A1A1A] border-[#2A2A2A] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] group">
       <div className="aspect-square relative overflow-hidden">
         <img
           src={image}
@@ -91,8 +92,13 @@ export function NFTCard({ id, name, image, price, creator, likes: initialLikes, 
           </Tooltip>
         </div>
         {price && (
-          <Badge className="absolute bottom-2 left-2 bg-gradient-to-r from-[#444444] to-[#555555] border-none shadow-lg">
-            {price} ETH
+          <Badge className="absolute bottom-2 left-2 bg-black/50 backdrop-blur-sm border-none">
+            {price} NEFT
+          </Badge>
+        )}
+        {endTime && (
+          <Badge variant="secondary" className="absolute bottom-2 right-2 bg-black/50 backdrop-blur-sm border-none">
+            {endTime} left
           </Badge>
         )}
       </div>

@@ -15,12 +15,12 @@ const Discover = () => {
     {
       id: "1",
       projectName: "Genesis Collection",
-      nftName: "Ethereal Guardian",
+      nftName: "Ethereal Guardian #529",
       image: "https://images.unsplash.com/photo-1592492152545-9695d3f473f4?auto=format&fit=crop&q=80",
       endTime: "2024-04-01T00:00:00Z",
       xpReward: 25,
       neftReward: 15,
-      description: "A mystical guardian NFT that protects the digital realm. Earn this rare collectible by completing community tasks.",
+      description: "A mystical guardian NFT that protects the digital realm.",
       owner: "0x1234...5678",
       totalSupply: 1000,
       levelRequirement: 5,
@@ -115,7 +115,7 @@ const Discover = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-background/80">
+    <div className="min-h-screen bg-[#111111]">
       <StarryBackground />
       <MainNav />
       <main className="container mx-auto px-4 pt-24 pb-12 space-y-12 relative">
