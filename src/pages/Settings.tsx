@@ -46,32 +46,34 @@ const Settings = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#1A1F2C]">
       <StarryBackground />
       <MainNav />
       <div className="container mx-auto px-4 pt-24">
-        <Card className="max-w-2xl mx-auto">
+        <Card className="max-w-2xl mx-auto glass-morphism">
           <CardHeader>
-            <CardTitle>Settings</CardTitle>
+            <CardTitle className="text-white">Settings</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="username">Username</Label>
+              <Label htmlFor="username" className="text-white">Username</Label>
               <Input 
                 id="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Enter username"
+                className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="text-white">Email</Label>
               <Input 
                 id="email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter email"
+                className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
               />
             </div>
             <div className="flex justify-between pt-4">
@@ -79,7 +81,7 @@ const Settings = () => {
                 <LogOut className="mr-2 h-4 w-4" />
                 Logout
               </Button>
-              <Button onClick={handleSave}>
+              <Button onClick={handleSave} className="bg-white/10 hover:bg-white/20 text-white">
                 Save Changes
               </Button>
             </div>

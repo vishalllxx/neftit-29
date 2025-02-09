@@ -1,3 +1,4 @@
+
 import { useParams, useNavigate } from "react-router-dom";
 import { MainNav } from "@/components/layout/MainNav";
 import StarryBackground from "@/components/layout/StarryBackground";
@@ -144,24 +145,24 @@ const ProjectDetails = () => {
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-black">
+      <div className="min-h-screen bg-[#1A1F2C]">
         <StarryBackground />
         <MainNav />
         <main className="container mx-auto px-4 pt-24 pb-12">
-          <div className="text-center text-white/80">Project not found</div>
+          <div className="text-center text-white">Project not found</div>
         </main>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-[#1A1F2C]">
       <StarryBackground />
       <MainNav />
       <main className="container mx-auto px-4 pt-24 pb-12">
         <Button
           variant="ghost"
-          className="mb-8 text-white/80 hover:text-white"
+          className="mb-8 text-white hover:text-white/80 hover:bg-white/10"
           onClick={() => navigate(-1)}
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
