@@ -5,48 +5,26 @@
 
 @layer base {
   :root {
-    --background: 220 33% 98%;
-    --foreground: 220 10% 15%;
-    --card: 0 0% 100%;
-    --card-foreground: 220 10% 15%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 10% 15%;
-    --primary: 221 83% 53%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 220 14% 90%;
-    --secondary-foreground: 220 10% 15%;
-    --muted: 220 14% 90%;
-    --muted-foreground: 220 8% 40%;
-    --accent: 142 71% 45%;
-    --accent-foreground: 220 10% 15%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 221 83% 53%;
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 220 10% 8%;
+    --background: 220 33% 3%;
     --foreground: 220 10% 98%;
-    --card: 220 10% 10%;
+    --card: 220 33% 5%;
     --card-foreground: 220 10% 98%;
-    --popover: 220 10% 10%;
+    --popover: 220 33% 5%;
     --popover-foreground: 220 10% 98%;
     --primary: 221 83% 53%;
     --primary-foreground: 210 40% 98%;
-    --secondary: 220 10% 15%;
+    --secondary: 220 14% 15%;
     --secondary-foreground: 220 10% 98%;
-    --muted: 220 10% 15%;
-    --muted-foreground: 220 10% 65%;
+    --muted: 220 14% 15%;
+    --muted-foreground: 220 8% 70%;
     --accent: 142 71% 45%;
     --accent-foreground: 220 10% 98%;
-    --destructive: 0 62% 30%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
-    --border: 220 10% 15%;
-    --input: 220 10% 15%;
+    --border: 220 13% 15%;
+    --input: 220 13% 15%;
     --ring: 221 83% 53%;
+    --radius: 0.5rem;
   }
 }
 
@@ -67,14 +45,11 @@
 
 @layer utilities {
   .glass {
-    @apply backdrop-blur-lg bg-white/10 border border-white/20 shadow-lg transition-all duration-300;
-    .dark & {
-      @apply bg-black/10 border-black/20;
-    }
+    @apply backdrop-blur-lg bg-black/20 border border-white/10 shadow-lg;
   }
 
   .card-hover {
-    @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/10;
+    @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/5;
   }
 
   .text-balance {
@@ -82,23 +57,14 @@
   }
 }
 
-/* Enhanced animations with reduced intensity */
+/* Subtle animations */
 @keyframes fade-in {
   from { opacity: 0; transform: translateY(5px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes scale-in {
-  from { transform: scale(0.98); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
 .animate-fade-in {
   animation: fade-in 0.4s ease-out forwards;
-}
-
-.animate-scale-in {
-  animation: scale-in 0.3s ease-out forwards;
 }
 
 /* Professional gradient backgrounds */
@@ -106,18 +72,9 @@
   @apply bg-gradient-to-br from-background via-background to-muted;
 }
 
-.bg-gradient-brand {
-  @apply bg-gradient-to-br from-primary/90 via-primary to-primary/90;
-}
-
-/* Enhanced accessibility focus styles */
-.focus-ring {
-  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background;
-}
-
-/* Improved component base styles */
+/* Component base styles */
 .btn-base {
-  @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-ring disabled:pointer-events-none disabled:opacity-50;
+  @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50;
 }
 
 .input-base {
@@ -125,24 +82,12 @@
 }
 
 .card-base {
-  @apply rounded-lg border bg-card text-card-foreground shadow-sm transition-all duration-300;
-}
-
-/* Mobile-optimized touch targets */
-@media (max-width: 640px) {
-  .touch-target {
-    @apply min-h-[44px] min-w-[44px];
-  }
-}
-
-/* Loading states */
-.loading-skeleton {
-  @apply animate-pulse bg-muted rounded;
+  @apply rounded-lg border bg-card text-card-foreground shadow-sm;
 }
 
 /* Professional typography */
 .h1 {
-  @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-balance;
+  @apply scroll-m-20 text-4xl font-bold tracking-tight lg:text-5xl text-balance;
 }
 
 .h2 {
