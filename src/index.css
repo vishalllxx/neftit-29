@@ -65,4 +65,3 @@
 .card-gradient {
   @apply bg-gradient-to-t from-black/80 via-black/50 to-transparent;
 }
-

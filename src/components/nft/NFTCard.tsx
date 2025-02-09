@@ -26,8 +26,6 @@ export function NFTCard({
   name, 
   image, 
   projectName,
-  category,
-  subcategory,
   neftReward,
   endTime = "1d left"
 }: NFTCardProps) {
@@ -35,46 +33,39 @@ export function NFTCard({
 
   return (
     <Card 
-      className="overflow-hidden bg-[#1A1F2C] border-none rounded-xl transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+      className="group relative overflow-hidden bg-[#1A1F2C] border-none rounded-xl transition-all duration-300 hover:scale-[1.02] cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative">
-        {/* Image Container */}
-        <div className="relative aspect-square overflow-hidden">
-          <img
-            src={image}
-            alt={name}
-            className="w-full h-full object-cover"
-          />
-          {/* Category Badge */}
-          <div className="absolute top-3 right-3">
-            <span className="px-3 py-1.5 rounded-full text-xs font-medium bg-black/50 backdrop-blur-sm text-white/90">
-              {category} → {subcategory}
-            </span>
-          </div>
-        </div>
-
-        {/* Overlay on Hover */}
+      {/* Image Container */}
+      <div className="relative aspect-square">
+        <img
+          src={image}
+          alt={name}
+          className="w-full h-full object-cover rounded-t-xl"
+        />
+        
+        {/* Gradient Overlay (Always visible) */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-100" />
+        
+        {/* Additional hover overlay */}
         <div 
-          className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent transition-opacity duration-300 ${
+          className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${
             isHovered ? 'opacity-100' : 'opacity-0'
           }`}
         />
       </div>
 
       {/* Content Section */}
-      <div className="p-4 space-y-3">
-        {/* Title and Project Name */}
+      <div className="absolute bottom-0 left-0 right-0 p-4">
         <div className="space-y-1">
-          <h3 className="text-lg font-semibold text-white/90">{name}</h3>
-          <p className="text-sm text-gray-400">{projectName}</p>
+          <h3 className="text-base font-medium text-white/90 truncate">{name}</h3>
+          <p className="text-sm text-gray-400 truncate">{projectName}</p>
         </div>
 
-        {/* Price and Time */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mt-2">
           <div className="flex items-center space-x-1">
-            <span className="text-white font-semibold">{neftReward} NEFT</span>
+            <span className="text-white font-medium">{neftReward} NEFT</span>
           </div>
           <div className="flex items-center space-x-1.5 text-gray-400">
             <Clock className="w-4 h-4" />
