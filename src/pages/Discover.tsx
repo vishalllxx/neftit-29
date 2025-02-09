@@ -68,6 +68,15 @@ const Discover = () => {
       xpReward: 35,
       neftReward: 25,
       description: "Navigate through the cosmic web as an Astral Voyager. Perfect for space exploration enthusiasts.",
+      owner: "0x5432...8765",
+      totalSupply: 750,
+      levelRequirement: 8,
+      rarity: "Rare",
+      category: "Exploration",
+      subcategory: "Space",
+      taskStatus: "Not Started",
+      usdValue: 175,
+      network: "Ethereum",
       tasks: [
         { id: "1", title: "Create explorer profile", completed: false },
         { id: "2", title: "Complete first mission", completed: false }
@@ -82,6 +91,15 @@ const Discover = () => {
       xpReward: 40,
       neftReward: 30,
       description: "A fierce digital beast enhanced with cybernetic augmentations. Own this rare creature by completing challenges.",
+      owner: "0x3456...7890",
+      totalSupply: 250,
+      levelRequirement: 15,
+      rarity: "Epic",
+      category: "Creatures",
+      subcategory: "Cyberpunk",
+      taskStatus: "Not Started",
+      usdValue: 300,
+      network: "BSC",
       tasks: [
         { id: "1", title: "Join beast hunters", completed: false },
         { id: "2", title: "Complete hunting challenge", completed: false }

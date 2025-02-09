@@ -2,11 +2,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import { MainNav } from "@/components/layout/MainNav";
 import StarryBackground from "@/components/layout/StarryBackground";
 import { NFTProject } from "@/types/nft";
-import { ArrowLeft, Calendar, Award, Coins } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
+import { NFTHeader } from "@/components/nft/NFTHeader";
+import { NFTRewards } from "@/components/nft/NFTRewards";
+import { NFTTasks } from "@/components/nft/NFTTasks";
 
 const ProjectDetails = () => {
   const { id } = useParams();
@@ -25,6 +28,15 @@ const ProjectDetails = () => {
         xpReward: 25,
         neftReward: 15,
         description: "A mystical guardian NFT that protects the digital realm. Earn this rare collectible by completing community tasks.",
+        owner: "0x1234...5678",
+        totalSupply: 1000,
+        levelRequirement: 5,
+        rarity: "Legendary",
+        category: "Gaming",
+        subcategory: "RPG",
+        taskStatus: "Not Started",
+        usdValue: 150,
+        network: "Ethereum",
         tasks: [
           { id: "1", title: "Join Discord Community", completed: false },
           { id: "2", title: "Follow on Twitter", completed: false },
@@ -40,6 +52,15 @@ const ProjectDetails = () => {
         xpReward: 30,
         neftReward: 20,
         description: "A futuristic warrior wielding digital katanas. Join the Cyber Warriors and claim your unique Neon Samurai.",
+        owner: "0x1234...5678",
+        totalSupply: 1000,
+        levelRequirement: 5,
+        rarity: "Legendary",
+        category: "Gaming",
+        subcategory: "RPG",
+        taskStatus: "Not Started",
+        usdValue: 150,
+        network: "Ethereum",
         tasks: [
           { id: "1", title: "Complete tutorial", completed: false },
           { id: "2", title: "Visit 3 virtual spaces", completed: false }
@@ -54,6 +75,15 @@ const ProjectDetails = () => {
         xpReward: 35,
         neftReward: 25,
         description: "Navigate through the cosmic web as an Astral Voyager. Perfect for space exploration enthusiasts.",
+        owner: "0x1234...5678",
+        totalSupply: 1000,
+        levelRequirement: 5,
+        rarity: "Legendary",
+        category: "Gaming",
+        subcategory: "RPG",
+        taskStatus: "Not Started",
+        usdValue: 150,
+        network: "Ethereum",
         tasks: [
           { id: "1", title: "Create explorer profile", completed: false },
           { id: "2", title: "Complete first mission", completed: false }
@@ -68,6 +98,15 @@ const ProjectDetails = () => {
         xpReward: 40,
         neftReward: 30,
         description: "A fierce digital beast enhanced with cybernetic augmentations. Own this rare creature by completing challenges.",
+        owner: "0x1234...5678",
+        totalSupply: 1000,
+        levelRequirement: 5,
+        rarity: "Legendary",
+        category: "Gaming",
+        subcategory: "RPG",
+        taskStatus: "Not Started",
+        usdValue: 150,
+        network: "Ethereum",
         tasks: [
           { id: "1", title: "Join beast hunters", completed: false },
           { id: "2", title: "Complete hunting challenge", completed: false }
@@ -107,8 +146,8 @@ const ProjectDetails = () => {
     return () => clearInterval(timer);
   }, [project]);
 
-  const handleStartTasks = () => {
-    toast.success("Tasks started! Complete them to earn your NFT.");
+  const handleTaskComplete = (taskId: string) => {
+    toast.success("Task completed!");
   };
 
   if (!project) {
@@ -139,60 +178,25 @@ const ProjectDetails = () => {
 
         <div className="max-w-5xl mx-auto mt-8 space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="overflow-hidden rounded-xl border-0 bg-gradient-to-br from-purple-500/10 via-background/20 to-background/10 backdrop-blur-sm">
-              {project?.image && (
-                <img
-                  src={project.image}
-                  alt={project.nftName}
-                  className="w-full h-full object-cover"
-                />
-              )}
+            <Card className="overflow-hidden rounded-xl border-0 bg-gradient-to-br from-[#222222]/50 via-background/20 to-background/10 backdrop-blur-sm">
+              <img
+                src={project.image}
+                alt={project.nftName}
+                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              />
             </Card>
 
             <div className="space-y-6">
-              <div>
-                <h1 className="text-4xl font-bold bg-gradient-to-br from-primary/90 via-purple-500/90 to-accent/90 bg-clip-text text-transparent">
-                  {project?.nftName}
-                </h1>
-                <p className="text-lg text-white/70">
-                  {project?.projectName}
-                </p>
-              </div>
-
-              <div className="flex items-center gap-2 text-sm">
-                <Calendar className="h-4 w-4 text-primary" />
-                <span className="font-medium text-white/80">{timeLeft} remaining</span>
-              </div>
-
-              <div className="space-y-3">
-                <h3 className="text-lg font-semibold text-white">Complete tasks to earn:</h3>
-                <div className="flex gap-3">
-                  <div className="flex items-center gap-2 bg-primary/10 backdrop-blur-sm px-4 py-3 rounded-lg border border-primary/20">
-                    <Award className="h-5 w-5 text-primary" />
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-xl font-bold text-primary">{project?.xpReward}</span>
-                      <span className="text-sm font-medium text-white/70">XP</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2 bg-accent/10 backdrop-blur-sm px-4 py-3 rounded-lg border border-accent/20">
-                    <Coins className="h-5 w-5 text-accent" />
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-xl font-bold text-accent">{project?.neftReward}</span>
-                      <span className="text-sm font-medium text-white/70">NEFT</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
+              <NFTHeader project={project} timeLeft={timeLeft} />
+              <NFTRewards project={project} />
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-white">Description</h3>
                 <p className="text-white/70 leading-relaxed">
-                  {project?.description}
+                  {project.description}
                 </p>
               </div>
-
               <Button 
-                className="w-full md:w-auto bg-gradient-to-r from-primary/90 via-purple-500/90 to-accent/90 hover:opacity-90 transition-opacity"
+                className="w-full md:w-auto bg-gradient-to-r from-[#333333] to-[#444444] hover:opacity-90 transition-opacity"
                 onClick={() => toast.success("Tasks started! Complete them to earn your NFT.")}
               >
                 Start Tasks
@@ -200,29 +204,7 @@ const ProjectDetails = () => {
             </div>
           </div>
 
-          {project?.tasks && (
-            <Card className="p-6 border-0 bg-gradient-to-br from-purple-500/10 via-background/20 to-background/10 backdrop-blur-sm">
-              <h2 className="text-xl font-semibold text-white mb-4">Required Tasks</h2>
-              <div className="space-y-4">
-                {project.tasks.map((task) => (
-                  <div
-                    key={task.id}
-                    className="flex items-center justify-between p-4 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm"
-                  >
-                    <span className="font-medium text-white/80">{task.title}</span>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="hover:bg-white/10"
-                      disabled={task.completed}
-                    >
-                      {task.completed ? "Completed" : "Complete"}
-                    </Button>
-                  </div>
-                ))}
-              </div>
-            </Card>
-          )}
+          <NFTTasks project={project} onTaskComplete={handleTaskComplete} />
         </div>
       </main>
     </div>
