@@ -21,6 +21,15 @@ const Discover = () => {
       xpReward: 25,
       neftReward: 15,
       description: "A mystical guardian NFT that protects the digital realm. Earn this rare collectible by completing community tasks.",
+      owner: "0x1234...5678",
+      totalSupply: 1000,
+      levelRequirement: 5,
+      rarity: "Legendary",
+      category: "Gaming",
+      subcategory: "RPG",
+      taskStatus: "Not Started",
+      usdValue: 150,
+      network: "Ethereum",
       tasks: [
         { id: "1", title: "Join Discord Community", completed: false },
         { id: "2", title: "Follow on Twitter", completed: false },
@@ -36,6 +45,15 @@ const Discover = () => {
       xpReward: 30,
       neftReward: 20,
       description: "A futuristic warrior wielding digital katanas. Join the Cyber Warriors and claim your unique Neon Samurai.",
+      owner: "0x9876...4321",
+      totalSupply: 500,
+      levelRequirement: 10,
+      rarity: "Epic",
+      category: "Gaming",
+      subcategory: "Action",
+      taskStatus: "In Progress",
+      usdValue: 200,
+      network: "Polygon",
       tasks: [
         { id: "1", title: "Complete tutorial", completed: false },
         { id: "2", title: "Visit 3 virtual spaces", completed: false }
@@ -85,21 +103,21 @@ const Discover = () => {
       <main className="container mx-auto px-4 pt-24 pb-12 space-y-12 relative">
         <div className="space-y-12">
           <div className="text-center space-y-4">
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-text">
+            <h1 className="text-4xl md:text-5xl font-bold text-[#F5F5F5]">
               Discover & Earn NFTs
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-[#B0B0B0] max-w-2xl mx-auto">
               Complete tasks, earn rewards, and collect unique NFTs
             </p>
           </div>
 
           <div className="max-w-2xl mx-auto">
-            <div className="glass p-2 flex gap-2 rounded-full border border-primary/20">
+            <div className="glass p-2 flex gap-2 rounded-full border border-[#333333] bg-[#222222]/50 backdrop-blur-sm">
               <Input
                 placeholder="Search projects and NFTs..."
-                className="border-none bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
+                className="border-none bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 text-[#F5F5F5]"
               />
-              <Button size="icon" className="rounded-full bg-primary/20 hover:bg-primary/30">
+              <Button size="icon" className="rounded-full bg-[#333333] hover:bg-[#444444]">
                 <Search className="h-4 w-4" />
               </Button>
             </div>
@@ -108,7 +126,7 @@ const Discover = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 fade-in">
             {isLoading ? (
               Array(4).fill(0).map((_, index) => (
-                <div key={index} className="aspect-square animate-pulse rounded-xl bg-primary/5" />
+                <div key={index} className="aspect-square animate-pulse rounded-xl bg-[#222222]" />
               ))
             ) : (
               featuredProjects.map((project) => (
