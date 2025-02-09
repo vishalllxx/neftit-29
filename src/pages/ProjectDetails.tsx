@@ -1,3 +1,4 @@
+
 import { useParams, useNavigate } from "react-router-dom";
 import { MainNav } from "@/components/layout/MainNav";
 import StarryBackground from "@/components/layout/StarryBackground";
@@ -10,6 +11,7 @@ import { toast } from "sonner";
 import { NFTHeader } from "@/components/nft/NFTHeader";
 import { NFTRewards } from "@/components/nft/NFTRewards";
 import { NFTTasks } from "@/components/nft/NFTTasks";
+import { NFTDetails } from "@/components/nft/NFTDetails";
 
 const ProjectDetails = () => {
   const { id } = useParams();
@@ -147,6 +149,16 @@ const ProjectDetails = () => {
   }, [project]);
 
   const handleTaskComplete = (taskId: string) => {
+    if (!project) return;
+    
+    const updatedProject = {
+      ...project,
+      tasks: project.tasks.map(task =>
+        task.id === taskId ? { ...task, completed: true } : task
+      )
+    };
+    
+    setProject(updatedProject);
     toast.success("Task completed!");
   };
 
@@ -204,7 +216,10 @@ const ProjectDetails = () => {
             </div>
           </div>
 
-          <NFTTasks project={project} onTaskComplete={handleTaskComplete} />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <NFTTasks project={project} onTaskComplete={handleTaskComplete} />
+            <NFTDetails project={project} />
+          </div>
         </div>
       </main>
     </div>
