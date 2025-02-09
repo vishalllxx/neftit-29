@@ -63,5 +63,5 @@
 
 /* Gradient overlays */
 .card-gradient {
-  @apply bg-gradient-to-t from-black/80 via-black/50 to-transparent;
+  @apply bg-gradient-to-t from-[#1A1F2C]/80 via-[#1A1F2C]/50 to-transparent;
 }

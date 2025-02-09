@@ -33,7 +33,7 @@ export function NFTCard({
 
   return (
     <Card 
-      className="group relative overflow-hidden rounded-lg border-none bg-black/20 transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+      className="group relative overflow-hidden rounded-lg bg-[#1A1F2C] border-none transition-all duration-300 hover:scale-[1.02] cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -42,15 +42,15 @@ export function NFTCard({
         <img
           src={image}
           alt={name}
-          className="w-full h-full object-cover rounded-t-lg"
+          className="w-full h-full object-cover"
         />
         
         {/* Permanent Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1A1F2C]/90 via-[#1A1F2C]/30 to-transparent" />
         
         {/* Hover Overlay */}
         <div 
-          className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${
+          className={`absolute inset-0 bg-[#1A1F2C]/40 transition-opacity duration-300 ${
             isHovered ? 'opacity-100' : 'opacity-0'
           }`}
         />
@@ -58,7 +58,7 @@ export function NFTCard({
 
       {/* Content Section */}
       <div className="absolute bottom-0 left-0 right-0 p-4">
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <h3 className="text-base font-semibold text-white tracking-wide truncate">
             {name}
           </h3>
@@ -67,9 +67,9 @@ export function NFTCard({
           </p>
         </div>
 
-        <div className="flex items-center justify-between mt-3">
+        <div className="flex items-center justify-between mt-4">
           <div className="flex items-center space-x-1">
-            <span className="text-white font-semibold">
+            <span className="text-white font-semibold text-base">
               {neftReward} NEFT
             </span>
           </div>
