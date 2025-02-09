@@ -34,7 +34,7 @@
   }
   
   body {
-    @apply bg-[#1A1F2C] text-foreground antialiased;
+    @apply bg-[#0A0A0B] text-foreground antialiased;
   }
 
   html {
@@ -54,6 +54,10 @@
   .neo-blur {
     @apply backdrop-blur-2xl bg-black/40 border border-white/10;
   }
+
+  .gradient-border {
+    @apply relative before:absolute before:-inset-[1px] before:rounded-[inherit] before:p-[1px] before:bg-gradient-to-r before:from-purple-500/50 before:via-transparent before:to-blue-500/50 before:-z-10;
+  }
 }
 
 /* Hover animations */
@@ -64,4 +68,31 @@
 /* Gradient overlays */
 .card-gradient {
   @apply bg-gradient-to-t from-[#1A1F2C]/80 via-[#1A1F2C]/50 to-transparent;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-black/20;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-white/10 rounded-full hover:bg-white/20;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
 }
