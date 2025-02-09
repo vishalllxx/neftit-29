@@ -10,7 +10,7 @@ import { NavigationItems } from "@/components/navigation/NavigationItems";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 export function MainNav() {
-  const { isMobile } = useIsMobile();
+  const isMobile = useIsMobile();
 
   return (
     <nav className="fixed top-0 w-full z-50 px-4 py-3 backdrop-blur-lg bg-background/80 border-b border-border/5">
@@ -40,6 +40,18 @@ export function MainNav() {
                   </Link>
                 </TooltipTrigger>
                 <TooltipContent>Explore NFT collections</TooltipContent>
+              </Tooltip>
+
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link 
+                    to="/staking" 
+                    className="text-white/80 hover:text-white transition-colors hover:scale-105 transform duration-300"
+                  >
+                    Staking
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>Stake your NFTs</TooltipContent>
               </Tooltip>
 
               <Tooltip>
@@ -79,6 +91,12 @@ export function MainNav() {
                     className="text-lg font-medium text-foreground/80 hover:text-foreground transition-colors px-4 py-2 rounded-lg hover:bg-foreground/10"
                   >
                     Discover
+                  </Link>
+                  <Link 
+                    to="/staking" 
+                    className="text-lg font-medium text-foreground/80 hover:text-foreground transition-colors px-4 py-2 rounded-lg hover:bg-foreground/10"
+                  >
+                    Staking
                   </Link>
                   <Link 
                     to="/streaks" 

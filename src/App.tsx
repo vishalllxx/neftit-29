@@ -15,6 +15,7 @@ import ProjectDetails from "./pages/ProjectDetails";
 import SavedNFTs from "./pages/SavedNFTs";
 import Activity from "./pages/Activity";
 import Settings from "./pages/Settings";
+import Staking from "./pages/Staking";
 import { useEffect } from "react";
 
 const queryClient = new QueryClient();
@@ -62,6 +63,14 @@ const App = () => {
                 element={
                   <PrivateRoute>
                     <Discover />
+                  </PrivateRoute>
+                } 
+              />
+              <Route 
+                path="/staking" 
+                element={
+                  <PrivateRoute>
+                    <Staking />
                   </PrivateRoute>
                 } 
               />
