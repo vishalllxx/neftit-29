@@ -9,7 +9,7 @@ import { Statistics } from "@/components/home/Statistics";
 import { WhatIsNeftit } from "@/components/home/WhatIsNeftit";
 import { TaskTypes } from "@/components/home/TaskTypes";
 import { Footer } from "@/components/home/Footer";
-import { Testimonials } from "@/components/home/Testimonials";
+import { EarnAndGrow } from "@/components/home/EarnAndGrow";
 
 const Index = () => {
   return (
@@ -48,10 +48,10 @@ const Index = () => {
               <FeaturedProjects />
             </div>
 
-            {/* Testimonials Section */}
+            {/* Earn and Grow Section */}
             <div className="relative">
               <div className="absolute -inset-x-4 top-0 h-96 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 blur-3xl opacity-30" />
-              <Testimonials />
+              <EarnAndGrow />
             </div>
 
             {/* What is Neftit section */}
