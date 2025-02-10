@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import { NFTImage } from "@/components/nft/NFTImage";
 import { NFTInfo } from "@/components/nft/NFTInfo";
 import { NFTTaskList } from "@/components/nft/NFTTaskList";
+import { NFTDetails } from "@/components/nft/NFTDetails";
 import { featuredProjects } from "@/data/nftProjects";
 
 const ProjectDetails = () => {
@@ -18,20 +19,18 @@ const ProjectDetails = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!id) return;
-
-    try {
-      const foundProject = featuredProjects.find(p => p.id === id);
-      console.log("Found project:", foundProject);
-      
-      if (foundProject) {
-        setProject(foundProject);
-      }
-    } catch (error) {
-      console.error("Error loading project:", error);
-    } finally {
+    if (!id) {
       setLoading(false);
+      return;
     }
+
+    const foundProject = featuredProjects.find(p => p.id === id);
+    console.log("Found project:", foundProject);
+    
+    if (foundProject) {
+      setProject(foundProject);
+    }
+    setLoading(false);
   }, [id]);
 
   if (loading) {
@@ -86,6 +85,7 @@ const ProjectDetails = () => {
               description={project.description}
               rarityDistribution={project.rarityDistribution}
             />
+            <NFTDetails project={project} />
           </div>
         </div>
 
