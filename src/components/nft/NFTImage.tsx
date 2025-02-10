@@ -15,6 +15,7 @@ export const NFTImage = ({ image, name }: NFTImageProps) => {
   const handleImageError = () => {
     setImageError(true);
     setIsLoading(false);
+    console.error(`Failed to load image for ${name}`);
   };
 
   const handleImageLoad = () => {
@@ -37,11 +38,12 @@ export const NFTImage = ({ image, name }: NFTImageProps) => {
           </div>
         ) : (
           <img
-            src={image}
+            src={`${image}?w=800&fit=crop&auto=format`}
             alt={name}
             className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
             onError={handleImageError}
             onLoad={handleImageLoad}
+            loading="lazy"
           />
         )}
       </div>

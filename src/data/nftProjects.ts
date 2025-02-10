@@ -1,3 +1,4 @@
+
 import { NFTProject } from "@/types/nft";
 
 export const featuredProjects: NFTProject[] = [
@@ -5,7 +6,7 @@ export const featuredProjects: NFTProject[] = [
     id: "1",
     projectName: "Genesis Collection",
     nftName: "Ethereal Guardian",
-    image: "/nft-images/ethereal.jpg",
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e",
     endTime: "2024-04-01T00:00:00Z",
     startTime: "2024-03-01T00:00:00Z",
     xpReward: 25,
@@ -35,7 +36,7 @@ export const featuredProjects: NFTProject[] = [
     id: "2",
     projectName: "Cyber Warriors",
     nftName: "Neon Samurai",
-    image: "/nft-images/cyberpunk.jpg",
+    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5",
     endTime: "2024-03-28T00:00:00Z",
     startTime: "2024-03-01T00:00:00Z",
     xpReward: 30,
@@ -64,7 +65,7 @@ export const featuredProjects: NFTProject[] = [
     id: "3",
     projectName: "Space Explorers",
     nftName: "Astral Voyager",
-    image: "/nft-images/space.jpg",
+    image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7",
     endTime: "2024-03-25T00:00:00Z",
     startTime: "2024-03-01T00:00:00Z",
     xpReward: 35,
@@ -93,7 +94,7 @@ export const featuredProjects: NFTProject[] = [
     id: "4",
     projectName: "Digital Beasts",
     nftName: "Cyberpunk Panther",
-    image: "/nft-images/cyber-beast.jpg",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
     endTime: "2024-03-30T00:00:00Z",
     startTime: "2024-03-01T00:00:00Z",
     xpReward: 40,
@@ -122,7 +123,7 @@ export const featuredProjects: NFTProject[] = [
     id: "5",
     projectName: "Pixel Masters",
     nftName: "Retro Wizard",
-    image: "/nft-images/pixel-wizard.jpg",
+    image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901",
     endTime: "2024-04-05T00:00:00Z",
     startTime: "2024-03-01T00:00:00Z",
     xpReward: 28,
