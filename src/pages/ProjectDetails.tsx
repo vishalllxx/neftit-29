@@ -38,7 +38,7 @@ const ProjectDetails = () => {
       <div className="min-h-screen bg-[#1A1F2C]">
         <StarryBackground />
         <MainNav />
-        <main className="container mx-auto px-4 pt-24 pb-12">
+        <main className="pt-6">
           <div className="text-center text-white">Loading...</div>
         </main>
       </div>
@@ -50,7 +50,7 @@ const ProjectDetails = () => {
       <div className="min-h-screen bg-[#1A1F2C]">
         <StarryBackground />
         <MainNav />
-        <main className="container mx-auto px-4 pt-24 pb-12">
+        <main className="pt-6">
           <div className="text-center text-white">Project not found</div>
         </main>
       </div>
@@ -61,17 +61,17 @@ const ProjectDetails = () => {
     <div className="min-h-screen bg-[#1A1F2C]">
       <StarryBackground />
       <MainNav />
-      <main className="container mx-auto px-4 pt-24 pb-12">
+      <main className="container mx-auto px-4 pt-6 pb-12">
         <Button
           variant="ghost"
-          className="mb-8 text-white hover:text-white/80 hover:bg-white/10"
+          className="mb-6 text-white hover:text-white/80 hover:bg-white/10"
           onClick={() => navigate(-1)}
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back
         </Button>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <NFTImage image={project.image} name={project.nftName} />
           
           <div className="space-y-6">
@@ -89,9 +89,9 @@ const ProjectDetails = () => {
           </div>
         </div>
 
-        <div className="h-px bg-white/10 my-8 max-w-7xl mx-auto" />
+        <div className="h-px bg-white/10 my-8" />
         
-        <div className="max-w-7xl mx-auto">
+        <div>
           <NFTTaskList tasks={project.tasks} />
         </div>
       </main>
