@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { NFTInfo } from "@/components/nft/NFTInfo";
 import { NFTTaskList } from "@/components/nft/NFTTaskList";
-import { NFTDetails } from "@/components/nft/NFTDetails";
 import { featuredProjects } from "@/data/nftProjects";
 
 const ProjectDetails = () => {
@@ -70,34 +69,29 @@ const ProjectDetails = () => {
           Back
         </Button>
 
-        <div className="space-y-8">
-          <div className="flex flex-col md:flex-row gap-8">
-            <div className="w-full md:w-1/3">
-              <img 
-                src={project.image} 
-                alt={project.nftName}
-                className="w-full h-auto rounded-lg border border-white/10"
-              />
-            </div>
-            
-            <div className="w-full md:w-2/3 space-y-6">
-              <NFTInfo
-                projectName={project.projectName}
-                nftName={project.nftName}
-                xpReward={project.xpReward}
-                neftReward={project.neftReward}
-                startTime={project.startTime}
-                endTime={project.endTime}
-                description={project.description}
-                rarityDistribution={project.rarityDistribution}
-              />
-              <NFTDetails project={project} />
-            </div>
+        <div className="flex flex-col md:flex-row gap-8">
+          {/* Left Side - NFT Image */}
+          <div className="w-full md:w-1/3">
+            <img 
+              src={project.image} 
+              alt={project.nftName}
+              className="w-full h-auto rounded-lg border border-white/10"
+            />
           </div>
-
-          <div className="h-px bg-white/10" />
           
-          <div>
+          {/* Right Side - Project Info & Tasks */}
+          <div className="w-full md:w-2/3">
+            <NFTInfo
+              projectName={project.projectName}
+              nftName={project.nftName}
+              xpReward={project.xpReward}
+              neftReward={project.neftReward}
+              startTime={project.startTime}
+              endTime={project.endTime}
+              description={project.description}
+              rarityDistribution={project.rarityDistribution}
+            />
+            <div className="h-px bg-white/10 my-8" />
             <NFTTaskList tasks={project.tasks} />
           </div>
         </div>
