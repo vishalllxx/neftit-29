@@ -33,10 +33,10 @@ const ProjectDetails = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#1A1F2C]">
+      <div className="relative min-h-screen bg-[#1A1F2C]">
         <StarryBackground />
         <MainNav />
-        <main className="container mx-auto px-4 pt-8">
+        <main className="container relative mx-auto px-4 pt-8">
           <div className="text-center text-white">Loading...</div>
         </main>
       </div>
@@ -45,10 +45,10 @@ const ProjectDetails = () => {
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-[#1A1F2C]">
+      <div className="relative min-h-screen bg-[#1A1F2C]">
         <StarryBackground />
         <MainNav />
-        <main className="container mx-auto px-4 pt-8">
+        <main className="container relative mx-auto px-4 pt-8">
           <div className="text-center text-white">Project not found</div>
         </main>
       </div>
@@ -56,10 +56,10 @@ const ProjectDetails = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#1A1F2C]">
+    <div className="relative min-h-screen bg-[#1A1F2C]">
       <StarryBackground />
       <MainNav />
-      <main className="container mx-auto px-4 pt-8">
+      <main className="container relative mx-auto px-4 pt-8">
         <Button
           variant="ghost"
           className="mb-6 text-white hover:text-white/80 hover:bg-white/10"
