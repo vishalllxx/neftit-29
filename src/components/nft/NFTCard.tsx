@@ -1,7 +1,7 @@
 
 import { Card } from "@/components/ui/card";
 import { useState } from "react";
-import { Clock } from "lucide-react";
+import { Clock, ImageIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface NFTCardProps {
@@ -33,9 +33,15 @@ export function NFTCard({
 }: NFTCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleImageError = () => {
     setImageError(true);
+    setIsLoading(false);
+  };
+
+  const handleImageLoad = () => {
+    setIsLoading(false);
   };
 
   return (
@@ -47,9 +53,16 @@ export function NFTCard({
           onMouseLeave={() => setIsHovered(false)}
         >
           <div className="relative h-full w-full">
+            {isLoading && (
+              <div className="absolute inset-0 flex items-center justify-center bg-[#1A1F2C]">
+                <div className="animate-pulse flex items-center justify-center">
+                  <ImageIcon className="w-10 h-10 text-white/20" />
+                </div>
+              </div>
+            )}
             {imageError ? (
               <div className="h-full w-full flex items-center justify-center bg-[#1A1F2C] text-white/50">
-                Image not available
+                <ImageIcon className="w-10 h-10" />
               </div>
             ) : (
               <img
@@ -57,6 +70,7 @@ export function NFTCard({
                 alt={name}
                 className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 onError={handleImageError}
+                onLoad={handleImageLoad}
               />
             )}
             
