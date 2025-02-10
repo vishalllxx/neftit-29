@@ -63,8 +63,13 @@ const ProjectDetails = () => {
               description={project.description}
               rarityDistribution={project.rarityDistribution}
             />
-            <NFTTaskList tasks={project.tasks} />
           </div>
+        </div>
+
+        <div className="h-px bg-white/10 my-8 max-w-7xl mx-auto" />
+        
+        <div className="max-w-7xl mx-auto">
+          <NFTTaskList tasks={project.tasks} />
         </div>
       </main>
     </div>
@@ -72,4 +77,3 @@ const ProjectDetails = () => {
 };
 
 export default ProjectDetails;
-

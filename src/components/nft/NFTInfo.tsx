@@ -1,6 +1,5 @@
 
 import { Award, Calendar } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
 
 interface NFTInfoProps {
   projectName: string;
@@ -36,7 +35,7 @@ export const NFTInfo = ({
   };
 
   return (
-    <div className="space-y-6 glass-morphism p-8 rounded-xl">
+    <div className="space-y-6">
       <div className="space-y-2">
         <div className="flex items-center gap-2">
           <h2 className="text-xl font-medium text-white/90">{projectName}</h2>
@@ -45,7 +44,7 @@ export const NFTInfo = ({
         <h1 className="text-3xl font-bold text-white">{nftName}</h1>
       </div>
       
-      <Separator className="bg-white/[0.08]" />
+      <div className="h-px bg-white/10" />
 
       <div className="grid grid-cols-2 gap-4">
         <div className="flex items-center gap-2">
@@ -57,7 +56,7 @@ export const NFTInfo = ({
         </div>
       </div>
 
-      <Separator className="bg-white/[0.08]" />
+      <div className="h-px bg-white/10" />
 
       <div className="space-y-3">
         {startTime && (
@@ -76,7 +75,7 @@ export const NFTInfo = ({
         </div>
       </div>
 
-      <Separator className="bg-white/[0.08]" />
+      <div className="h-px bg-white/10" />
 
       {rarityDistribution && (
         <>
@@ -98,7 +97,7 @@ export const NFTInfo = ({
             </div>
           </div>
 
-          <Separator className="bg-white/[0.08]" />
+          <div className="h-px bg-white/10" />
         </>
       )}
 
@@ -109,4 +108,3 @@ export const NFTInfo = ({
     </div>
   );
 };
-
