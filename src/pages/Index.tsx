@@ -5,11 +5,9 @@ import { Helmet } from "react-helmet";
 import { Hero } from "@/components/home/Hero";
 import { RotatingCube } from "@/components/home/RotatingCube";
 import { FeaturedProjects } from "@/components/home/FeaturedProjects";
-import { Statistics } from "@/components/home/Statistics";
 import { WhatIsNeftit } from "@/components/home/WhatIsNeftit";
 import { TaskTypes } from "@/components/home/TaskTypes";
 import { Footer } from "@/components/home/Footer";
-import { Testimonials } from "@/components/home/Testimonials";
 
 const Index = () => {
   return (
@@ -37,21 +35,10 @@ const Index = () => {
               <Hero />
             </div>
 
-            {/* Statistics Section */}
-            <div className="relative">
-              <Statistics />
-            </div>
-
             {/* Featured Projects with enhanced styling */}
             <div className="relative">
               <div className="absolute -inset-x-4 top-0 h-96 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-blue-500/10 blur-3xl opacity-30" />
               <FeaturedProjects />
-            </div>
-
-            {/* Testimonials Section */}
-            <div className="relative">
-              <div className="absolute -inset-x-4 top-0 h-96 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 blur-3xl opacity-30" />
-              <Testimonials />
             </div>
 
             {/* What is Neftit section */}
