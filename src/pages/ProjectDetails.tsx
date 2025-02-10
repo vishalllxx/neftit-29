@@ -6,7 +6,6 @@ import { NFTProject } from "@/types/nft";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
-import { NFTImage } from "@/components/nft/NFTImage";
 import { NFTInfo } from "@/components/nft/NFTInfo";
 import { NFTTaskList } from "@/components/nft/NFTTaskList";
 import { NFTDetails } from "@/components/nft/NFTDetails";
@@ -38,7 +37,7 @@ const ProjectDetails = () => {
       <div className="min-h-screen bg-[#1A1F2C]">
         <StarryBackground />
         <MainNav />
-        <main className="container mx-auto px-4 pt-24 pb-12">
+        <main className="container mx-auto px-4 pt-8">
           <div className="text-center text-white">Loading...</div>
         </main>
       </div>
@@ -50,7 +49,7 @@ const ProjectDetails = () => {
       <div className="min-h-screen bg-[#1A1F2C]">
         <StarryBackground />
         <MainNav />
-        <main className="container mx-auto px-4 pt-24 pb-12">
+        <main className="container mx-auto px-4 pt-8">
           <div className="text-center text-white">Project not found</div>
         </main>
       </div>
@@ -61,21 +60,27 @@ const ProjectDetails = () => {
     <div className="min-h-screen bg-[#1A1F2C]">
       <StarryBackground />
       <MainNav />
-      <main className="container mx-auto px-4 pt-24 pb-12">
-        <div className="max-w-7xl mx-auto">
-          <Button
-            variant="ghost"
-            className="mb-8 text-white hover:text-white/80 hover:bg-white/10"
-            onClick={() => navigate(-1)}
-          >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back
-          </Button>
+      <main className="container mx-auto px-4 pt-8">
+        <Button
+          variant="ghost"
+          className="mb-6 text-white hover:text-white/80 hover:bg-white/10"
+          onClick={() => navigate(-1)}
+        >
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Back
+        </Button>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <NFTImage image={project.image} name={project.nftName} />
+        <div className="space-y-8">
+          <div className="flex flex-col md:flex-row gap-8">
+            <div className="w-full md:w-1/3">
+              <img 
+                src={project.image} 
+                alt={project.nftName}
+                className="w-full h-auto rounded-lg border border-white/10"
+              />
+            </div>
             
-            <div className="space-y-6">
+            <div className="w-full md:w-2/3 space-y-6">
               <NFTInfo
                 projectName={project.projectName}
                 nftName={project.nftName}
@@ -90,7 +95,7 @@ const ProjectDetails = () => {
             </div>
           </div>
 
-          <div className="h-px bg-white/10 my-8" />
+          <div className="h-px bg-white/10" />
           
           <div>
             <NFTTaskList tasks={project.tasks} />
