@@ -15,18 +15,36 @@ const ProjectDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [project, setProject] = useState<NFTProject | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadProject = () => {
+    if (!id) return;
+
+    try {
       const foundProject = featuredProjects.find(p => p.id === id);
+      console.log("Found project:", foundProject);
+      
       if (foundProject) {
         setProject(foundProject);
       }
-    };
-
-    loadProject();
-    console.log("Loading project with ID:", id);
+    } catch (error) {
+      console.error("Error loading project:", error);
+    } finally {
+      setLoading(false);
+    }
   }, [id]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#1A1F2C]">
+        <StarryBackground />
+        <MainNav />
+        <main className="container mx-auto px-4 pt-24 pb-12">
+          <div className="text-center text-white">Loading...</div>
+        </main>
+      </div>
+    );
+  }
 
   if (!project) {
     return (
@@ -34,7 +52,7 @@ const ProjectDetails = () => {
         <StarryBackground />
         <MainNav />
         <main className="container mx-auto px-4 pt-24 pb-12">
-          <div className="text-center text-white">Loading...</div>
+          <div className="text-center text-white">Project not found</div>
         </main>
       </div>
     );
