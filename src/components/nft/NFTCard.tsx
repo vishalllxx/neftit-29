@@ -51,9 +51,10 @@ export function NFTCard({
               <img
                 src={image}
                 alt={name}
-                className="aspect-square w-full h-full object-cover rounded-lg"
+                className="aspect-square w-full h-full object-cover rounded-lg border-0"
                 onError={handleImageError}
                 loading="eager"
+                style={{ border: 'none' }}
               />
             )}
           </div>
