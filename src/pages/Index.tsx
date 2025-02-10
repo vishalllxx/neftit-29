@@ -3,15 +3,23 @@ import { MainNav } from "@/components/layout/MainNav";
 import StarryBackground from "@/components/layout/StarryBackground";
 import { Helmet } from "react-helmet";
 import { Hero } from "@/components/home/Hero";
-import { RotatingCube } from "@/components/home/RotatingCube";
 import { FeaturedProjects } from "@/components/home/FeaturedProjects";
-import { Statistics } from "@/components/home/Statistics";
 import { WhatIsNeftit } from "@/components/home/WhatIsNeftit";
 import { TaskTypes } from "@/components/home/TaskTypes";
 import { Footer } from "@/components/home/Footer";
-import { Testimonials } from "@/components/home/Testimonials";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 const Index = () => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.5]);
+
   return (
     <>
       <Helmet>
@@ -22,49 +30,68 @@ const Index = () => {
         />
       </Helmet>
 
-      <div className="min-h-screen font-['Inter'] overflow-hidden bg-[#0A0A0B] relative">
-        {/* Background gradients */}
-        <div className="fixed inset-0 bg-gradient-to-b from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
-        <div className="fixed inset-0 bg-[url('/grid.svg')] bg-center [mask-image:radial-gradient(white,transparent_85%)] pointer-events-none opacity-20" />
+      <div className="min-h-screen font-['Inter'] overflow-hidden bg-[#0A0A0B] relative" ref={containerRef}>
+        {/* Enhanced background gradients */}
+        <div className="fixed inset-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-purple-500/10 via-transparent to-blue-500/10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 via-transparent to-purple-500/10" />
+          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:radial-gradient(white,transparent_85%)] pointer-events-none opacity-20" />
+        </div>
         
         <StarryBackground />
         <MainNav />
         
         <main className="container mx-auto px-4 relative">
-          <div className="pt-24 pb-16 space-y-40">
-            {/* Hero Section */}
-            <div className="relative animate-fade-in">
+          <motion.div 
+            className="pt-24 pb-16 space-y-32"
+            style={{ y, opacity }}
+          >
+            {/* Hero Section with enhanced animations */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative"
+            >
               <Hero />
-            </div>
-
-            {/* Statistics Section */}
-            <div className="relative">
-              <Statistics />
-            </div>
+            </motion.div>
 
             {/* Featured Projects with enhanced styling */}
-            <div className="relative">
-              <div className="absolute -inset-x-4 top-0 h-96 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-blue-500/10 blur-3xl opacity-30" />
+            <motion.div 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative"
+            >
+              <div className="absolute -inset-x-4 top-0 h-96 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-blue-500/20 blur-3xl opacity-30" />
               <FeaturedProjects />
-            </div>
+            </motion.div>
 
-            {/* Testimonials Section */}
-            <div className="relative">
-              <div className="absolute -inset-x-4 top-0 h-96 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 blur-3xl opacity-30" />
-              <Testimonials />
-            </div>
-
-            {/* What is Neftit section */}
-            <div className="relative">
+            {/* What is Neftit section with parallax */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative"
+            >
+              <div className="absolute -inset-x-4 top-0 h-96 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 blur-3xl opacity-30" />
               <WhatIsNeftit />
-            </div>
+            </motion.div>
 
-            {/* Task Types with gradient background */}
-            <div className="relative">
-              <div className="absolute -inset-x-4 top-0 h-96 bg-gradient-to-r from-purple-500/10 via-blue-500/10 to-pink-500/10 blur-3xl opacity-30" />
+            {/* Task Types with enhanced gradient background */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative"
+            >
+              <div className="absolute -inset-x-4 top-0 h-96 bg-gradient-to-r from-pink-500/20 via-purple-500/20 to-blue-500/20 blur-3xl opacity-30" />
               <TaskTypes />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </main>
 
         <Footer />
