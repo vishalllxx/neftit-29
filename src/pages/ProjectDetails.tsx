@@ -17,10 +17,15 @@ const ProjectDetails = () => {
   const [project, setProject] = useState<NFTProject | null>(null);
 
   useEffect(() => {
-    const foundProject = featuredProjects.find(p => p.id === id);
-    if (foundProject) {
-      setProject(foundProject);
-    }
+    const loadProject = () => {
+      const foundProject = featuredProjects.find(p => p.id === id);
+      if (foundProject) {
+        setProject(foundProject);
+      }
+    };
+
+    loadProject();
+    console.log("Loading project with ID:", id);
   }, [id]);
 
   if (!project) {
@@ -29,7 +34,7 @@ const ProjectDetails = () => {
         <StarryBackground />
         <MainNav />
         <main className="container mx-auto px-4 pt-24 pb-12">
-          <div className="text-center text-white">Project not found</div>
+          <div className="text-center text-white">Loading...</div>
         </main>
       </div>
     );
