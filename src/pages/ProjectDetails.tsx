@@ -69,31 +69,40 @@ const ProjectDetails = () => {
           Back
         </Button>
 
-        <div className="flex flex-col md:flex-row gap-8">
-          {/* Left Side - NFT Image */}
-          <div className="w-full md:w-1/3">
-            <img 
-              src={project.image} 
-              alt={project.nftName}
-              className="w-full h-auto rounded-lg border border-white/10"
-            />
+        {/* Upper Section */}
+        <div className="space-y-6">
+          <div className="flex flex-col md:flex-row gap-8">
+            {/* Left Side - NFT Image */}
+            <div className="w-full md:w-1/3">
+              <img 
+                src={project.image} 
+                alt={project.nftName}
+                className="w-full h-auto rounded-lg"
+              />
+            </div>
+            
+            {/* Right Side - Project Info */}
+            <div className="w-full md:w-2/3">
+              <NFTInfo
+                projectName={project.projectName}
+                nftName={project.nftName}
+                xpReward={project.xpReward}
+                neftReward={project.neftReward}
+                startTime={project.startTime}
+                endTime={project.endTime}
+                description={project.description}
+                rarityDistribution={project.rarityDistribution}
+              />
+            </div>
           </div>
-          
-          {/* Right Side - Project Info & Tasks */}
-          <div className="w-full md:w-2/3">
-            <NFTInfo
-              projectName={project.projectName}
-              nftName={project.nftName}
-              xpReward={project.xpReward}
-              neftReward={project.neftReward}
-              startTime={project.startTime}
-              endTime={project.endTime}
-              description={project.description}
-              rarityDistribution={project.rarityDistribution}
-            />
-            <div className="h-px bg-white/10 my-8" />
-            <NFTTaskList tasks={project.tasks} />
-          </div>
+        </div>
+
+        {/* Separator Line */}
+        <div className="h-px bg-white/10 my-8" />
+
+        {/* Lower Section - Tasks */}
+        <div className="space-y-6">
+          <NFTTaskList tasks={project.tasks} />
         </div>
       </main>
     </div>

@@ -20,11 +20,9 @@ export const NFTTaskList = ({ tasks }: NFTTaskListProps) => {
   const status = completedTasks === totalTasks ? "Completed" : "Not Completed";
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-          <span>📌</span> Tasks
-        </h3>
+        <h3 className="text-lg font-semibold text-white">Tasks</h3>
         <div className="space-y-3">
           {tasks.map((task) => (
             <div 
@@ -37,7 +35,7 @@ export const NFTTaskList = ({ tasks }: NFTTaskListProps) => {
                 ) : (
                   <MessageCircle className="h-4 w-4 text-white/60" />
                 )}
-                <span className="text-white/80">{task.title}</span>
+                <span className="text-white/80 text-sm">{task.title}</span>
               </div>
               <Button 
                 variant="ghost" 
@@ -53,10 +51,8 @@ export const NFTTaskList = ({ tasks }: NFTTaskListProps) => {
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-          <span>📌</span> Status
-        </h3>
-        <p className="text-white/80 font-medium">{status}</p>
+        <h3 className="text-lg font-semibold text-white">Status</h3>
+        <p className="text-white/80 text-sm">{status}</p>
       </div>
     </div>
   );
