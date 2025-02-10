@@ -32,6 +32,11 @@ export function NFTCard({
   endTime = "1d left"
 }: NFTCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [imageError, setImageError] = useState(false);
+
+  const handleImageError = () => {
+    setImageError(true);
+  };
 
   return (
     <Link to={`/project/${id}`} className="block">
@@ -42,11 +47,18 @@ export function NFTCard({
           onMouseLeave={() => setIsHovered(false)}
         >
           <div className="relative h-full w-full">
-            <img
-              src={image}
-              alt={name}
-              className="h-full w-full object-cover"
-            />
+            {imageError ? (
+              <div className="h-full w-full flex items-center justify-center bg-[#1A1F2C] text-white/50">
+                Image not available
+              </div>
+            ) : (
+              <img
+                src={image}
+                alt={name}
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                onError={handleImageError}
+              />
+            )}
             
             <div 
               className={`absolute inset-0 bg-black/20 transition-opacity duration-300 ${
