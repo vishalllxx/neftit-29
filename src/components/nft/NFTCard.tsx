@@ -31,54 +31,31 @@ export function NFTCard({
   neftReward,
   endTime = "1d left"
 }: NFTCardProps) {
-  const [isHovered, setIsHovered] = useState(false);
   const [imageError, setImageError] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   const handleImageError = () => {
     setImageError(true);
-    setIsLoading(false);
-  };
-
-  const handleImageLoad = () => {
-    setIsLoading(false);
+    console.error(`Failed to load image for ${name}`);
   };
 
   return (
     <Link to={`/project/${id}`} className="block">
       <div className="flex flex-col gap-0 border border-white/10 rounded-lg hover:border-white/20 transition-all duration-200">
-        <Card 
-          className="group relative aspect-square overflow-hidden rounded-t-lg bg-[#111111] transition-all duration-300 hover:-translate-y-1 cursor-pointer"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <div className="relative h-full w-full">
-            {isLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-[#1A1F2C]">
-                <div className="animate-pulse flex items-center justify-center">
-                  <ImageIcon className="w-10 h-10 text-white/20" />
-                </div>
-              </div>
-            )}
+        <Card className="overflow-hidden rounded-t-lg bg-[#111111]">
+          <div className="p-3">
             {imageError ? (
-              <div className="h-full w-full flex items-center justify-center bg-[#1A1F2C] text-white/50">
+              <div className="aspect-square rounded-lg flex items-center justify-center bg-[#1A1F2C] text-white/50">
                 <ImageIcon className="w-10 h-10" />
               </div>
             ) : (
               <img
                 src={image}
                 alt={name}
-                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                className="aspect-square w-full h-full object-cover rounded-lg"
                 onError={handleImageError}
-                onLoad={handleImageLoad}
+                loading="eager"
               />
             )}
-            
-            <div 
-              className={`absolute inset-0 bg-black/20 transition-opacity duration-300 ${
-                isHovered ? 'opacity-100' : 'opacity-0'
-              }`}
-            />
           </div>
         </Card>
 
@@ -91,6 +68,8 @@ export function NFTCard({
               {projectName}
             </p>
           </div>
+
+          <div className="h-px bg-white/5 my-3 mx-1" />
 
           <div className="flex items-center justify-between">
             <div className="flex items-center">
