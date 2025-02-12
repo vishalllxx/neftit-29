@@ -13,12 +13,12 @@ export function MainNav() {
   const isMobile = useIsMobile();
 
   return (
-    <nav className="fixed top-0 w-full z-50 backdrop-blur-sm border-b border-white/5">
-      <div className="container mx-auto flex justify-between items-center h-16">
+    <nav className="fixed top-0 w-full z-50 border-b border-white/5">
+      <div className="container mx-auto flex justify-between items-center h-16 px-4 sm:px-6">
         <div className="flex items-center gap-8">
           <Link 
             to="/" 
-            className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-500 to-accent transition-colors"
+            className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-500 to-accent transition-colors"
           >
             NEFTIT
           </Link>

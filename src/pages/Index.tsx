@@ -20,16 +20,17 @@ const Index = () => {
         />
       </Helmet>
 
-      <div className="min-h-screen font-['Inter'] overflow-hidden bg-[#0A0A0B] relative">
+      <div className="min-h-screen font-['Inter'] overflow-x-hidden bg-[#111111] relative">
         {/* Background gradients */}
+        <div className="fixed inset-0 bg-[#111111]" />
         <div className="fixed inset-0 bg-gradient-to-b from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
         <div className="fixed inset-0 bg-[url('/grid.svg')] bg-center [mask-image:radial-gradient(white,transparent_85%)] pointer-events-none opacity-20" />
         
         <StarryBackground />
         <MainNav />
         
-        <main className="container mx-auto px-4 relative">
-          <div className="pt-24 pb-16 space-y-40">
+        <main className="container mx-auto px-4 sm:px-6 relative">
+          <div className="pt-24 pb-16 space-y-20 md:space-y-40">
             {/* Hero Section */}
             <div className="relative animate-fade-in">
               <Hero />
