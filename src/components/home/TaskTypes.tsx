@@ -31,10 +31,10 @@ export const TaskTypes = () => {
       {/* Main content */}
       <div className="relative z-10">
         <div className="text-center mb-16 space-y-4">
-          <h2 className="text-5xl font-bold bg-gradient-to-r from-[#00E5FF] via-[#7C3AED] to-[#EC4899] inline-block text-transparent bg-clip-text">
+          <h2 className="text-5xl font-light text-white">
             Complete Tasks and Earn
           </h2>
-          <p className="text-white/70 text-lg max-w-2xl mx-auto">
+          <p className="text-white/70 text-lg max-w-2xl mx-auto font-light">
             Join our growing community and earn rewards by completing exciting tasks
           </p>
         </div>
@@ -45,25 +45,30 @@ export const TaskTypes = () => {
               key={task.title}
               className="relative group"
             >
-              {/* Gradient border */}
-              <div className="absolute -inset-[1px] bg-gradient-to-br from-[#00E5FF] via-[#7C3AED] to-[#EC4899] rounded-xl opacity-70" />
-              
-              {/* Card content */}
-              <div className="relative bg-[#111111] p-8 rounded-xl h-full flex flex-col space-y-4">
+              {/* Card content with corner lines */}
+              <div className="relative bg-[#111111] p-8 rounded-xl h-full flex flex-col space-y-4 overflow-visible">
+                {/* Top-left to bottom-right line */}
+                <div className="absolute top-0 left-0 w-16 h-[1px] bg-gradient-to-r from-white to-transparent" />
+                <div className="absolute top-0 left-0 w-[1px] h-16 bg-gradient-to-b from-white to-transparent" />
+                
+                {/* Bottom-right to top-left line */}
+                <div className="absolute bottom-0 right-0 w-16 h-[1px] bg-gradient-to-l from-white to-transparent" />
+                <div className="absolute bottom-0 right-0 w-[1px] h-16 bg-gradient-to-t from-white to-transparent" />
+
                 <div className="h-12 w-12 rounded-full bg-white/5 flex items-center justify-center">
                   {task.icon}
                 </div>
                 
-                <h3 className="text-xl font-bold text-white">
+                <h3 className="text-xl font-light text-white">
                   {task.title}
                 </h3>
                 
-                <p className="text-white/70 text-sm flex-grow">
+                <p className="text-white/70 text-sm flex-grow font-light">
                   {task.description}
                 </p>
 
-                {/* Large number in background */}
-                <div className="absolute bottom-4 right-6 text-8xl font-bold text-white/5">
+                {/* Large number positioned half outside */}
+                <div className="absolute -bottom-8 right-6 text-8xl font-bold text-white/10">
                   {task.number}
                 </div>
               </div>
