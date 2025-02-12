@@ -13,7 +13,7 @@ export function MainNav() {
   const isMobile = useIsMobile();
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-border">
+    <nav className="fixed top-0 w-full z-50 backdrop-blur-sm border-b border-white/5">
       <div className="container mx-auto flex justify-between items-center h-16">
         <div className="flex items-center gap-8">
           <Link 
@@ -78,7 +78,7 @@ export function MainNav() {
               </SheetTrigger>
               <SheetContent 
                 side="right"
-                className="w-[280px] sm:w-[300px] bg-background"
+                className="w-[280px] sm:w-[300px] bg-[#111111]"
               >
                 <div className="flex flex-col space-y-4 py-4">
                   <Link 
@@ -115,7 +115,7 @@ export function MainNav() {
               </SheetTrigger>
               <SheetContent 
                 side="right" 
-                className="w-[300px] bg-background"
+                className="w-[300px] bg-[#111111]"
               >
                 <ProfileBox />
                 <NavigationItems />
