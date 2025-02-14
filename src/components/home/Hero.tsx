@@ -6,17 +6,7 @@ import { motion } from "framer-motion";
 
 export const Hero = () => {
   return (
-    <section className="relative w-full h-screen overflow-hidden">
-      {/* Hero image with overlay */}
-      <div className="absolute inset-0">
-        <img 
-          src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81"
-          alt="Background"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent" />
-      </div>
-
+    <section className="relative w-full h-screen overflow-hidden bg-[#111111]">
       {/* Animated gradient orbs */}
       <div className="absolute top-0 -left-1/4 w-96 h-96 bg-purple-500/30 rounded-full filter blur-[128px] -z-10 animate-pulse" />
       <div className="absolute bottom-0 -right-1/4 w-96 h-96 bg-blue-500/20 rounded-full filter blur-[128px] -z-10 animate-pulse" />
