@@ -1,4 +1,3 @@
-
 import { NFTProject } from "@/types/nft";
 
 export const featuredProjects: NFTProject[] = [
