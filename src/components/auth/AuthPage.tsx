@@ -23,9 +23,9 @@ export function AuthPage() {
       onClick: () => handleLogin("MetaMask")
     },
     {
-      name: "Twitter",
-      icon: "https://cdn-icons-png.flaticon.com/512/3670/3670151.png",
-      onClick: () => handleLogin("Twitter")
+      name: "X",
+      icon: "https://upload.wikimedia.org/wikipedia/commons/5/57/X_logo_2023_%28white%29.png",
+      onClick: () => handleLogin("X")
     },
     {
       name: "Discord",
@@ -63,7 +63,7 @@ export function AuthPage() {
         
         {/* Branding Content - Moved to top and bottom */}
         <div className="relative z-10 flex flex-col justify-between w-full h-full p-16">
-          {/* NEFTIT Text - Now at very top */}
+          {/* NEFTIT Text - Now at very top with less padding */}
           <span className="text-4xl font-bold text-white pt-4">NEFTIT</span>
           
           {/* Tagline - Now at bottom */}
