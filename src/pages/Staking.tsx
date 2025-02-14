@@ -2,182 +2,236 @@
 import { MainNav } from "@/components/layout/MainNav";
 import StarryBackground from "@/components/layout/StarryBackground";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { WalletConnect } from "@/components/wallet/WalletConnect";
 import { useWallet } from "@/components/wallet/WalletProvider";
-import { Coins, Trophy, Timer, Activity, ChartBar, Star } from "lucide-react";
+import { ChevronRight, Coins, ArrowUpRight, ArrowDownRight, Timer, Trophy, Activity, BarChart3, History } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
 const Staking = () => {
   const { isConnected } = useWallet();
-  const [selectedNFT, setSelectedNFT] = useState<string | null>(null);
-  
-  const mockNFTs = [
-    { id: "1", name: "Cyber Punk #1", rarity: "Legendary", apr: "12%", image: "https://images.unsplash.com/photo-1614792221813-42eb6f781a6f" },
-    { id: "2", name: "Space Explorer #4", rarity: "Rare", apr: "8%", image: "https://images.unsplash.com/photo-1636953056323-9c09fdd74fa6" },
-    { id: "3", name: "Digital Beast #7", rarity: "Common", apr: "5%", image: "https://images.unsplash.com/photo-1618172193622-ae2d025f4032" },
-  ];
+  const [stakeAmount, setStakeAmount] = useState("");
+  const [isStaking, setIsStaking] = useState(false);
+  const [isUnstaking, setIsUnstaking] = useState(false);
+  const [isClaiming, setIsClaiming] = useState(false);
 
-  const stats = [
-    { title: "Total NFTs Staked", value: "1,234", icon: Coins },
-    { title: "Total NEFT Distributed", value: "45,678", icon: Trophy },
-    { title: "Average Staking Time", value: "45 days", icon: Timer },
-    { title: "Current APY", value: "8.5%", icon: ChartBar },
+  // Mock data
+  const stakedAmount = "1,234.56";
+  const totalRewards = "45.67";
+  const apy = "12.5";
+  const totalStaked = "789,012.34";
+  const totalStakers = "1,234";
+  const pendingRewards = "23.45";
+
+  const transactions = [
+    { id: 1, date: "2024-03-15", amount: "100.00", type: "Stake", status: "Completed" },
+    { id: 2, date: "2024-03-14", amount: "50.00", type: "Unstake", status: "Completed" },
+    { id: 3, date: "2024-03-13", amount: "25.00", type: "Claim", status: "Pending" },
   ];
 
   const handleStake = () => {
-    if (!selectedNFT) {
-      toast.error("Please select an NFT to stake");
+    if (!stakeAmount || parseFloat(stakeAmount) <= 0) {
+      toast.error("Please enter a valid amount");
       return;
     }
-    toast.success("NFT staked successfully!");
+    setIsStaking(true);
+    setTimeout(() => {
+      toast.success("Successfully staked!");
+      setIsStaking(false);
+      setStakeAmount("");
+    }, 2000);
   };
 
   const handleUnstake = () => {
-    toast.success("NFT unstaked successfully!");
+    setIsUnstaking(true);
+    setTimeout(() => {
+      toast.success("Successfully unstaked!");
+      setIsUnstaking(false);
+    }, 2000);
   };
 
-  const handleClaimRewards = () => {
-    toast.success("Rewards claimed successfully!");
+  const handleClaim = () => {
+    setIsClaiming(true);
+    setTimeout(() => {
+      toast.success("Rewards claimed successfully!");
+      setIsClaiming(false);
+    }, 2000);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-background/80">
+    <div className="min-h-screen bg-[#111111]">
       <StarryBackground />
       <MainNav />
       
       <main className="container mx-auto px-4 pt-24 pb-12 space-y-8 relative">
         <div className="text-center space-y-4">
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-text">
-            NFT Staking
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 text-transparent bg-clip-text">
+            Stake & Earn
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Stake your NFTs to earn NEFT tokens. Higher rarity = Higher rewards
+          <p className="text-lg text-white/80 max-w-2xl mx-auto">
+            Stake your tokens to earn rewards and participate in platform governance
           </p>
         </div>
 
         {!isConnected ? (
-          <Card className="max-w-md mx-auto glass">
-            <CardContent className="pt-6 text-center space-y-4">
-              <p className="text-lg">Connect your wallet to start staking</p>
+          <Card className="max-w-md mx-auto glass backdrop-blur-xl bg-white/5 border-white/10">
+            <div className="p-6 text-center space-y-4">
+              <p className="text-lg text-white">Connect your wallet to start staking</p>
               <WalletConnect />
-            </CardContent>
+            </div>
           </Card>
         ) : (
           <div className="space-y-8 animate-fade-in">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {stats.map((stat, index) => (
-                <Card key={index} className="glass hover:scale-105 transition-all duration-300">
-                  <CardHeader className="space-y-1">
-                    <CardTitle className="text-xl flex items-center gap-2">
-                      <stat.icon className="w-5 h-5 text-primary" />
-                      {stat.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-2xl font-bold">{stat.value}</p>
-                  </CardContent>
-                </Card>
-              ))}
+            {/* Staking Dashboard */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Card className="glass backdrop-blur-xl bg-white/5 border-white/10 p-6 hover:scale-105 transition-transform duration-300">
+                <div className="flex items-center gap-3">
+                  <Coins className="w-5 h-5 text-purple-400" />
+                  <h3 className="text-lg font-medium text-white">Your Staked Amount</h3>
+                </div>
+                <p className="text-2xl font-bold text-white mt-2">{stakedAmount} NEFT</p>
+              </Card>
+
+              <Card className="glass backdrop-blur-xl bg-white/5 border-white/10 p-6 hover:scale-105 transition-transform duration-300">
+                <div className="flex items-center gap-3">
+                  <Trophy className="w-5 h-5 text-blue-400" />
+                  <h3 className="text-lg font-medium text-white">Total Rewards Earned</h3>
+                </div>
+                <p className="text-2xl font-bold text-white mt-2">{totalRewards} NEFT</p>
+              </Card>
+
+              <Card className="glass backdrop-blur-xl bg-white/5 border-white/10 p-6 hover:scale-105 transition-transform duration-300">
+                <div className="flex items-center gap-3">
+                  <BarChart3 className="w-5 h-5 text-pink-400" />
+                  <h3 className="text-lg font-medium text-white">Current APY</h3>
+                </div>
+                <p className="text-2xl font-bold text-white mt-2">{apy}%</p>
+              </Card>
             </div>
 
-            <Tabs defaultValue="stake" className="w-full">
-              <TabsList className="grid w-full max-w-md mx-auto grid-cols-2">
-                <TabsTrigger value="stake">Stake NFTs</TabsTrigger>
-                <TabsTrigger value="mystakes">My Stakes</TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="stake" className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {mockNFTs.map((nft) => (
-                    <Card 
-                      key={nft.id}
-                      className={`cursor-pointer transition-all duration-300 hover:scale-105 ${
-                        selectedNFT === nft.id ? 'ring-2 ring-primary' : ''
-                      }`}
-                      onClick={() => setSelectedNFT(nft.id)}
+            {/* Stake & Unstake Section */}
+            <Card className="glass backdrop-blur-xl bg-white/5 border-white/10">
+              <div className="p-6 space-y-6">
+                <h3 className="text-xl font-semibold text-white">Stake Tokens</h3>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Input
+                    type="number"
+                    placeholder="Enter amount to stake"
+                    value={stakeAmount}
+                    onChange={(e) => setStakeAmount(e.target.value)}
+                    className="flex-1 bg-white/5 border-white/10 text-white placeholder:text-white/50"
+                  />
+                  <div className="flex gap-2">
+                    <Button
+                      onClick={handleStake}
+                      disabled={isStaking}
+                      className="flex-1 sm:flex-none bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600"
                     >
-                      <div className="aspect-square relative overflow-hidden">
-                        <img 
-                          src={nft.image} 
-                          alt={nft.name}
-                          className="object-cover w-full h-full"
-                        />
-                        <div className="absolute top-2 right-2">
-                          <span className="px-2 py-1 rounded-full text-xs bg-black/50 backdrop-blur-sm flex items-center gap-1">
-                            <Star className="w-3 h-3" />
-                            {nft.rarity}
-                          </span>
-                        </div>
-                      </div>
-                      <CardContent className="pt-4">
-                        <h3 className="font-semibold">{nft.name}</h3>
-                        <p className="text-sm text-muted-foreground">APR: {nft.apr}</p>
-                      </CardContent>
-                    </Card>
-                  ))}
+                      <ArrowUpRight className="w-4 h-4 mr-2" />
+                      {isStaking ? "Staking..." : "Stake Now"}
+                    </Button>
+                    <Button
+                      onClick={handleUnstake}
+                      disabled={isUnstaking}
+                      variant="outline"
+                      className="flex-1 sm:flex-none border-white/10 text-white hover:bg-white/10"
+                    >
+                      <ArrowDownRight className="w-4 h-4 mr-2" />
+                      {isUnstaking ? "Unstaking..." : "Unstake"}
+                    </Button>
+                  </div>
                 </div>
-                
-                <div className="flex justify-center gap-4 pt-4">
-                  <Button 
-                    size="lg"
-                    onClick={handleStake}
-                    className="gap-2"
-                  >
-                    <Coins className="w-4 h-4" />
-                    Stake Selected NFT
-                  </Button>
+              </div>
+            </Card>
+
+            {/* Live Staking Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Card className="glass backdrop-blur-xl bg-white/5 border-white/10 p-6">
+                <div className="flex items-center gap-3">
+                  <Activity className="w-5 h-5 text-purple-400" />
+                  <h3 className="text-lg font-medium text-white">Total Staked on Platform</h3>
                 </div>
-              </TabsContent>
-              
-              <TabsContent value="mystakes">
-                <Card className="glass">
-                  <CardContent className="pt-6 space-y-4">
-                    <div className="space-y-4">
-                      {mockNFTs.slice(0, 1).map((nft) => (
-                        <div key={nft.id} className="flex items-center gap-4 p-4 rounded-lg bg-white/5">
-                          <img 
-                            src={nft.image} 
-                            alt={nft.name}
-                            className="w-16 h-16 rounded-lg object-cover"
-                          />
-                          <div className="flex-1">
-                            <h3 className="font-semibold">{nft.name}</h3>
-                            <p className="text-sm text-muted-foreground">Staked for: 15 days</p>
-                            <Progress value={45} className="h-2 mt-2" />
-                          </div>
-                          <div className="text-right">
-                            <p className="text-sm text-muted-foreground">Earned NEFT</p>
-                            <p className="font-semibold">245.5</p>
-                          </div>
-                        </div>
+                <p className="text-2xl font-bold text-white mt-2">{totalStaked} NEFT</p>
+              </Card>
+
+              <Card className="glass backdrop-blur-xl bg-white/5 border-white/10 p-6">
+                <div className="flex items-center gap-3">
+                  <Timer className="w-5 h-5 text-blue-400" />
+                  <h3 className="text-lg font-medium text-white">Number of Stakers</h3>
+                </div>
+                <p className="text-2xl font-bold text-white mt-2">{totalStakers}</p>
+              </Card>
+            </div>
+
+            {/* Rewards Section */}
+            <Card className="glass backdrop-blur-xl bg-white/5 border-white/10">
+              <div className="p-6 space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <Trophy className="w-5 h-5 text-yellow-500" />
+                    <h3 className="text-lg font-medium text-white">Your Pending Rewards</h3>
+                  </div>
+                  <p className="text-xl font-bold text-white">{pendingRewards} NEFT</p>
+                </div>
+                <Button
+                  onClick={handleClaim}
+                  disabled={isClaiming}
+                  className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600"
+                >
+                  <ChevronRight className="w-4 h-4 mr-2" />
+                  {isClaiming ? "Claiming..." : "Claim Rewards"}
+                </Button>
+              </div>
+            </Card>
+
+            {/* Transaction History */}
+            <Card className="glass backdrop-blur-xl bg-white/5 border-white/10">
+              <div className="p-6 space-y-4">
+                <div className="flex items-center gap-3">
+                  <History className="w-5 h-5 text-purple-400" />
+                  <h3 className="text-lg font-medium text-white">Transaction History</h3>
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="text-left text-white/60">
+                        <th className="pb-4">Date</th>
+                        <th className="pb-4">Amount</th>
+                        <th className="pb-4">Type</th>
+                        <th className="pb-4">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {transactions.map((tx) => (
+                        <tr key={tx.id} className="border-t border-white/5">
+                          <td className="py-4 text-white">{tx.date}</td>
+                          <td className="py-4 text-white">{tx.amount} NEFT</td>
+                          <td className="py-4">
+                            <span className={`px-2 py-1 rounded-full text-xs ${
+                              tx.type === 'Stake' ? 'bg-green-500/20 text-green-400' :
+                              tx.type === 'Unstake' ? 'bg-red-500/20 text-red-400' :
+                              'bg-blue-500/20 text-blue-400'
+                            }`}>
+                              {tx.type}
+                            </span>
+                          </td>
+                          <td className="py-4">
+                            <span className={`px-2 py-1 rounded-full text-xs ${
+                              tx.status === 'Completed' ? 'bg-green-500/20 text-green-400' :
+                              'bg-yellow-500/20 text-yellow-400'
+                            }`}>
+                              {tx.status}
+                            </span>
+                          </td>
+                        </tr>
                       ))}
-                    </div>
-                    
-                    <div className="flex justify-center gap-4">
-                      <Button 
-                        variant="outline"
-                        onClick={handleUnstake}
-                        className="gap-2"
-                      >
-                        <Activity className="w-4 h-4" />
-                        Unstake
-                      </Button>
-                      <Button 
-                        onClick={handleClaimRewards}
-                        className="gap-2"
-                      >
-                        <Trophy className="w-4 h-4" />
-                        Claim Rewards
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-            </Tabs>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </Card>
           </div>
         )}
       </main>
