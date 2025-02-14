@@ -6,13 +6,13 @@ import { motion } from "framer-motion";
 
 export const Hero = () => {
   return (
-    <div className="fixed inset-0 min-h-screen min-w-screen">
-      {/* Full-screen background image with overlay */}
+    <section className="relative w-full h-screen overflow-hidden">
+      {/* Hero image with overlay */}
       <div className="absolute inset-0">
         <img 
           src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81"
           alt="Background"
-          className="absolute w-full h-full object-cover"
+          className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent" />
       </div>
@@ -53,6 +53,6 @@ export const Hero = () => {
           </div>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
