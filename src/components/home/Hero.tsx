@@ -13,24 +13,24 @@ export const Hero = () => {
       
       <div className="absolute bottom-0 left-0 w-full z-10 pb-28 px-8 lg:px-16">
         <motion.div 
-          className="max-w-2xl space-y-8"
+          className="max-w-2xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           <h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-white">
             Future of
-            <span className="block mt-4 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 text-transparent bg-clip-text">
+            <span className="block mt-4 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 text-transparent bg-clip-text leading-tight">
               Digital Assets
             </span>
           </h1>
 
-          <p className="text-xl text-white/80 leading-relaxed">
+          <p className="text-xl text-white/80 leading-relaxed mt-8">
             Join the revolution of digital engagement. Discover unique NFTs, complete tasks, 
             and earn rewards in our innovative Web3 ecosystem.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 mt-8">
             <Link to="/discover">
               <Button 
                 size="lg" 
