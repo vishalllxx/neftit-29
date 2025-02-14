@@ -18,10 +18,10 @@ export const Hero = () => {
       >
         <div className="space-y-8"> {/* Increased spacing between elements */}
           <div className="space-y-3"> {/* Increased spacing between headlines */}
-            <h1 className="text-white text-5xl sm:text-7xl font-bold tracking-tight leading-normal antialiased">
+            <h1 className="text-white text-5xl sm:text-7xl font-bold tracking-tight leading-relaxed antialiased">
               Future of
             </h1>
-            <h1 className="text-5xl sm:text-7xl font-bold tracking-tight leading-normal bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 text-transparent bg-clip-text overflow-visible antialiased">
+            <h1 className="text-5xl sm:text-7xl font-bold tracking-tight leading-relaxed bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 text-transparent bg-clip-text overflow-visible antialiased mb-4">
               Digital Assets
             </h1>
           </div>
