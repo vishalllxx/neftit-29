@@ -15,10 +15,12 @@ export const Hero = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="absolute bottom-0 left-0 w-full pb-28 px-8 lg:px-16"
+        className="absolute bottom-0 left-0 w-full pb-40 px-8 lg:px-16" // Increased bottom padding from pb-28 to pb-40
       >
-        <h1 className="text-white text-5xl sm:text-7xl font-bold tracking-tight">Future of</h1>
-        <h1 className="text-5xl sm:text-7xl font-bold tracking-tight bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 text-transparent bg-clip-text">Digital Assets</h1>
+        <div className="space-y-4"> {/* Added spacing container */}
+          <h1 className="text-white text-5xl sm:text-7xl font-bold tracking-tight">Future of</h1>
+          <h1 className="text-5xl sm:text-7xl font-bold tracking-tight bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 text-transparent bg-clip-text">Digital Assets</h1>
+        </div>
 
         <p className="text-xl text-white/80 leading-relaxed mt-8">
           Join the revolution of digital engagement. Discover unique NFTs, complete tasks, 
