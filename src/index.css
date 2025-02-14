@@ -1,15 +1,14 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 7%;
+    --background: 0 0% 8%;
     --foreground: 0 0% 100%;
-    --card: 0 0% 7%;
+    --card: 0 0% 8%;
     --card-foreground: 0 0% 100%;
-    --popover: 0 0% 7%;
+    --popover: 0 0% 8%;
     --popover-foreground: 0 0% 100%;
     --primary: 0 0% 27%;
     --primary-foreground: 0 0% 100%;
@@ -34,11 +33,11 @@
   }
   
   body {
-    @apply bg-[#111111] text-foreground antialiased;
+    @apply bg-[#141414] text-foreground antialiased;
   }
 
   html {
-    @apply scroll-smooth bg-[#111111];
+    @apply scroll-smooth bg-[#141414];
   }
 }
 
@@ -48,11 +47,11 @@
   }
   
   .glass-morphism {
-    @apply backdrop-blur-xl bg-[#111111]/5 border border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)];
+    @apply backdrop-blur-xl bg-[#141414]/5 border border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)];
   }
   
   .neo-blur {
-    @apply backdrop-blur-2xl bg-[#111111]/40 border border-white/10;
+    @apply backdrop-blur-2xl bg-[#141414]/40 border border-white/10;
   }
 
   .gradient-border {
@@ -67,7 +66,7 @@
 
 /* Gradient overlays */
 .card-gradient {
-  @apply bg-gradient-to-t from-[#111111]/80 via-[#111111]/50 to-transparent;
+  @apply bg-gradient-to-t from-[#141414]/80 via-[#141414]/50 to-transparent;
 }
 
 /* Custom scrollbar */
@@ -76,7 +75,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-[#111111];
+  @apply bg-[#141414];
 }
 
 ::-webkit-scrollbar-thumb {
