@@ -14,15 +14,19 @@ export const Hero = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="absolute bottom-0 left-0 w-full pb-48 px-8 lg:px-16" // Increased bottom padding for more space
+        className="absolute bottom-0 left-0 w-full pb-52 px-8 lg:px-16"
       >
-        <div className="space-y-6"> {/* Increased spacing between text elements */}
-          <div className="space-y-2"> {/* Added container for headlines with proper spacing */}
-            <h1 className="text-white text-5xl sm:text-7xl font-bold tracking-tight leading-tight">Future of</h1>
-            <h1 className="text-5xl sm:text-7xl font-bold tracking-tight leading-tight bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 text-transparent bg-clip-text overflow-visible">Digital Assets</h1>
+        <div className="space-y-8"> {/* Increased spacing between elements */}
+          <div className="space-y-3"> {/* Increased spacing between headlines */}
+            <h1 className="text-white text-5xl sm:text-7xl font-bold tracking-tight leading-normal antialiased">
+              Future of
+            </h1>
+            <h1 className="text-5xl sm:text-7xl font-bold tracking-tight leading-normal bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 text-transparent bg-clip-text overflow-visible antialiased">
+              Digital Assets
+            </h1>
           </div>
 
-          <p className="text-xl text-white/80 leading-relaxed">
+          <p className="text-xl text-white/80 leading-relaxed antialiased">
             Join the revolution of digital engagement. Discover unique NFTs, complete tasks, 
             and earn rewards in our innovative Web3 ecosystem.
           </p>
