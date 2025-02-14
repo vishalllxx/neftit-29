@@ -7,13 +7,14 @@ import { WalletConnect } from "@/components/wallet/WalletConnect";
 import { useWallet } from "@/components/wallet/WalletProvider";
 import { 
   Wallet, 
-  Image as ImageIcon, 
+  ImageIcon, 
   Clock, 
   ArrowUpRight, 
   ArrowDownRight, 
-  Trophy, 
-  Users, 
-  History,
+  Ban,
+  Coins,
+  AlertTriangle,
+  Check,
   Timer
 } from "lucide-react";
 import { useState } from "react";
@@ -23,32 +24,43 @@ interface NFT {
   id: string;
   image: string;
   stakedAt?: string;
+  earnedCoins?: number;
 }
 
 const Staking = () => {
-  const { isConnected, address } = useWallet();
+  const { address } = useWallet();
   const [selectedNFT, setSelectedNFT] = useState<NFT | null>(null);
+  const [isApproving, setIsApproving] = useState(false);
   const [isStaking, setIsStaking] = useState(false);
   const [isUnstaking, setIsUnstaking] = useState(false);
-  const [isClaiming, setIsClaiming] = useState(false);
+  const [isCollecting, setIsCollecting] = useState(false);
 
   // Mock data
-  const walletNFTs: NFT[] = [
+  const stats = {
+    totalNFTs: 10,
+    stakedNFTs: 5,
+    earnedCoins: 1234.56,
+    availableToClaim: 567.89
+  };
+
+  const unstakedNFTs: NFT[] = [
     { id: "NFT #1", image: "https://picsum.photos/200/200?1" },
     { id: "NFT #2", image: "https://picsum.photos/200/200?2" },
     { id: "NFT #3", image: "https://picsum.photos/200/200?3" },
   ];
 
   const stakedNFTs: NFT[] = [
-    { id: "NFT #4", image: "https://picsum.photos/200/200?4", stakedAt: "2024-03-15" },
-    { id: "NFT #5", image: "https://picsum.photos/200/200?5", stakedAt: "2024-03-14" },
+    { id: "NFT #4", image: "https://picsum.photos/200/200?4", stakedAt: "2024-03-15", earnedCoins: 123.45 },
+    { id: "NFT #5", image: "https://picsum.photos/200/200?5", stakedAt: "2024-03-14", earnedCoins: 98.76 },
   ];
 
-  const transactions = [
-    { id: 1, nftId: "NFT #1", type: "Stake", date: "2024-03-15", status: "Completed" },
-    { id: 2, nftId: "NFT #2", type: "Unstake", date: "2024-03-14", status: "Completed" },
-    { id: 3, nftId: "NFT #3", type: "Stake", date: "2024-03-13", status: "Pending" },
-  ];
+  const handleApprove = (nft: NFT) => {
+    setIsApproving(true);
+    setTimeout(() => {
+      toast.success(`${nft.id} approved for staking!`);
+      setIsApproving(false);
+    }, 2000);
+  };
 
   const handleStake = (nft: NFT) => {
     setIsStaking(true);
@@ -66,12 +78,20 @@ const Staking = () => {
     }, 2000);
   };
 
-  const handleClaim = () => {
-    setIsClaiming(true);
+  const handleCollect = (nft: NFT) => {
+    setIsCollecting(true);
     setTimeout(() => {
-      toast.success("Rewards claimed successfully!");
-      setIsClaiming(false);
+      toast.success(`Rewards collected for ${nft.id}!`);
+      setIsCollecting(false);
     }, 2000);
+  };
+
+  const handleEmergencyUnstake = () => {
+    toast.warning("Emergency unstake initiated!");
+  };
+
+  const handleClaimAll = () => {
+    toast.success("All rewards claimed successfully!");
   };
 
   return (
@@ -80,184 +100,137 @@ const Staking = () => {
       <MainNav />
       
       <main className="container mx-auto px-4 pt-24 pb-12 space-y-8 relative">
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 text-transparent bg-clip-text">
-            Stake Your NFTs
+        {/* Header & Stats */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 text-transparent bg-clip-text">
+            NFT Staking
           </h1>
-          <p className="text-lg text-white/80 max-w-2xl mx-auto">
-            Stake your NFTs to earn rewards and participate in the ecosystem
-          </p>
+          <div className="flex items-center gap-3 glass backdrop-blur-xl bg-white/5 border-white/10 px-4 py-2 rounded-lg">
+            <Wallet className="w-4 h-4 text-purple-400" />
+            <span className="text-white/80">{address?.slice(0, 6)}...{address?.slice(-4)}</span>
+          </div>
         </div>
 
-        {!isConnected ? (
-          <Card className="max-w-md mx-auto glass backdrop-blur-xl bg-white/5 border-white/10">
-            <div className="p-6 text-center space-y-4">
-              <p className="text-lg text-white">Connect your wallet to start staking NFTs</p>
-              <WalletConnect />
+        {/* Stats Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <Card className="glass backdrop-blur-xl bg-white/5 border-white/10 p-4">
+            <div className="space-y-1">
+              <p className="text-sm text-white/60">Total NFTs</p>
+              <p className="text-2xl font-bold text-white">{stats.totalNFTs}</p>
             </div>
           </Card>
-        ) : (
-          <div className="space-y-8 animate-fade-in">
-            {/* Wallet Info */}
-            <Card className="glass backdrop-blur-xl bg-white/5 border-white/10 p-6">
-              <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                <div className="flex items-center gap-3">
-                  <Wallet className="w-5 h-5 text-purple-400" />
-                  <div>
-                    <h3 className="text-lg font-medium text-white">Connected Wallet</h3>
-                    <p className="text-white/60">{address}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <ImageIcon className="w-5 h-5 text-blue-400" />
-                  <div>
-                    <h3 className="text-lg font-medium text-white">Your NFTs</h3>
-                    <p className="text-white/60">{walletNFTs.length} Available</p>
-                  </div>
-                </div>
-              </div>
-            </Card>
-
-            {/* Available NFTs */}
-            <div className="space-y-4">
-              <h2 className="text-2xl font-bold text-white">Available to Stake</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {walletNFTs.map((nft) => (
-                  <Card key={nft.id} className="glass backdrop-blur-xl bg-white/5 border-white/10 overflow-hidden hover:scale-105 transition-transform duration-300">
-                    <img src={nft.image} alt={nft.id} className="w-full aspect-square object-cover" />
-                    <div className="p-4 space-y-4">
-                      <h3 className="text-lg font-medium text-white">{nft.id}</h3>
-                      <Button
-                        onClick={() => handleStake(nft)}
-                        disabled={isStaking}
-                        className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600"
-                      >
-                        <ArrowUpRight className="w-4 h-4 mr-2" />
-                        {isStaking ? "Staking..." : "Stake Now"}
-                      </Button>
-                    </div>
-                  </Card>
-                ))}
-              </div>
+          <Card className="glass backdrop-blur-xl bg-white/5 border-white/10 p-4">
+            <div className="space-y-1">
+              <p className="text-sm text-white/60">Staked NFTs</p>
+              <p className="text-2xl font-bold text-white">{stats.stakedNFTs}</p>
             </div>
-
-            {/* Staked NFTs */}
-            <div className="space-y-4">
-              <h2 className="text-2xl font-bold text-white">Currently Staked</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {stakedNFTs.map((nft) => (
-                  <Card key={nft.id} className="glass backdrop-blur-xl bg-white/5 border-white/10 overflow-hidden">
-                    <img src={nft.image} alt={nft.id} className="w-full aspect-square object-cover" />
-                    <div className="p-4 space-y-4">
-                      <div className="flex justify-between items-center">
-                        <h3 className="text-lg font-medium text-white">{nft.id}</h3>
-                        <div className="flex items-center gap-2 text-white/60">
-                          <Clock className="w-4 h-4" />
-                          <span>Staked: {nft.stakedAt}</span>
-                        </div>
-                      </div>
-                      <Button
-                        onClick={() => handleUnstake(nft)}
-                        disabled={isUnstaking}
-                        variant="outline"
-                        className="w-full border-white/10 text-white hover:bg-white/10"
-                      >
-                        <ArrowDownRight className="w-4 h-4 mr-2" />
-                        {isUnstaking ? "Unstaking..." : "Unstake"}
-                      </Button>
-                    </div>
-                  </Card>
-                ))}
-              </div>
+          </Card>
+          <Card className="glass backdrop-blur-xl bg-white/5 border-white/10 p-4">
+            <div className="space-y-1">
+              <p className="text-sm text-white/60">Earned Coins</p>
+              <p className="text-2xl font-bold text-white">{stats.earnedCoins}</p>
             </div>
+          </Card>
+          <Card className="glass backdrop-blur-xl bg-white/5 border-white/10 p-4">
+            <div className="space-y-1">
+              <p className="text-sm text-white/60">Available to Claim</p>
+              <p className="text-2xl font-bold text-white">{stats.availableToClaim}</p>
+            </div>
+          </Card>
+        </div>
 
-            {/* Stats & Rewards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Card className="glass backdrop-blur-xl bg-white/5 border-white/10 p-6">
-                <div className="flex items-center gap-3">
-                  <Trophy className="w-5 h-5 text-yellow-500" />
-                  <div>
-                    <h3 className="text-lg font-medium text-white">Total Rewards</h3>
-                    <p className="text-2xl font-bold text-white">245.67 NEFT</p>
-                  </div>
-                </div>
-                <Button
-                  onClick={handleClaim}
-                  disabled={isClaiming}
-                  className="w-full mt-4 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600"
-                >
-                  {isClaiming ? "Claiming..." : "Claim Rewards"}
-                </Button>
-              </Card>
+        {/* Action Buttons */}
+        <div className="flex gap-4">
+          <Button
+            onClick={handleClaimAll}
+            className="flex-1 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 shadow-lg hover:shadow-green-500/25 transition-all duration-300"
+          >
+            <Coins className="w-4 h-4 mr-2" />
+            Claim All
+          </Button>
+          <Button
+            onClick={handleEmergencyUnstake}
+            variant="destructive"
+            className="flex-1 bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 shadow-lg hover:shadow-red-500/25 transition-all duration-300"
+          >
+            <AlertTriangle className="w-4 h-4 mr-2" />
+            Emergency Unstake
+          </Button>
+        </div>
 
-              <Card className="glass backdrop-blur-xl bg-white/5 border-white/10 p-6">
-                <div className="flex items-center gap-3">
-                  <Users className="w-5 h-5 text-purple-400" />
-                  <div>
-                    <h3 className="text-lg font-medium text-white">Total Stakers</h3>
-                    <p className="text-2xl font-bold text-white">1,234</p>
+        {/* Unstaked NFTs */}
+        <div className="space-y-4">
+          <h2 className="text-2xl font-bold text-white">Available to Stake</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {unstakedNFTs.map((nft) => (
+              <Card key={nft.id} className="glass backdrop-blur-xl bg-white/5 border-white/10 overflow-hidden hover:scale-105 transition-transform duration-300">
+                <img src={nft.image} alt={nft.id} className="w-full aspect-square object-cover" />
+                <div className="p-4 space-y-4">
+                  <h3 className="text-lg font-medium text-white">{nft.id}</h3>
+                  <div className="grid grid-cols-2 gap-2">
+                    <Button
+                      onClick={() => handleApprove(nft)}
+                      variant="outline"
+                      className="w-full border-white/10 text-white hover:bg-white/10"
+                    >
+                      <Check className="w-4 h-4 mr-2" />
+                      Approve
+                    </Button>
+                    <Button
+                      onClick={() => handleStake(nft)}
+                      className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600"
+                    >
+                      <ArrowUpRight className="w-4 h-4 mr-2" />
+                      Stake
+                    </Button>
                   </div>
                 </div>
               </Card>
-
-              <Card className="glass backdrop-blur-xl bg-white/5 border-white/10 p-6">
-                <div className="flex items-center gap-3">
-                  <Timer className="w-5 h-5 text-blue-400" />
-                  <div>
-                    <h3 className="text-lg font-medium text-white">Total NFTs Staked</h3>
-                    <p className="text-2xl font-bold text-white">3,456</p>
-                  </div>
-                </div>
-              </Card>
-            </div>
-
-            {/* Transaction History */}
-            <Card className="glass backdrop-blur-xl bg-white/5 border-white/10">
-              <div className="p-6 space-y-4">
-                <div className="flex items-center gap-3">
-                  <History className="w-5 h-5 text-purple-400" />
-                  <h3 className="text-lg font-medium text-white">Transaction History</h3>
-                </div>
-                <div className="overflow-x-auto">
-                  <table className="w-full">
-                    <thead>
-                      <tr className="text-left text-white/60">
-                        <th className="pb-4">NFT ID</th>
-                        <th className="pb-4">Type</th>
-                        <th className="pb-4">Date</th>
-                        <th className="pb-4">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {transactions.map((tx) => (
-                        <tr key={tx.id} className="border-t border-white/5">
-                          <td className="py-4 text-white">{tx.nftId}</td>
-                          <td className="py-4">
-                            <span className={`px-2 py-1 rounded-full text-xs ${
-                              tx.type === 'Stake' ? 'bg-green-500/20 text-green-400' :
-                              'bg-red-500/20 text-red-400'
-                            }`}>
-                              {tx.type}
-                            </span>
-                          </td>
-                          <td className="py-4 text-white">{tx.date}</td>
-                          <td className="py-4">
-                            <span className={`px-2 py-1 rounded-full text-xs ${
-                              tx.status === 'Completed' ? 'bg-green-500/20 text-green-400' :
-                              'bg-yellow-500/20 text-yellow-400'
-                            }`}>
-                              {tx.status}
-                            </span>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </Card>
+            ))}
           </div>
-        )}
+        </div>
+
+        {/* Staked NFTs */}
+        <div className="space-y-4">
+          <h2 className="text-2xl font-bold text-white">Currently Staked</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {stakedNFTs.map((nft) => (
+              <Card key={nft.id} className="glass backdrop-blur-xl bg-white/5 border-white/10 overflow-hidden">
+                <img src={nft.image} alt={nft.id} className="w-full aspect-square object-cover" />
+                <div className="p-4 space-y-4">
+                  <div className="flex justify-between items-center">
+                    <h3 className="text-lg font-medium text-white">{nft.id}</h3>
+                    <div className="flex items-center gap-2 text-white/60">
+                      <Timer className="w-4 h-4" />
+                      <span>{nft.stakedAt}</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 text-white">
+                    <Coins className="w-4 h-4 text-yellow-500" />
+                    <span>{nft.earnedCoins} Coins Earned</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <Button
+                      onClick={() => handleUnstake(nft)}
+                      variant="outline"
+                      className="w-full border-white/10 text-white hover:bg-white/10"
+                    >
+                      <ArrowDownRight className="w-4 h-4 mr-2" />
+                      Unstake
+                    </Button>
+                    <Button
+                      onClick={() => handleCollect(nft)}
+                      className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600"
+                    >
+                      <Coins className="w-4 h-4 mr-2" />
+                      Collect
+                    </Button>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
       </main>
     </div>
   );
