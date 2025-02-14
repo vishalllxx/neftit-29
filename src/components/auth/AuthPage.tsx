@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
-import { WalletConnect, Wallet, WalletCards } from "lucide-react";
+import { WalletCards } from "lucide-react";
 
 export function AuthPage() {
   const navigate = useNavigate();
@@ -25,12 +25,12 @@ export function AuthPage() {
     },
     {
       name: "WalletConnect",
-      icon: "https://raw.githubusercontent.com/WalletConnect/walletconnect-assets/master/Icon/Blue/Icon.png",
+      icon: "https://cdn.cdnlogo.com/logos/w/95/walletconnect.svg",
       onClick: () => handleLogin("WalletConnect")
     },
     {
       name: "Coinbase Wallet",
-      icon: "https://storage.googleapis.com/opensea-static/Coinbase%20Wallet%20Logo.png",
+      icon: "https://cdn.cdnlogo.com/logos/c/62/coinbase-wallet.svg",
       onClick: () => handleLogin("Coinbase")
     }
   ];
@@ -62,15 +62,15 @@ export function AuthPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
         </div>
         
-        {/* Branding Content */}
-        <div className="relative z-10 flex flex-col items-start justify-center w-full p-16 space-y-8">
-          {/* NEFTIT Logo */}
+        {/* Branding Content - Moved to top and bottom */}
+        <div className="relative z-10 flex flex-col justify-between w-full h-full p-16">
+          {/* NEFTIT Logo - Now at top */}
           <div className="flex items-center space-x-4">
             <WalletCards className="h-12 w-12 text-white" />
             <span className="text-4xl font-bold text-white">NEFTIT</span>
           </div>
           
-          {/* Tagline */}
+          {/* Tagline - Now at bottom */}
           <h1 className="text-5xl font-bold leading-tight text-white max-w-xl">
             Empowering the Future of Digital Ownership
           </h1>
