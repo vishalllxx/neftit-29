@@ -15,7 +15,7 @@ const featuredProjects = [
     comments: 156,
     volume: "12.5 ETH",
     growth: "+25%",
-    image: "/lovable-uploads/nft-1.jpg"
+    image: "https://images.unsplash.com/photo-1639152201720-5e536d254d81?auto=format&fit=crop&w=800&q=80" // Modern crypto trading dashboard
   },
   {
     id: "2",
@@ -27,7 +27,7 @@ const featuredProjects = [
     comments: 89,
     volume: "8.2 ETH",
     growth: "+15%",
-    image: "/lovable-uploads/nft-2.jpg"
+    image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&w=800&q=80" // Digital art gallery
   },
   {
     id: "3",
@@ -39,7 +39,7 @@ const featuredProjects = [
     comments: 67,
     volume: "5.7 ETH",
     growth: "+10%",
-    image: "/lovable-uploads/nft-3.jpg"
+    image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80" // Gaming setup with neon lights
   }
 ];
 
