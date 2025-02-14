@@ -1,3 +1,4 @@
+
 import { MainNav } from "@/components/layout/MainNav";
 import StarryBackground from "@/components/layout/StarryBackground";
 import { useState, useEffect } from "react";
@@ -19,11 +20,10 @@ const Discover = () => {
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
-    // TODO: Implement search functionality
   };
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-[#111111]">
       <StarryBackground />
       <MainNav />
       <main className="container mx-auto px-4 pt-24 pb-12 space-y-12 relative">

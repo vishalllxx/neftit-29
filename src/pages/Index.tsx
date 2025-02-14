@@ -1,4 +1,3 @@
-
 import { MainNav } from "@/components/layout/MainNav";
 import StarryBackground from "@/components/layout/StarryBackground";
 import { Helmet } from "react-helmet";
@@ -17,7 +16,6 @@ const Index = () => {
   useEffect(() => {
     if (!canvasRef.current) return;
 
-    // Three.js scene setup
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({
@@ -29,7 +27,6 @@ const Index = () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearAlpha(0);
 
-    // Create floating NFT cubes
     const cubes: THREE.Mesh[] = [];
     const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
     
@@ -51,7 +48,6 @@ const Index = () => {
       scene.add(cube);
     }
 
-    // Add lighting
     const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
     scene.add(ambientLight);
 
@@ -65,7 +61,6 @@ const Index = () => {
 
     camera.position.z = 15;
 
-    // Mouse interaction
     let mouseX = 0;
     let mouseY = 0;
 
@@ -76,7 +71,6 @@ const Index = () => {
 
     window.addEventListener('mousemove', onMouseMove);
 
-    // Animation loop
     const animate = () => {
       requestAnimationFrame(animate);
 
@@ -128,59 +122,44 @@ const Index = () => {
         style={{ zIndex: 0 }}
       />
 
-      <div className="min-h-screen font-['Inter'] overflow-x-hidden bg-gradient-to-b from-[#111111] via-[#1a1a1a] to-[#111111] relative">
-        {/* Enhanced background effects */}
-        <div className="fixed inset-0 bg-gradient-to-b from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
-        <div className="fixed inset-0 bg-[url('/grid.svg')] bg-center [mask-image:radial-gradient(white,transparent_85%)] pointer-events-none opacity-20" />
-        <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.1),transparent_50%)]" />
-        
+      <div className="min-h-screen font-['Inter'] overflow-x-hidden bg-[#111111]">
         <StarryBackground />
         <MainNav />
         
         <main className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="pt-24 pb-16 space-y-20 md:space-y-40">
-            {/* Animated Hero Section */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="relative"
             >
               <Hero />
             </motion.div>
 
-            {/* Featured Projects with enhanced animations */}
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
-              className="relative"
             >
-              <div className="absolute -inset-x-4 top-0 h-96 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-blue-500/10 blur-3xl opacity-30" />
               <FeaturedProjects />
             </motion.div>
 
-            {/* Animated What is Neftit section */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative"
             >
               <WhatIsNeftit />
             </motion.div>
 
-            {/* Task Types with enhanced visual effects */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative"
             >
-              <div className="absolute -inset-x-4 top-0 h-96 bg-gradient-to-r from-purple-500/10 via-blue-500/10 to-pink-500/10 blur-3xl opacity-30" />
               <TaskTypes />
             </motion.div>
           </div>
