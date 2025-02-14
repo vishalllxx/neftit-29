@@ -25,11 +25,11 @@ const features = [
 
 export const WhatIsNeftit = () => {
   return (
-    <div className="pt-32 pb-20 relative">
+    <div className="py-32 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-[#8B5CF6]/10 via-transparent to-transparent blur-3xl" />
       
       <motion.div 
-        className="text-center mb-16 space-y-4"
+        className="text-center mb-20 space-y-4"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -43,7 +43,7 @@ export const WhatIsNeftit = () => {
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto px-4">
         {features.map((feature, index) => (
           <motion.div 
             key={feature.title}
@@ -51,29 +51,20 @@ export const WhatIsNeftit = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
-            className="group relative"
+            className="relative mb-32 last:mb-0"
           >
-            <div className="absolute inset-0.5 bg-gradient-to-r from-purple-500/50 to-blue-500/50 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-500" />
-            <div className="relative h-[200px] mb-6 rounded-2xl overflow-hidden">
-              <img 
-                src={feature.image} 
-                alt={feature.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div className="absolute bottom-4 left-4">
-                <div className="h-12 w-12 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
-                  {feature.icon}
-                </div>
-              </div>
-            </div>
-            <div className="relative backdrop-blur-xl bg-white/5 p-6 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300">
-              <h3 className="text-2xl font-semibold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent mb-4">
-                {feature.title}
-              </h3>
-              <p className="text-white/60 leading-relaxed">
-                {feature.description}
-              </p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {index % 2 === 0 ? (
+                <>
+                  <FeatureImage image={feature.image} />
+                  <FeatureContent feature={feature} />
+                </>
+              ) : (
+                <>
+                  <FeatureContent feature={feature} />
+                  <FeatureImage image={feature.image} />
+                </>
+              )}
             </div>
           </motion.div>
         ))}
@@ -81,3 +72,33 @@ export const WhatIsNeftit = () => {
     </div>
   );
 };
+
+const FeatureImage = ({ image }: { image: string }) => (
+  <div className="relative group">
+    <div className="absolute inset-0.5 bg-gradient-to-r from-purple-500/50 to-blue-500/50 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-500" />
+    <div className="relative h-[400px] rounded-2xl overflow-hidden">
+      <img 
+        src={image} 
+        alt="Feature"
+        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
+    </div>
+  </div>
+);
+
+const FeatureContent = ({ feature }: { feature: typeof features[0] }) => (
+  <div className="relative space-y-6 p-6">
+    <div className="h-14 w-14 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
+      {feature.icon}
+    </div>
+    
+    <h3 className="text-3xl font-semibold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+      {feature.title}
+    </h3>
+    
+    <p className="text-white/60 text-lg leading-relaxed">
+      {feature.description}
+    </p>
+  </div>
+);
