@@ -23,7 +23,7 @@ export const Hero = () => {
       
       <div className="w-full relative z-10">
         <motion.div 
-          className="max-w-2xl mx-auto px-4 space-y-8"
+          className="max-w-2xl mx-auto space-y-8 px-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
