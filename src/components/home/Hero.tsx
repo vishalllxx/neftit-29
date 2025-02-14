@@ -6,9 +6,7 @@ import { motion } from "framer-motion";
 
 export const Hero = () => {
   return (
-    <section className="relative w-full h-screen bg-[#111111] overflow-visible">
-      <div className="absolute bottom-0 -right-1/4 w-96 h-96 bg-blue-500/20 rounded-full filter blur-[128px] -z-10 animate-pulse" />
-      
+    <section className="relative w-full h-screen bg-[#111111] overflow-visible">      
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
