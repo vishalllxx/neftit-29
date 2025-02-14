@@ -6,13 +6,13 @@ import { motion } from "framer-motion";
 
 export const Hero = () => {
   return (
-    <div className="relative h-screen w-screen overflow-hidden">
+    <div className="fixed inset-0 min-h-screen min-w-screen">
       {/* Full-screen background image with overlay */}
       <div className="absolute inset-0">
         <img 
           src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81"
           alt="Background"
-          className="w-full h-full object-cover"
+          className="absolute w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent" />
       </div>
@@ -21,7 +21,7 @@ export const Hero = () => {
       <div className="absolute top-0 -left-1/4 w-96 h-96 bg-purple-500/30 rounded-full filter blur-[128px] -z-10 animate-pulse" />
       <div className="absolute bottom-0 -right-1/4 w-96 h-96 bg-blue-500/20 rounded-full filter blur-[128px] -z-10 animate-pulse" />
       
-      <div className="absolute bottom-0 left-0 w-full z-10 pb-20 px-8 lg:px-16">
+      <div className="absolute bottom-0 left-0 w-full z-10 pb-28 px-8 lg:px-16">
         <motion.div 
           className="max-w-2xl space-y-8"
           initial={{ opacity: 0, y: 20 }}
@@ -30,7 +30,7 @@ export const Hero = () => {
         >
           <h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-white">
             Future of
-            <span className="block mt-2 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 text-transparent bg-clip-text">
+            <span className="block mt-4 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 text-transparent bg-clip-text">
               Digital Assets
             </span>
           </h1>
