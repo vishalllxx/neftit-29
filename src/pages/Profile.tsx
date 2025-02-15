@@ -8,36 +8,15 @@ import {
   Trophy,
   LogOut, 
   Award,
-  Twitter,
-  MessageCircle
+  Sparkles
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useWallet } from "@/components/wallet/WalletProvider";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { useState, useEffect, useCallback } from "react";
-
-// Mock completed tasks data (this will later come from Supabase)
-const completedTasks = [
-  {
-    id: "1",
-    projectName: "Cosmic Dreamer",
-    title: "Follow Twitter",
-    completedAt: "2024-02-20",
-    type: "twitter" as const,
-    xpEarned: 50
-  },
-  {
-    id: "2",
-    projectName: "Space Voyager",
-    title: "Join Discord",
-    completedAt: "2024-02-19",
-    type: "discord" as const,
-    xpEarned: 30
-  }
-];
 
 const Profile = () => {
   console.log("Profile component re-rendered!");
@@ -118,72 +97,51 @@ const Profile = () => {
           {...fadeInUp}
         >
           <Tabs defaultValue="completed" className="w-full">
-            <TabsList className="w-full glass">
-              <TabsTrigger value="completed" className="flex-1 data-[state=active]:bg-primary/20">
+            <TabsList className="w-full glass grid grid-cols-3">
+              <TabsTrigger value="completed" className="data-[state=active]:bg-primary/20">
                 <Trophy className="h-4 w-4 mr-2" />
-                Completed Quests
+                Quests
               </TabsTrigger>
-              <TabsTrigger value="nfts" className="flex-1 data-[state=active]:bg-primary/20">
+              <TabsTrigger value="nfts" className="data-[state=active]:bg-primary/20">
                 <Award className="h-4 w-4 mr-2" />
-                NFTs Minted
+                NFTs
+              </TabsTrigger>
+              <TabsTrigger value="achievements" className="data-[state=active]:bg-primary/20">
+                <Sparkles className="h-4 w-4 mr-2" />
+                Achievements
               </TabsTrigger>
             </TabsList>
             
             <TabsContent value="completed">
-              <div className="grid gap-4 mt-6">
-                {completedTasks.map((task) => (
-                  <Card key={task.id} className="glass hover:bg-white/5 transition-colors duration-300">
-                    <CardContent className="pt-6">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          {task.type === 'twitter' ? (
-                            <Twitter className="h-4 w-4 text-primary" />
-                          ) : (
-                            <MessageCircle className="h-4 w-4 text-primary" />
-                          )}
-                          <div>
-                            <p className="font-medium text-white">{task.title}</p>
-                            <p className="text-sm text-white/60">{task.projectName}</p>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <p className="font-medium text-primary">+{task.xpEarned} XP</p>
-                          <p className="text-sm text-white/60">{task.completedAt}</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+              <Card className="glass mt-6">
+                <CardContent className="pt-6 text-center">
+                  <Trophy className="h-12 w-12 text-primary/40 mx-auto mb-4" />
+                  <h3 className="text-lg font-semibold text-white mb-2">No Quests Completed Yet</h3>
+                  <p className="text-white/60">Start your journey by completing quests and earning rewards!</p>
+                </CardContent>
+              </Card>
             </TabsContent>
             
             <TabsContent value="nfts">
               <Card className="glass mt-6">
-                <CardContent className="pt-6">
-                  <p className="text-center text-white/60">No NFTs minted yet.</p>
+                <CardContent className="pt-6 text-center">
+                  <Award className="h-12 w-12 text-primary/40 mx-auto mb-4" />
+                  <h3 className="text-lg font-semibold text-white mb-2">No NFTs Minted Yet</h3>
+                  <p className="text-white/60">Complete quests to earn and mint your first NFT!</p>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="achievements">
+              <Card className="glass mt-6">
+                <CardContent className="pt-6 text-center">
+                  <Sparkles className="h-12 w-12 text-primary/40 mx-auto mb-4" />
+                  <h3 className="text-lg font-semibold text-white mb-2">No Achievements Yet</h3>
+                  <p className="text-white/60">Complete quests and engage with the platform to unlock achievements!</p>
                 </CardContent>
               </Card>
             </TabsContent>
           </Tabs>
-        </motion.div>
-
-        <motion.div
-          layoutId="achievements-section"
-          {...fadeInUp}
-        >
-          <Card className="glass">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-xl">
-                <Award className="h-5 w-5 text-primary" />
-                <span className="bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent">
-                  Achievements
-                </span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-white/60">Coming soon! Track your achievements and compare with others.</p>
-            </CardContent>
-          </Card>
         </motion.div>
 
         <motion.div
