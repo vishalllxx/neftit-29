@@ -2,6 +2,7 @@
 import { Trophy, Star, Edit } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { memo } from "react";
 
 interface ProfileHeaderProps {
   username: string;
@@ -12,14 +13,16 @@ interface ProfileHeaderProps {
   onEditProfile: () => void;
 }
 
-export function ProfileHeader({ 
+const ProfileHeaderComponent = ({ 
   username, 
   xp, 
   neftPoints, 
   level,
   avatar,
   onEditProfile 
-}: ProfileHeaderProps) {
+}: ProfileHeaderProps) => {
+  console.log("ProfileHeader re-rendered!");
+  
   return (
     <div className="glass rounded-lg p-6 relative">
       <Button 
@@ -64,4 +67,9 @@ export function ProfileHeader({
       </div>
     </div>
   );
-}
+};
+
+// Properly memoize the component with deep comparison
+export const ProfileHeader = memo(ProfileHeaderComponent, (prevProps, nextProps) => {
+  return JSON.stringify(prevProps) === JSON.stringify(nextProps);
+});

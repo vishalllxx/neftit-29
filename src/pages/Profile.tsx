@@ -1,4 +1,3 @@
-
 import { MainNav } from "@/components/layout/MainNav";
 import StarryBackground from "@/components/layout/StarryBackground";
 import { ProfileHeader } from "@/components/profile/ProfileHeader";
@@ -17,10 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { useMemo, memo } from "react";
-
-// Memoize the ProfileHeader component to prevent unnecessary re-renders
-const MemoizedProfileHeader = memo(ProfileHeader);
+import { useState, useEffect, useCallback } from "react";
 
 // Mock completed tasks data (this will later come from Supabase)
 const completedTasks = [
@@ -43,35 +39,40 @@ const completedTasks = [
 ];
 
 const Profile = () => {
+  console.log("Profile component re-rendered!");
+  
   const { disconnect } = useWallet();
   const navigate = useNavigate();
-  const username = sessionStorage.getItem("username") || localStorage.getItem("username") || "Username";
-  const totalXP = 380;
-  const neftPoints = 3;
-  const level = 5;
-  const xpToNextLevel = 500;
+  
+  // Use useState to prevent flickering from storage reads
+  const [profileData, setProfileData] = useState(() => ({
+    username: sessionStorage.getItem("username") || localStorage.getItem("username") || "Username",
+    totalXP: 380,
+    neftPoints: 3,
+    level: 5,
+    avatar: "https://i.seadn.io/gae/Ju9CkWtV-1Okvf45wo8UctR-M9He2PjILP0oOvxE89AyiPPGtrR3gysu1Zgy0hjd2xKIgjJJtWIc0ybj4Vd7wv8t3pxDGHoJBzDB?auto=format&dpr=1&w=1000"
+  }));
 
-  const handleLogout = () => {
+  // Update username if it changes in storage
+  useEffect(() => {
+    const newUsername = sessionStorage.getItem("username") || localStorage.getItem("username") || "Username";
+    if (newUsername !== profileData.username) {
+      setProfileData(prev => ({ ...prev, username: newUsername }));
+    }
+  }, [profileData.username]);
+
+  const handleLogout = useCallback(() => {
     disconnect();
     localStorage.setItem("isAuthenticated", "false");
     toast.success("Logged out successfully");
     navigate("/auth");
-  };
+  }, [disconnect, navigate]);
 
-  const handleEditProfile = () => {
+  const handleEditProfile = useCallback(() => {
     navigate("/settings");
-  };
+  }, [navigate]);
 
-  // Memoize the profile data to prevent unnecessary re-renders
-  const profileData = useMemo(() => ({
-    username,
-    totalXP,
-    neftPoints,
-    level,
-    avatar: "https://i.seadn.io/gae/Ju9CkWtV-1Okvf45wo8UctR-M9He2PjILP0oOvxE89AyiPPGtrR3gysu1Zgy0hjd2xKIgjJJtWIc0ybj4Vd7wv8t3pxDGHoJBzDB?auto=format&dpr=1&w=1000"
-  }), [username]);
-
-  // Single animation variant for consistent animations
+  // Animation configuration
   const fadeInUp = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
@@ -84,11 +85,8 @@ const Profile = () => {
       <MainNav />
       
       <div className="container mx-auto px-4 pt-24 space-y-8">
-        <motion.div 
-          layoutId="profile-header"
-          {...fadeInUp}
-        >
-          <MemoizedProfileHeader 
+        <motion.div {...fadeInUp}>
+          <ProfileHeader 
             username={profileData.username}
             xp={profileData.totalXP}
             neftPoints={profileData.neftPoints}
@@ -107,9 +105,9 @@ const Profile = () => {
               <h3 className="text-xl font-bold bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent">
                 Progress to Next Level
               </h3>
-              <span className="text-white/80">{totalXP} / {xpToNextLevel} XP</span>
+              <span className="text-white/80">{profileData.totalXP} / 500 XP</span>
             </div>
-            <Progress value={(totalXP / xpToNextLevel) * 100} className="h-2" />
+            <Progress value={(profileData.totalXP / 500) * 100} className="h-2" />
           </div>
         </motion.div>
 
@@ -187,7 +185,6 @@ const Profile = () => {
         </motion.div>
 
         <motion.div
-          layoutId="logout-button"
           {...fadeInUp}
           className="flex justify-center"
         >
