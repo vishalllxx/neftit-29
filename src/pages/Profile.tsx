@@ -1,3 +1,4 @@
+
 import { MainNav } from "@/components/layout/MainNav";
 import StarryBackground from "@/components/layout/StarryBackground";
 import { ProfileHeader } from "@/components/profile/ProfileHeader";
@@ -80,11 +81,12 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background/95 to-background">
+    <div className="min-h-screen bg-[#111111]">
+      <div className="fixed inset-0 bg-[#111111] pointer-events-none" />
       <StarryBackground />
       <MainNav />
       
-      <div className="container mx-auto px-4 pt-24 space-y-8">
+      <div className="container mx-auto px-4 pt-24 space-y-8 relative">
         <motion.div {...fadeInUp}>
           <ProfileHeader 
             username={profileData.username}
