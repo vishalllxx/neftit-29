@@ -69,7 +69,6 @@ const ProjectDetails = () => {
           Back
         </Button>
 
-        {/* Upper Section */}
         <div className="space-y-6">
           <div className="flex flex-col md:flex-row gap-8">
             {/* Left Side - NFT Image */}
@@ -77,22 +76,28 @@ const ProjectDetails = () => {
               <img 
                 src={project.image} 
                 alt={project.nftName}
-                className="w-full h-auto rounded-lg"
+                className="w-full aspect-[3/4] object-cover rounded-lg shadow-xl"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = "https://images.unsplash.com/photo-1485827404703-89b55fcc595e";
+                }}
               />
             </div>
             
             {/* Right Side - Project Info */}
             <div className="w-full md:w-2/3">
-              <NFTInfo
-                projectName={project.projectName}
-                nftName={project.nftName}
-                xpReward={project.xpReward}
-                neftReward={project.neftReward}
-                startTime={project.startTime}
-                endTime={project.endTime}
-                description={project.description}
-                rarityDistribution={project.rarityDistribution}
-              />
+              <div className="max-h-[600px] overflow-y-auto pr-4 space-y-6">
+                <NFTInfo
+                  projectName={project.projectName}
+                  nftName={project.nftName}
+                  xpReward={project.xpReward}
+                  neftReward={project.neftReward}
+                  startTime={project.startTime}
+                  endTime={project.endTime}
+                  description={project.description}
+                  rarityDistribution={project.rarityDistribution}
+                />
+              </div>
             </div>
           </div>
         </div>
