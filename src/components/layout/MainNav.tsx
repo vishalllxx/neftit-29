@@ -18,9 +18,18 @@ export function MainNav() {
         <div className="flex items-center gap-8">
           <Link 
             to="/" 
-            className="text-xl sm:text-2xl font-light tracking-wider text-white hover:text-white/90 transition-colors"
+            className="hover:opacity-90 transition-opacity"
+            aria-label="NEFTIT Home"
           >
-            NEFTIT
+            <img 
+              src="/lovable-uploads/d8a1d71a-eb76-4df8-bd54-8873375917c5.png"
+              alt="NEFTIT"
+              className="h-8 sm:h-10 w-auto"
+              style={{
+                filter: "brightness(1) invert(1)",
+                objectFit: "contain"
+              }}
+            />
           </Link>
           
           {!isMobile && (
