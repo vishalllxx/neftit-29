@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { RocketIcon, Sparkles, Users } from "lucide-react";
+import { RocketIcon, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
@@ -23,16 +23,29 @@ export const HeroSection = () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearAlpha(0);
 
-    const geometry = new THREE.IcosahedronGeometry(1, 1);
-    const material = new THREE.MeshPhongMaterial({
-      color: new THREE.Color("#8B5CF6"),
-      wireframe: true,
-      transparent: true,
-      opacity: 0.3,
-    });
+    // Create multiple NFT card geometries
+    const createNFTCard = (position: THREE.Vector3) => {
+      const geometry = new THREE.BoxGeometry(1, 1.4, 0.1);
+      const material = new THREE.MeshPhongMaterial({
+        color: new THREE.Color("#8B5CF6"),
+        wireframe: true,
+        transparent: true,
+        opacity: 0.3,
+      });
 
-    const nftMesh = new THREE.Mesh(geometry, material);
-    scene.add(nftMesh);
+      const card = new THREE.Mesh(geometry, material);
+      card.position.copy(position);
+      return card;
+    };
+
+    // Add multiple cards
+    const cards = [
+      createNFTCard(new THREE.Vector3(-2, 1, 0)),
+      createNFTCard(new THREE.Vector3(2, -1, 0)),
+      createNFTCard(new THREE.Vector3(0, 0, 0)),
+    ];
+
+    cards.forEach(card => scene.add(card));
 
     const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
     scene.add(ambientLight);
@@ -56,8 +69,11 @@ export const HeroSection = () => {
     const animate = () => {
       requestAnimationFrame(animate);
 
-      nftMesh.rotation.x += 0.005;
-      nftMesh.rotation.y += 0.005;
+      // Animate each card differently
+      cards.forEach((card, index) => {
+        card.rotation.x += 0.003 * (index + 1);
+        card.rotation.y += 0.005 * (index + 1);
+      });
 
       camera.position.x += (mouseX * 2 - camera.position.x) * 0.05;
       camera.position.y += (-mouseY * 2 - camera.position.y) * 0.05;
@@ -103,17 +119,17 @@ export const HeroSection = () => {
         >
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400">
-              Onboard, Engage & Grow
+              Complete Quests. Collect Exclusive NFTs.
             </span>
             <br />
             <span className="text-white">
-              with NEFTIT
+              Upgrade & Evolve.
             </span>
           </h1>
           
           <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-            We connect Web3 projects with real, engaged users through free NFT rewards, 
-            interactive campaigns, and a next-gen burn-to-upgrade system.
+            Engage with Web3 projects, complete simple social and interactive tasks, 
+            and earn unique NFTs that you can upgrade and trade.
           </p>
         </motion.div>
 
@@ -126,21 +142,21 @@ export const HeroSection = () => {
           <Link to="/discover">
             <Button 
               size="lg"
-              className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white px-8 py-6 rounded-full text-lg font-medium"
+              className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white px-8 py-6 rounded-full text-lg font-medium transform transition-all duration-300 hover:scale-105"
             >
-              Join NEFTIT
+              Start Collecting NFTs
               <RocketIcon className="ml-2 h-5 w-5" />
             </Button>
           </Link>
           
-          <Link to="/partner">
+          <Link to="/campaigns">
             <Button 
               size="lg" 
               variant="outline"
-              className="border-2 border-purple-500/50 hover:border-purple-500 bg-transparent text-white px-8 py-6 rounded-full text-lg font-medium"
+              className="border-2 border-purple-500/50 hover:border-purple-500 bg-transparent text-white px-8 py-6 rounded-full text-lg font-medium transform transition-all duration-300 hover:scale-105"
             >
-              Partner With Us
-              <Users className="ml-2 h-5 w-5" />
+              Explore Live Campaigns
+              <Sparkles className="ml-2 h-5 w-5" />
             </Button>
           </Link>
         </motion.div>
@@ -149,27 +165,22 @@ export const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.8 }}
-          className="flex items-center justify-center gap-6 pt-12 flex-wrap"
+          className="flex items-center justify-center gap-4 pt-12 flex-wrap"
         >
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
-            <Sparkles className="h-4 w-4 text-purple-400" />
-            <span className="text-sm font-medium">Launching Soon</span>
+            <span className="text-sm font-medium">Complete Quests</span>
           </div>
           
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
-            <span className="text-sm font-medium">50+ Web3 Projects</span>
+            <span className="text-sm font-medium">Collect NFTs</span>
           </div>
           
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
-            <span className="text-sm font-medium">500K Free NFTs</span>
+            <span className="text-sm font-medium">Upgrade & Trade</span>
           </div>
           
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
             <span className="text-sm font-medium">Multi-Chain</span>
-          </div>
-          
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
-            <span className="text-sm font-medium">Gasless</span>
           </div>
         </motion.div>
       </div>

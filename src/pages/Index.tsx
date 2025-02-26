@@ -15,14 +15,14 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>NEFTIT - The Ultimate Web3 Community Hub</title>
+        <title>NEFTIT - Complete Quests, Collect & Upgrade NFTs</title>
         <meta 
           name="description" 
           content="Complete quests, collect exclusive NFTs, and upgrade them through our revolutionary burn-to-upgrade system. Join NEFTIT and be part of Web3's future." 
         />
         <meta name="keywords" content="NFT, Web3, crypto, blockchain, community, rewards, quests" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="NEFTIT - The Ultimate Web3 Community Hub" />
+        <meta property="og:title" content="NEFTIT - Complete Quests, Collect & Upgrade NFTs" />
         <meta property="og:description" content="Complete quests, collect exclusive NFTs, and upgrade them through our revolutionary burn-to-upgrade system." />
         <meta property="og:image" content="/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />

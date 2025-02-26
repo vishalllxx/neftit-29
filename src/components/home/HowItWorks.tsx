@@ -1,28 +1,28 @@
 
 import { motion } from "framer-motion";
-import { Workflow, Bot, Zap, Trophy } from "lucide-react";
+import { MessagesSquare, Gift, Flame, Wallet } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const steps = [
   {
-    title: "Connect Your Wallet",
-    description: "Start by connecting your Web3 wallet to access the NEFTIT ecosystem",
-    icon: <Workflow className="w-6 h-6 text-blue-400" />,
+    title: "Complete Web3 Quests",
+    description: "Follow, Retweet, Join Discord, Solve Puzzles, and more",
+    icon: <MessagesSquare className="w-6 h-6 text-blue-400" />,
   },
   {
-    title: "Complete Tasks",
-    description: "Engage with Web3 projects through simple, gamified tasks",
-    icon: <Bot className="w-6 h-6 text-purple-400" />,
+    title: "Earn & Collect NFTs",
+    description: "Each completed task grants you a unique NFT from different Web3 projects",
+    icon: <Gift className="w-6 h-6 text-purple-400" />,
   },
   {
-    title: "Earn Rewards",
-    description: "Get NFTs, tokens, and exclusive access as rewards",
-    icon: <Zap className="w-6 h-6 text-pink-400" />,
+    title: "Upgrade Your NFTs",
+    description: "Use our burn-to-upgrade system to evolve your NFTs into higher rarity levels",
+    icon: <Flame className="w-6 h-6 text-pink-400" />,
   },
   {
-    title: "Level Up",
-    description: "Progress through levels to unlock rarer rewards and opportunities",
-    icon: <Trophy className="w-6 h-6 text-yellow-400" />,
+    title: "Trade & Showcase",
+    description: "Trade on popular marketplaces or showcase your unique collection",
+    icon: <Wallet className="w-6 h-6 text-yellow-400" />,
   },
 ];
 
