@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { CircleDollarSign, ArrowRightLeft, Receipt, Clock, Filter, Search, Trophy, Fire } from "lucide-react";
+import { CircleDollarSign, ArrowRightLeft, Receipt, Clock, Filter, Search, Trophy } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -21,7 +21,7 @@ const Activity = () => {
       item: "5 Common NFTs → 1 Platinum NFT",
       price: "---",
       date: "2024-02-20",
-      icon: <Fire className="h-4 w-4 text-orange-500" />,
+      icon: <ArrowRightLeft className="h-4 w-4 text-orange-500" />,
     },
     {
       id: 2,
@@ -163,7 +163,7 @@ const Activity = () => {
               variant="outline" 
               className="bg-white/5 border-white/10 hover:bg-white/10"
             >
-              <Fire className="mr-2 h-4 w-4" />
+              <ArrowRightLeft className="mr-2 h-4 w-4" />
               Burn & Upgrade NFTs
             </Button>
             <Button 
