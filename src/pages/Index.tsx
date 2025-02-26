@@ -18,12 +18,12 @@ const Index = () => {
         <title>NEFTIT - The Ultimate Web3 Community Hub</title>
         <meta 
           name="description" 
-          content="Connect with Web3 projects, earn NFT rewards, and join a thriving community. NEFTIT offers gasless transactions, multi-chain support, and unique burn-to-upgrade system." 
+          content="Complete quests, collect exclusive NFTs, and upgrade them through our revolutionary burn-to-upgrade system. Join NEFTIT and be part of Web3's future." 
         />
-        <meta name="keywords" content="NFT, Web3, crypto, blockchain, community, rewards, airdrops" />
+        <meta name="keywords" content="NFT, Web3, crypto, blockchain, community, rewards, quests" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="NEFTIT - The Ultimate Web3 Community Hub" />
-        <meta property="og:description" content="Connect with Web3 projects, earn NFT rewards, and join a thriving community." />
+        <meta property="og:description" content="Complete quests, collect exclusive NFTs, and upgrade them through our revolutionary burn-to-upgrade system." />
         <meta property="og:image" content="/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
