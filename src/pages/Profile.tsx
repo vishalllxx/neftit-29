@@ -1,14 +1,17 @@
-
 import { MainNav } from "@/components/layout/MainNav";
 import StarryBackground from "@/components/layout/StarryBackground";
 import { ProfileHeader } from "@/components/profile/ProfileHeader";
+import { ProfileStats } from "@/components/profile/ProfileStats";
+import { BurnProgress } from "@/components/profile/BurnProgress";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { 
   Trophy,
   LogOut, 
   Award,
-  Sparkles
+  Sparkles,
+  Wallet,
+  Share2
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useWallet } from "@/components/wallet/WalletProvider";
@@ -19,21 +22,31 @@ import { motion } from "framer-motion";
 import { useState, useEffect, useCallback } from "react";
 
 const Profile = () => {
-  console.log("Profile component re-rendered!");
-  
   const { disconnect } = useWallet();
   const navigate = useNavigate();
   
-  // Use useState to prevent flickering from storage reads
   const [profileData, setProfileData] = useState(() => ({
     username: sessionStorage.getItem("username") || localStorage.getItem("username") || "Username",
     totalXP: 380,
     neftPoints: 3,
     level: 5,
-    avatar: "https://i.seadn.io/gae/Ju9CkWtV-1Okvf45wo8UctR-M9He2PjILP0oOvxE89AyiPPGtrR3gysu1Zgy0hjd2xKIgjJJtWIc0ybj4Vd7wv8t3pxDGHoJBzDB?auto=format&dpr=1&w=1000"
+    rank: "Explorer",
+    walletAddress: "0x1234...5678",
+    avatar: "https://i.seadn.io/gae/Ju9CkWtV-1Okvf45wo8UctR-M9He2PjILP0oOvxE89AyiPPGtrR3gysu1Zgy0hjd2xKIgjJJtWIc0ybj4Vd7wv8t3pxDGHoJBzDB?auto=format&dpr=1&w=1000",
+    stats: {
+      totalNFTs: 12,
+      upgradableNFTs: 5,
+      burnedNFTs: 3,
+      questsCompleted: 8
+    },
+    burnProgress: {
+      commonCount: 3,
+      platinumCount: 2,
+      silverCount: 1,
+      goldCount: 0
+    }
   }));
 
-  // Update username if it changes in storage
   useEffect(() => {
     const newUsername = sessionStorage.getItem("username") || localStorage.getItem("username") || "Username";
     if (newUsername !== profileData.username) {
@@ -52,7 +65,10 @@ const Profile = () => {
     navigate("/settings");
   }, [navigate]);
 
-  // Animation configuration
+  const handleShare = useCallback(() => {
+    toast.success("Profile sharing coming soon!");
+  }, []);
+
   const fadeInUp = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
@@ -65,69 +81,99 @@ const Profile = () => {
       <StarryBackground />
       <MainNav />
       
-      <div className="container mx-auto px-4 pt-24 space-y-8 relative">
+      <div className="container mx-auto px-4 pt-24 pb-12 space-y-8 relative">
         <motion.div {...fadeInUp}>
           <ProfileHeader 
             username={profileData.username}
             xp={profileData.totalXP}
             neftPoints={profileData.neftPoints}
             level={profileData.level}
+            rank={profileData.rank}
+            walletAddress={profileData.walletAddress}
             avatar={profileData.avatar}
             onEditProfile={handleEditProfile}
           />
         </motion.div>
 
-        <motion.div 
-          layoutId="progress-section"
-          {...fadeInUp}
-        >
-          <div className="glass rounded-xl p-6 space-y-4">
-            <div className="flex justify-between items-center">
-              <h3 className="text-xl font-bold bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent">
-                Progress to Next Level
-              </h3>
-              <span className="text-white/80">{profileData.totalXP} / 500 XP</span>
-            </div>
-            <Progress value={(profileData.totalXP / 500) * 100} className="h-2" />
-          </div>
+        <motion.div {...fadeInUp}>
+          <ProfileStats {...profileData.stats} />
         </motion.div>
 
-        <motion.div
-          layoutId="tabs-section"
-          {...fadeInUp}
-        >
-          <Tabs defaultValue="completed" className="w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <motion.div {...fadeInUp}>
+            <BurnProgress {...profileData.burnProgress} />
+          </motion.div>
+
+          <motion.div {...fadeInUp}>
+            <Card className="glass">
+              <CardContent className="p-6 space-y-4">
+                <h3 className="text-xl font-bold text-white">Quick Actions</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <Button className="w-full gap-2" variant="outline">
+                    <Wallet className="w-4 h-4" />
+                    View Collection
+                  </Button>
+                  <Button className="w-full gap-2" variant="outline">
+                    <Trophy className="w-4 h-4" />
+                    Start Quest
+                  </Button>
+                  <Button className="w-full gap-2" variant="outline">
+                    <Award className="w-4 h-4" />
+                    Upgrade NFTs
+                  </Button>
+                  <Button 
+                    className="w-full gap-2" 
+                    variant="outline"
+                    onClick={handleShare}
+                  >
+                    <Share2 className="w-4 h-4" />
+                    Share Profile
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+
+        <motion.div {...fadeInUp}>
+          <Tabs defaultValue="nfts" className="w-full">
             <TabsList className="w-full glass grid grid-cols-3">
-              <TabsTrigger value="completed" className="data-[state=active]:bg-primary/20">
+              <TabsTrigger value="nfts">
+                <Award className="h-4 w-4 mr-2" />
+                My NFTs
+              </TabsTrigger>
+              <TabsTrigger value="quests">
                 <Trophy className="h-4 w-4 mr-2" />
                 Quests
               </TabsTrigger>
-              <TabsTrigger value="nfts" className="data-[state=active]:bg-primary/20">
-                <Award className="h-4 w-4 mr-2" />
-                NFTs
-              </TabsTrigger>
-              <TabsTrigger value="achievements" className="data-[state=active]:bg-primary/20">
+              <TabsTrigger value="achievements">
                 <Sparkles className="h-4 w-4 mr-2" />
                 Achievements
               </TabsTrigger>
             </TabsList>
             
-            <TabsContent value="completed">
+            <TabsContent value="nfts">
+              <Card className="glass mt-6">
+                <CardContent className="pt-6">
+                  <div className="text-center py-8">
+                    <Award className="h-12 w-12 text-primary/40 mx-auto mb-4" />
+                    <h3 className="text-lg font-semibold text-white mb-2">
+                      Your NFT Collection
+                    </h3>
+                    <p className="text-white/60">
+                      Coming soon - View and manage your NFTs here!
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+            
+            <TabsContent value="quests">
               <Card className="glass mt-6">
                 <CardContent className="pt-6 text-center">
                   <Trophy className="h-12 w-12 text-primary/40 mx-auto mb-4" />
                   <h3 className="text-lg font-semibold text-white mb-2">No Quests Completed Yet</h3>
                   <p className="text-white/60">Start your journey by completing quests and earning rewards!</p>
-                </CardContent>
-              </Card>
-            </TabsContent>
-            
-            <TabsContent value="nfts">
-              <Card className="glass mt-6">
-                <CardContent className="pt-6 text-center">
-                  <Award className="h-12 w-12 text-primary/40 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-white mb-2">No NFTs Minted Yet</h3>
-                  <p className="text-white/60">Complete quests to earn and mint your first NFT!</p>
                 </CardContent>
               </Card>
             </TabsContent>
