@@ -119,15 +119,17 @@ export const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="space-y-6"
+          className="space-y-8"
         >
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400">
-              Complete Quests. Earn Unique NFTs.
+          <h1 className="flex flex-col space-y-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
+              Complete Quests
             </span>
-            <br />
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-400 via-blue-400 to-purple-400">
+              Earn Unique NFTs
+            </span>
             <span className="text-white">
-              Upgrade & Trade.
+              Upgrade & Trade
             </span>
           </h1>
           
@@ -145,7 +147,7 @@ export const HeroSection = () => {
           <Link to="/discover">
             <Button 
               size="lg"
-              className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white px-8 py-6 rounded-full text-lg font-medium transform transition-all duration-300 hover:scale-105"
+              className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white px-8 py-6 rounded-full text-lg font-medium transform transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
             >
               Start Collecting NFTs
               <RocketIcon className="ml-2 h-5 w-5" />
@@ -156,7 +158,7 @@ export const HeroSection = () => {
             <Button 
               size="lg" 
               variant="outline"
-              className="border-2 border-purple-500/50 hover:border-purple-500 bg-transparent text-white px-8 py-6 rounded-full text-lg font-medium transform transition-all duration-300 hover:scale-105"
+              className="border-2 border-purple-500/50 hover:border-purple-500 bg-transparent text-white px-8 py-6 rounded-full text-lg font-medium transform transition-all duration-300 hover:scale-105 hover:bg-purple-500/10"
             >
               Explore Live Quests
               <Sparkles className="ml-2 h-5 w-5" />
