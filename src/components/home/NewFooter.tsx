@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { Twitter, Discord, Send } from "lucide-react";
+import { Twitter, MessagesSquare, Send } from "lucide-react";
 
 export const NewFooter = () => {
   return (
@@ -17,7 +17,7 @@ export const NewFooter = () => {
                 <Twitter className="w-5 h-5" />
               </a>
               <a href="https://discord.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                <Discord className="w-5 h-5" />
+                <MessagesSquare className="w-5 h-5" />
               </a>
               <a href="https://t.me" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                 <Send className="w-5 h-5" />
