@@ -1,4 +1,3 @@
-
 export interface NFTProject {
   id: string;
   projectName: string;
@@ -28,5 +27,31 @@ export interface NFTProject {
     legendary: number;
     rare: number;
     common: number;
+  };
+}
+
+export type NFTRarity = 'Common' | 'Platinum' | 'Silver' | 'Gold';
+
+export interface BurnRule {
+  from: {
+    rarity: NFTRarity;
+    count: number;
+  };
+  to: {
+    rarity: NFTRarity;
+    count: number;
+  };
+}
+
+export interface BurnHistory {
+  id: string;
+  timestamp: string;
+  burnedNFTs: {
+    id: string;
+    rarity: NFTRarity;
+  }[];
+  receivedNFT: {
+    id: string;
+    rarity: NFTRarity;
   };
 }
