@@ -55,3 +55,22 @@ export interface BurnHistory {
     rarity: NFTRarity;
   };
 }
+
+export interface Statistic {
+  value: string;
+  label: string;
+  icon?: React.ReactNode;
+}
+
+export interface Feature {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+}
+
+export interface ProcessStep {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  number: string;
+}
