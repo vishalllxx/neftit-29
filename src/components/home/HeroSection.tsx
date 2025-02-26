@@ -112,7 +112,7 @@ export const HeroSection = () => {
         style={{ zIndex: 0 }}
       />
       
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 via-transparent to-transparent opacity-50" />
+      <div className="absolute inset-0 bg-gradient-to-b from-purple-500/10 via-transparent to-transparent opacity-50" />
       
       <div className="container relative z-10 mx-auto text-center space-y-8 max-w-5xl pt-20">
         <motion.div
@@ -121,53 +121,31 @@ export const HeroSection = () => {
           transition={{ duration: 0.8 }}
           className="space-y-6"
         >
-          <h1 className="flex flex-col space-y-3 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.15]">
-            <motion.span 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-purple-300 to-purple-400"
-            >
-              Complete Quests
-            </motion.span>
-            <motion.span 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400"
-            >
-              Earn Unique NFTs
-            </motion.span>
-            <motion.span 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="text-white/90"
-            >
-              Upgrade & Trade
-            </motion.span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400">
+              Complete Quests. Earn Unique NFTs.
+            </span>
+            <br />
+            <span className="text-white">
+              Upgrade & Trade.
+            </span>
           </h1>
           
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="text-lg sm:text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto font-light tracking-wide"
-          >
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
             Engage in exciting quests, collect exclusive NFTs, and level them up to unlock even rarer assets.
-          </motion.p>
+          </p>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
         >
           <Link to="/discover">
             <Button 
               size="lg"
-              className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white px-8 py-6 rounded-full text-lg font-medium transition-all duration-300 hover:translate-y-[-2px] hover:shadow-xl hover:shadow-purple-500/20"
+              className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white px-8 py-6 rounded-full text-lg font-medium transform transition-all duration-300 hover:scale-105"
             >
               Start Collecting NFTs
               <RocketIcon className="ml-2 h-5 w-5" />
@@ -178,7 +156,7 @@ export const HeroSection = () => {
             <Button 
               size="lg" 
               variant="outline"
-              className="border border-purple-500/30 hover:border-purple-500/50 bg-black/20 backdrop-blur-sm text-white px-8 py-6 rounded-full text-lg font-medium transition-all duration-300 hover:translate-y-[-2px] hover:bg-black/30"
+              className="border-2 border-purple-500/50 hover:border-purple-500 bg-transparent text-white px-8 py-6 rounded-full text-lg font-medium transform transition-all duration-300 hover:scale-105"
             >
               Explore Live Quests
               <Sparkles className="ml-2 h-5 w-5" />
@@ -192,20 +170,20 @@ export const HeroSection = () => {
           transition={{ delay: 0.6, duration: 0.8 }}
           className="flex items-center justify-center gap-4 pt-12 flex-wrap"
         >
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/20 backdrop-blur-md border border-white/5">
-            <span className="text-sm font-medium text-white/70">Complete Quests</span>
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
+            <span className="text-sm font-medium">Complete Quests</span>
           </div>
           
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/20 backdrop-blur-md border border-white/5">
-            <span className="text-sm font-medium text-white/70">Earn NFTs</span>
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
+            <span className="text-sm font-medium">Earn NFTs</span>
           </div>
           
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/20 backdrop-blur-md border border-white/5">
-            <span className="text-sm font-medium text-white/70">Upgrade Rarities</span>
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
+            <span className="text-sm font-medium">Upgrade Rarities</span>
           </div>
           
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/20 backdrop-blur-md border border-white/5">
-            <span className="text-sm font-medium text-white/70">Trade & Showcase</span>
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
+            <span className="text-sm font-medium">Trade & Showcase</span>
           </div>
         </motion.div>
       </div>
