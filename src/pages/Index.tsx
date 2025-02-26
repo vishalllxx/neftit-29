@@ -3,27 +3,27 @@ import { MainNav } from "@/components/layout/MainNav";
 import StarryBackground from "@/components/layout/StarryBackground";
 import { Helmet } from "react-helmet";
 import { HeroSection } from "@/components/home/HeroSection";
-import { BenefitsSection } from "@/components/home/BenefitsSection";
-import { HowItWorks } from "@/components/home/HowItWorks";
-import { UniqueFeatures } from "@/components/home/UniqueFeatures";
-import { CommunityGrowth } from "@/components/home/CommunityGrowth";
-import { CallToAction } from "@/components/home/CallToAction";
-import { Footer } from "@/components/home/Footer";
+import { HowItWorksNew } from "@/components/home/HowItWorksNew";
+import { NFTSystem } from "@/components/home/NFTSystem";
+import { UserBenefits } from "@/components/home/UserBenefits";
+import { UserDashboard } from "@/components/home/UserDashboard";
+import { JoinSection } from "@/components/home/JoinSection";
+import { NewFooter } from "@/components/home/NewFooter";
 import { motion } from "framer-motion";
 
 const Index = () => {
   return (
     <>
       <Helmet>
-        <title>NEFTIT - Complete Quests, Collect & Upgrade NFTs</title>
+        <title>NEFTIT - Complete Quests, Earn & Upgrade NFTs</title>
         <meta 
           name="description" 
-          content="Complete quests, collect exclusive NFTs, and upgrade them through our revolutionary burn-to-upgrade system. Join NEFTIT and be part of Web3's future." 
+          content="Join NEFTIT to complete exciting quests, earn unique NFTs, and upgrade them to unlock rarer assets. Start your NFT collection journey today!" 
         />
-        <meta name="keywords" content="NFT, Web3, crypto, blockchain, community, rewards, quests" />
+        <meta name="keywords" content="NFT quests, NFT rewards, NFT upgrades, Web3 engagement, NFT collection" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="NEFTIT - Complete Quests, Collect & Upgrade NFTs" />
-        <meta property="og:description" content="Complete quests, collect exclusive NFTs, and upgrade them through our revolutionary burn-to-upgrade system." />
+        <meta property="og:title" content="NEFTIT - Complete Quests, Earn & Upgrade NFTs" />
+        <meta property="og:description" content="Join NEFTIT to complete exciting quests, earn unique NFTs, and upgrade them to unlock rarer assets." />
         <meta property="og:image" content="/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
@@ -40,15 +40,15 @@ const Index = () => {
             className="space-y-24 md:space-y-32 pb-20"
           >
             <HeroSection />
-            <BenefitsSection />
-            <HowItWorks />
-            <UniqueFeatures />
-            <CommunityGrowth />
-            <CallToAction />
+            <HowItWorksNew />
+            <NFTSystem />
+            <UserBenefits />
+            <UserDashboard />
+            <JoinSection />
           </motion.div>
         </main>
 
-        <Footer />
+        <NewFooter />
       </div>
     </>
   );
