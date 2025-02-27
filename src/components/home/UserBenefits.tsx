@@ -38,9 +38,9 @@ const benefits = [
 
 export const UserBenefits = () => {
   return (
-    <section className="relative py-20 px-4 overflow-hidden">
+    <section className="relative py-20 px-4 overflow-hidden bg-[#0c0c0e]">
       {/* Background gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/50" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0e0e12]/50 via-[#0c0c0e] to-[#0c0c0e]" />
       
       <div className="container mx-auto max-w-7xl relative z-10">
         <motion.div
@@ -58,7 +58,7 @@ export const UserBenefits = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
           {benefits.map((benefit, index) => (
             <motion.div
               key={benefit.title}
@@ -67,37 +67,33 @@ export const UserBenefits = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className="relative h-full group overflow-hidden bg-black/40 backdrop-blur-xl border-0">
-                {/* Glowing border effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <Card className="h-full bg-[#16161a] border-0 rounded-xl overflow-hidden shadow-lg shadow-black/20">
+                <div className="relative h-[140px] overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10" />
+                  {/* Image background with gradient overlay */}
+                  <img 
+                    src={benefit.image} 
+                    alt={benefit.title}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      // Fallback for missing images
+                      e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23252530'/%3E%3C/svg%3E";
+                    }}
+                  />
+                </div>
                 
-                {/* Content wrapper */}
-                <div className="relative p-8 h-full">
-                  {/* Header with icon */}
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="p-3 rounded-xl bg-white/5 backdrop-blur">
+                <div className="p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2.5 rounded-lg bg-[#252530]">
                       {benefit.icon}
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-white mb-2">
-                        {benefit.title}
-                      </h3>
-                      <p className="text-gray-400 text-sm">
-                        {benefit.description}
-                      </p>
-                    </div>
+                    <h3 className="text-lg font-semibold text-white">
+                      {benefit.title}
+                    </h3>
                   </div>
-
-                  {/* Image section */}
-                  <div className="mt-6 rounded-xl overflow-hidden bg-black/30 p-4">
-                    <div className="aspect-[16/9] relative rounded-lg overflow-hidden">
-                      {/* Placeholder visual element */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-white/10" />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-full h-1/2 bg-gradient-to-r from-green-500/20 via-blue-500/20 to-purple-500/20 blur-xl" />
-                      </div>
-                    </div>
-                  </div>
+                  <p className="text-sm text-gray-400">
+                    {benefit.description}
+                  </p>
                 </div>
               </Card>
             </motion.div>
